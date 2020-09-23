@@ -5,12 +5,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Dev</title>
+  <title>WebDev</title>
+  <meta name="description" content="Your life is WebDev. Whatever the approach to development may be, the final program must satisfy some fundamental properties.">
   <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
-  <h1>Web Dev</h1>
+<body class="page">
+    <header class="main-header">
+        <nav class="main-navigation">
+            <ul class="main-navigation__list list-reset">
+                <li class="main-navigation__item">
+                    <a class="main-navigation__link main-navigation__link--current">About</a>
+                </li>
+                <li class="main-navigation__item">
+                    <a class="main-navigation__link" href="#">Syllabus</a>
+                </li>
+                <li class="main-navigation__item" href="#">
+                    <a class="main-navigation__link">
+                        <img class="main-navigation__logo" src="./assets/img/logo.svg" width="44" height="45" alt="WebDev Logo">
+                    </a>
+                </li>
+                <li class="main-navigation__item">
+                    <a class="main-navigation__link" href="#">Projects</a>
+                </li>
+                <li class="main-navigation__item">
+                    <a class="main-navigation__link" href="#">FAQ</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main">
+        <h1 class="visually-hidden">WebDev</h1>
+        <section class="promo">
+            <p class="promo__lead">Your life is WebDev</p>
+            <p class="promo__text">Whatever the approach to development may be, the final program must satisfy some fundamental properties</p>
+            <a class="button promo__button" href="#">Get started</a>
+            <ul class="social list-reset">
+                <li class="social__item">
+                    <a class="social__link social__link--mail" href="#" aria-label="Contact us by email"></a>
+                </li>
+                <li class="social__item">
+                    <a class="social__link social__link--mail" href="#" aria-label="WebDev Facebook"></a>
+                </li>
+                <li class="social__item">
+                    <a class="social__link social__link--mail" href="#" aria-label="WebDev Instagram"></a>
+                </li>
+                <li class="social__item">
+                    <a class="social__link social__link--mail" href="#" aria-label="WebDev YouTube"></a>
+                </li>
+            </ul>
+        </section>
+
+        <section class="rappresent">
+            <p class="rappresent__lead">Rappresent your idea with a smart design</p>
+            <p class="rappresent__text">Tasks accompanying and related to programming include: testing, debugging, source code maintenance, 
+                <strong>implementation of build systems</strong>, and management of derived artifacts, such as the machine code of computer programs.</p>
+            <a class="button rappresent__button" href="#">Get started</a>
+        </section>
+
+        <section class="community">
+            <p class="community__lead">Our community</p>
+            <p class="community__text">A hacker is any skilled computer expert that uses their technical knowledge to overcome a problem, but it can also mean a security hacker in common language</p>
+
+            <div class="slider">
+                <div class="slider__toggles">
+                    <button class="slider__toggle slider__toggle--prev" type="button" aria-label="Previous slide"></button>
+                    <span class="slider__count slider__count--current">1</span>
+                    <span class="slider__divider">/</span>
+                    <span class="slider__count slider__count--total">5</span>
+                    <button class="slider__toggle slider__toggle--next" type="button" aria-label="Next slide"></button>
+                </div>
+                <ul class="slider__list">
+                    <li class="slider__item slider__item--1"></li>
+                    <li class="slider__item slider__item--2"></li>
+                    <li class="slider__item slider__item--3"></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="implement">
+            <p class="implement__lead">Implement right Code</p>
+            <p class="implement__text">These might be considered part of the programming process, but often the term software development is used for this larger process with the term programming, implementation</p>
+            <a class="button implement__button" href="#">Learn more</a>
+        </section>
+
+        <section class="sign">
+            <p class="sign__lead">Sign up for our newsletter</p>
+            <form class="sign__form" method="post" action="#">
+                <p class="sign__item">
+                    <input class="sign__item-field" type="email" name="user-email" placeholder="E-mail" required>
+                    <button class="sign__item-button" type="submit"></button>
+                  </p>
+            </form>>
+        </section>
+
+        <section class="download">
+            <p class="download__lead">Download the App</p>
+            <p class="download__text">Machine code was the language of early programs, written in the instruction set of the particular machine, often in binary notation.</p>
+            <a class="button button--ios download__button" href="#">Apple store</a>
+            <a class="button button--android download__button" href="#">Play market</a>
+        </section>
+    </main>
+    <footer class="main-footer">
+        <ul class="docs">
+            <li class="docs__item">
+                <a class="docs__link" href="#">Credits</a>
+            </li>
+            <li class="docs__item">
+                <a class="docs__link" href="#">Privacy</a>
+            </li>
+            <li class="docs__item">
+                <a class="docs__link" href="#">Our teams</a>
+            </li>
+        </ul>
+
+        <a class="main-footer__logo" href="#" aria-label="Go to homepage">
+            <img class="main-footer__logo-image" src="./assets/img/logo.svg" width="44" height="45" alt="WebDev Logo">
+        </a>
+
+        <p class="copyright">by 
+            <a class="copyright__link" href="#">TonYem</a> for RSS at 2020</p>
+    </footer>
 </body>
 
 </html>
