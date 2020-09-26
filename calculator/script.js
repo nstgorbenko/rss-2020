@@ -26,6 +26,11 @@ class Calculator {
             return;
         }
 
+        if (number !== '.' && this.currentOperand === '0') {
+            this.currentOperand = number;
+            return;
+        }
+
         this.currentOperand += number;
     }
 
