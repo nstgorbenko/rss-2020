@@ -136,6 +136,7 @@ class Calculator {
         const secondValue = parseFloat(this.currentOperand);
 
         if (isNaN(firstValue) || isNaN(secondValue)) {
+            this.isComputationFinished = true;
             return;
         };
 
@@ -156,7 +157,6 @@ class Calculator {
             default:
                 throw new Error(`Unknown operation type: ${this.operation}`);
         }
-
         this.isComputationFinished = true;
         this.currentOperand = computationResult.toString();
         this.previousOperand = '';
