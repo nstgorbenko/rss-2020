@@ -21,6 +21,26 @@ class Calculator {
             return;
         }
 
+        if (number === '±' && this.currentOperand === '') {
+            this.currentOperand = '-';
+            return;
+        }
+
+        if (number === '±' && this.currentOperand === '-') {
+            this.currentOperand = '';
+            return;
+        }
+
+        if (number === '±' && this.currentOperand[0] === '-') {
+            this.currentOperand = this.currentOperand.slice(1);
+            return;
+        }
+
+        if (number === '±' && this.currentOperand !== '') {
+            this.currentOperand = `-${this.currentOperand}`;
+            return;
+        }
+
         if (number === '.' && this.currentOperand === '') {
             this.currentOperand += '0.';
             return;
