@@ -41,7 +41,7 @@ class Calculator {
             return;
         }
 
-        if (number === '√x' && this.currentOperand[0] === '-') {
+        if (number === '√x' && this.currentOperand[0] === '-' || number === '√x' && this.currentOperand.indexOf('^') !== -1) {
             return;
         }
 
@@ -65,6 +65,15 @@ class Calculator {
             return;
         }
 
+        if (number === 'xy' && this.currentOperand === '' || number === 'xy' && this.currentOperand.indexOf('^') !== -1 || number === 'xy' && this.currentOperand.indexOf('√') !== -1) {
+            return;
+        }
+
+        if (number === 'xy' && this.currentOperand !== '') {
+            this.currentOperand += '^';
+            return;
+        }
+
         if (number === '.' && this.currentOperand === '') {
             this.currentOperand += '0.';
             return;
@@ -79,25 +88,6 @@ class Calculator {
     }
 
     chooseOperation(operation) {
-        // if (this.currentOperand === '' && this.previousOperand === '' || this.currentOperand === '-' || this.currentOperand === '√') {
-        //     return;
-        // };
-
-        // if (this.currentOperand === '' && this.previousOperand !== '') {
-        //     this.operation = operation;
-        //     return;
-        // };
-
-        // if (this.currentOperand !== '' && this.previousOperand !== '') {
-        //     this.compute();
-        // };
-
-        // this.operation = operation;
-        // this.previousOperand = this.currentOperand.slice(-1) === '.'
-        //     ? this.currentOperand.slice(0, -1)
-        //     : this.currentOperand;
-        // this.currentOperand = '';
-
         if (this.currentOperand === '' && this.previousOperand === '' || this.currentOperand === '-' || this.currentOperand === '√') {
             return;
         };
@@ -116,6 +106,10 @@ class Calculator {
         if (this.currentOperand[0] === '-' && this.currentOperand[1] === '√') {
             this.currentOperand = `-${String(Math.sqrt(this.currentOperand.slice(2)))}`;
         }
+        if (this.currentOperand.indexOf('^') !== -1) {
+            const operand = this.currentOperand.split('^')
+            this.currentOperand = String(Math.pow(parseInt(operand[0]), parseInt(operand[1])));
+        }
 
         if (this.currentOperand !== '' && this.previousOperand !== '') {
             this.compute();
@@ -132,6 +126,10 @@ class Calculator {
         }
         if (this.currentOperand[0] === '-' && this.currentOperand[1] === '√') {
             this.currentOperand = `-${String(Math.sqrt(this.currentOperand.slice(2)))}`;
+        }
+        if (this.currentOperand.indexOf('^') !== -1) {
+            const operand = this.currentOperand.split('^')
+            this.currentOperand = String(Math.pow(Number(operand[0]), Number(operand[1])));
         }
         
         const firstValue = parseFloat(this.previousOperand);
@@ -169,7 +167,7 @@ class Calculator {
         const integerDigits = number.split('.')[0].toLocaleString();
         const decimalDigits = number.split('.')[1];
 
-        return isNaN(decimalDigits)
+        return (decimalDigits === undefined)
             ? integerDigits
             : `${integerDigits}.${decimalDigits}`;    
     }
