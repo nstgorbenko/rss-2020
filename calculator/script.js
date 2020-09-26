@@ -13,6 +13,9 @@ class Calculator {
     }
 
     delete() {
+        if (this.currentOperand === 'error') {
+            this.currentOperand = ''
+        }
         this.currentOperand = this.currentOperand.slice(0, -1);
     }
 
@@ -41,7 +44,15 @@ class Calculator {
             return;
         }
 
-        if (number === '√x' && this.currentOperand[0] === '-' || number === '√x' && this.currentOperand.indexOf('^') !== -1) {
+        if (number === '√x' && this.currentOperand.indexOf('^') !== -1) {
+            return;
+        }
+
+        if (number === '√x' && this.currentOperand[0] === '-') {
+            this.currentOperand = `error`;
+            this.previousOperand = '';
+            this.isComputationFinished = true;
+            this.operation = null;
             return;
         }
 
@@ -93,7 +104,7 @@ class Calculator {
     }
 
     chooseOperation(operation) {
-        if (this.currentOperand === '' && this.previousOperand === '' || this.currentOperand === '-' || this.currentOperand === '√') {
+        if (this.currentOperand === '' && this.previousOperand === '' || this.currentOperand === '-' || this.currentOperand === '√' || this.currentOperand === 'error') {
             return;
         };
 
@@ -168,7 +179,10 @@ class Calculator {
         this.operation = null;
     }
 
-    getDisplayNumber(number) {        
+    getDisplayNumber(number) {     
+        if (number === 'error') {
+            return 'error';
+        }   
         const fixedLengthNumber = this.isComputationFinished ? (parseFloat(Number(number).toFixed(7))).toString() : number;
         const integerDigits = fixedLengthNumber.split('.')[0].toLocaleString();
         const decimalDigits = fixedLengthNumber.split('.')[1];
@@ -199,6 +213,9 @@ const calculator = new Calculator(previousOperandScreen, currentOperandScreen);
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", () => {
+        if (calculator.currentOperand === 'error') {
+            calculator.currentOperand = "";
+        }
         if (calculator.previousOperand === "" && calculator.isComputationFinished) {
             calculator.currentOperand = "";
             calculator.isComputationFinished = false;
