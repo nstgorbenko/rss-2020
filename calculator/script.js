@@ -41,6 +41,30 @@ class Calculator {
             return;
         }
 
+        if (number === '√x' && this.currentOperand[0] === '-') {
+            return;
+        }
+
+        if (number === '√x' && this.currentOperand === '') {
+            this.currentOperand = '√';
+            return;
+        }
+
+        if (number === '√x' && this.currentOperand === '√') {
+            this.currentOperand = '';
+            return;
+        }
+
+        if (number === '√x' && this.currentOperand[0] === '√') {
+            this.currentOperand = this.currentOperand.slice(1);
+            return;
+        }
+
+        if (number === '√x' && this.currentOperand !== '') {
+            this.currentOperand = `√${this.currentOperand}`;
+            return;
+        }
+
         if (number === '.' && this.currentOperand === '') {
             this.currentOperand += '0.';
             return;
@@ -55,7 +79,26 @@ class Calculator {
     }
 
     chooseOperation(operation) {
-        if (this.currentOperand === '' && this.previousOperand === '') {
+        // if (this.currentOperand === '' && this.previousOperand === '' || this.currentOperand === '-' || this.currentOperand === '√') {
+        //     return;
+        // };
+
+        // if (this.currentOperand === '' && this.previousOperand !== '') {
+        //     this.operation = operation;
+        //     return;
+        // };
+
+        // if (this.currentOperand !== '' && this.previousOperand !== '') {
+        //     this.compute();
+        // };
+
+        // this.operation = operation;
+        // this.previousOperand = this.currentOperand.slice(-1) === '.'
+        //     ? this.currentOperand.slice(0, -1)
+        //     : this.currentOperand;
+        // this.currentOperand = '';
+
+        if (this.currentOperand === '' && this.previousOperand === '' || this.currentOperand === '-' || this.currentOperand === '√') {
             return;
         };
 
@@ -64,18 +107,33 @@ class Calculator {
             return;
         };
 
+        if (this.currentOperand.slice(-1) === '.') {
+            this.currentOperand = this.currentOperand.slice(0, -1);
+        }
+        if (this.currentOperand[0] === '√') {
+            this.currentOperand = String(Math.sqrt(this.currentOperand.slice(1)));
+        }
+        if (this.currentOperand[0] === '-' && this.currentOperand[1] === '√') {
+            this.currentOperand = `-${String(Math.sqrt(this.currentOperand.slice(2)))}`;
+        }
+
         if (this.currentOperand !== '' && this.previousOperand !== '') {
             this.compute();
         };
 
         this.operation = operation;
-        this.previousOperand = this.currentOperand.slice(-1) === '.'
-            ? this.currentOperand.slice(0, -1)
-            : this.currentOperand;
+        this.previousOperand = this.currentOperand;
         this.currentOperand = '';
     }
 
     compute() {
+        if (this.currentOperand[0] === '√') {
+            this.currentOperand = String(Math.sqrt(this.currentOperand.slice(1)));
+        }
+        if (this.currentOperand[0] === '-' && this.currentOperand[1] === '√') {
+            this.currentOperand = `-${String(Math.sqrt(this.currentOperand.slice(2)))}`;
+        }
+        
         const firstValue = parseFloat(this.previousOperand);
         const secondValue = parseFloat(this.currentOperand);
 
