@@ -79,6 +79,11 @@ class Calculator {
             return;
         }
 
+        if (number === '.' && this.currentOperand === '-' || number === '.' && this.currentOperand === '√' || number === '.' && this.currentOperand === '-√') {
+            this.currentOperand += '0.';
+            return;
+        }
+
         if (number !== '.' && this.currentOperand === '0') {
             this.currentOperand = number;
             return;
@@ -163,13 +168,14 @@ class Calculator {
         this.operation = null;
     }
 
-    getDisplayNumber(number) {
-        const integerDigits = number.split('.')[0].toLocaleString();
-        const decimalDigits = number.split('.')[1];
+    getDisplayNumber(number) {        
+        const fixedLengthNumber = this.isComputationFinished ? (parseFloat(Number(number).toFixed(7))).toString() : number;
+        const integerDigits = fixedLengthNumber.split('.')[0].toLocaleString();
+        const decimalDigits = fixedLengthNumber.split('.')[1];
 
         return (decimalDigits === undefined)
             ? integerDigits
-            : `${integerDigits}.${decimalDigits}`;    
+            : `${integerDigits}.${decimalDigits}`;
     }
 
     updateDisplay() {
