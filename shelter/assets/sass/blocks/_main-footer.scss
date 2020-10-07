@@ -1,0 +1,60 @@
+.main-footer {
+    background: 
+        url("../../assets/images/noise-lines-bg.png"), 
+        radial-gradient(110.67% 538.64% at 5.73% 50%, #513D2F 0%, #1A1A1C 100%), #211F20;
+}
+
+.main-footer__wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.main-footer__left,
+.main-footer__right {
+    width: 280px;
+    margin-top: 17px;
+}
+
+.main-footer__right {
+    width: 302px;
+
+    .main-footer__title {
+        margin-bottom: 17px;
+    }
+}
+
+.main-footer__title {
+    @include font(3.5rem, 1.3, 400, 0.06em);
+    margin: 0;
+    margin-bottom: 19px;
+    color: $color-light-xl;
+}
+
+.main-footer__list {
+    @include list-reset();
+}
+
+.main-footer__link {
+    @include link-reset();
+    @include font(2.0rem, 1.15, 400, 0.06em);
+    padding: 5px 0 5px 60px;
+    margin: 20px 0;
+    color: $color-primary;
+
+    &--email {
+        background: url("../../assets/icons/icon-email.svg") 0 0 no-repeat;
+    }
+
+    &--phone {
+        background: url("../../assets/icons/icon-phone.svg") 0 0 no-repeat;
+    }
+
+    &--marker {
+        padding: 5px 0 5px 40px;
+        background: url("../../assets/icons/icon-marker.svg") 0 50% no-repeat;
+        margin: 12px 0;
+    }
+}

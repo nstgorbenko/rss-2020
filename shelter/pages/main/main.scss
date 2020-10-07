@@ -1,46 +1,21 @@
-@font-face {
-    font-family: "Arial";
-    font-style: normal;
-    font-weight: 400;
-    src: local("Arial"), local("ArialMT"),
-         url("../../assets/fonts/Arial.woff2") format("woff2"),
-         url("../../assets/fonts/Arial.woff") format("woff");
-}
+// Utils
+@import "../../assets/sass/utils/_mixins.scss";
+@import "../../assets/sass/utils/_variables.scss";
 
-@font-face {
-    font-family: "Arial";
-    font-style: italic;
-    font-weight: 400;
-    src: local("Arial Italic"), local("Arial-Italic"),
-         url("../../assets/fonts/Arial-Italic.woff2") format("woff2"),
-         url("../../assets/fonts/Arial-Italic.woff") format("woff");
-}
+// Base
+@import "../../assets/sass/base/_fonts.scss";
+@import "../../assets/sass/base/_global.scss";
+@import "../../assets/sass/base/_normalize.scss";
 
-@font-face {
-    font-family: "Georgia";
-    font-style: normal;
-    font-weight: 400;
-    src: local("Georgia"),
-         url("../../assets/fonts/Georgia.woff2") format("woff2"),
-         url("../../assets/fonts/Georgia.woff") format("woff");
-}
-
-body {
-    font-family: Arial, sans-serif;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-.visually-hidden {
-    position: absolute;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    border: 0;
-} 
+@import "../../assets/sass/blocks/_main-header.scss";
+@import "../../assets/sass/blocks/_main-navigation.scss";
+@import "../../assets/sass/blocks/_intro.scss";
+@import "../../assets/sass/blocks/_button.scss";
+@import "../../assets/sass/blocks/_main.scss";
+@import "../../assets/sass/blocks/_about.scss";
+@import "../../assets/sass/blocks/_pets.scss";
+@import "../../assets/sass/blocks/_pet-card.scss";
+@import "../../assets/sass/blocks/_slider.scss";
+@import "../../assets/sass/blocks/_help.scss";
+@import "../../assets/sass/blocks/_donation.scss";
+@import "../../assets/sass/blocks/_main-footer.scss";

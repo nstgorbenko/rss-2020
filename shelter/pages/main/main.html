@@ -10,38 +10,42 @@
 
 <body class="page">
     <header class="main-header">
-        <nav class="main-navigation">
-            <a class="main-navigation__logo">
-                <h1 class="main-navigation__logo-title">Cozy House. 
-                    <span class="main-navigation__logo-subtitle">Shelter for pets in Boston</span>
-                </h1>
-            </a>
-            <ul class="main-navigation__list">
-                <li class="main-navigation__item">
-                    <a class="main-navigation__link main-navigation__link--current">About the shelter</a>
-                </li>
-                <li class="main-navigation__item">
-                    <a class="main-navigation__link" href="#">Our pets</a>
-                </li>
-                <li class="main-navigation__item">
-                    <a class="main-navigation__link" href="#">Help the shelter</a>
-                </li>
-                <li class="main-navigation__item">
-                    <a class="main-navigation__link" href="#">Contacts</a>
-                </li>
-            </ul>
-        </nav>
+        <div class="main-header__wrapper">
+            <nav class="main-navigation">
+                <a class="main-navigation__logo">
+                    <h1 class="main-navigation__logo-title">Cozy House 
+                        <span class="main-navigation__logo-subtitle">Shelter for pets in Boston</span>
+                    </h1>
+                </a>
+                <ul class="main-navigation__list">
+                    <li class="main-navigation__item">
+                        <a class="main-navigation__link main-navigation__link--current">About the shelter</a>
+                    </li>
+                    <li class="main-navigation__item">
+                        <a class="main-navigation__link" href="#">Our pets</a>
+                    </li>
+                    <li class="main-navigation__item">
+                        <a class="main-navigation__link" href="#">Help the shelter</a>
+                    </li>
+                    <li class="main-navigation__item">
+                        <a class="main-navigation__link" href="#">Contacts</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="main">
-        <section class="intro">
-            <div class="intro__info">
-                <h2 class="visually-hidden">Our mission</h2>
-                <p class="intro__lead">Not only people need a house</p>
-                <p class="intro__text">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
-                <a class="button" href="#">Make a friend</a>
+        <section class="intro main__intro">
+            <div class="intro__wrapper">
+                <div class="intro__info">
+                    <h2 class="visually-hidden">Our mission</h2>
+                    <p class="intro__lead">Not only people need a house</p>
+                    <p class="intro__text">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</p>
+                    <a class="button intro__button" href="#">Make a friend</a>
+                </div>
+                <img class="intro__image" src="../../assets/images/start-screen-puppy.png" width="698" height="728" alt="Puppy">
             </div>
-            <img class="intro__image" src="../../assets/images/start-screen-puppy.png" width="698" height="728" alt="Puppy">
         </section>
 
         <section class="about">
@@ -54,59 +58,71 @@
         </section>
 
         <section class="pets">
-            <h2 class="pets__title">Our friends who are looking for a house</h2>
-            <div class="pets__slider">
-                <ul class="pets__list">
-                    <li class="pet-card">
-                        <img class="pet-card__image" src="../../assets/images/pets-katrine.png" width="270" height="270" alt="Katrine cat">
-                        <p class="pet-card__name">Katrine</p>
-                        <a class="pet-card__link" href="#">Learn more</a>
-                    </li>
-                    <li class="pet-card">
-                        <img class="pet-card__image" src="../../assets/images/pets-jennifer.png" width="270" height="270" alt="Katrine cat">
-                        <p class="pet-card__name">Jennifer</p>
-                        <a class="pet-card__link" href="#">Learn more</a>
-                    </li>
-                    <li class="pet-card">
-                        <img class="pet-card__image" src="../../assets/images/pets-woody.png" width="270" height="270" alt="Katrine cat">
-                        <p class="pet-card__name">Woody</p>
-                        <a class="pet-card__link" href="#">Learn more</a>
-                    </li>
-                </ul>
-                <a class="slider__button slider__button--prev" href="#">Previous pet card</a>
-                <a class="slider__button slider__button--next" href="#">Next pet card</a>
+            <div class="pets__wrapper">
+                <h2 class="pets__title">Our friends who <br>are looking for a house</h2>
+                <div class="slider pets__slider">
+                    <ul class="pets__list">
+                        <li class="pet-card">
+                            <img class="pet-card__image" src="../../assets/images/pets-katrine.png" width="270" height="270" alt="Katrine cat">
+                            <p class="pet-card__name">Katrine</p>
+                            <a class="button button--light pet-card__link" href="#">Learn more</a>
+                        </li>
+                        <li class="pet-card">
+                            <img class="pet-card__image" src="../../assets/images/pets-jennifer.png" width="270" height="270" alt="Katrine cat">
+                            <p class="pet-card__name">Jennifer</p>
+                            <a class="button button--light pet-card__link" href="#">Learn more</a>
+                        </li>
+                        <li class="pet-card">
+                            <img class="pet-card__image" src="../../assets/images/pets-woody.png" width="270" height="270" alt="Katrine cat">
+                            <p class="pet-card__name">Woody</p>
+                            <a class="button button--light pet-card__link" href="#">Learn more</a>
+                        </li>
+                    </ul>
+                    <button class="slider__button slider__button--prev">Previous pet card
+                        <svg class="slider__button-image slider__button-image--prev" width="14" height="6" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z"/>
+                        </svg>
+                    </button>
+                    <button class="slider__button slider__button--next">Next pet card
+                        <svg class="slider__button-image slider__button-image--next" width="14" height="6" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z"/>
+                        </svg>
+                    </button>
+                </div>
+                <a class="button" href="#">Get to know the rest</a>
             </div>
-            <a class="button" href="#">Get to know the rest</a>
         </section>
 
         <section class="help">
             <h2 class="help__title">How you can help our shelter</h2>
             <ul class="help__list">
-                <li class="help__item">Pet food</li>
-                <li class="help__item">Transportation</li>
-                <li class="help__item">Toys</li>
-                <li class="help__item">Bowls and cups</li>
-                <li class="help__item">Shampoos</li>
-                <li class="help__item">Vitamins</li>
-                <li class="help__item">Medicines</li>
-                <li class="help__item">Collars / leashes</li>
-                <li class="help__item">Sleeping areas</li>
+                <li class="help__item help__item--food">Pet food</li>
+                <li class="help__item help__item--transport">Transportation</li>
+                <li class="help__item help__item--toys">Toys</li>
+                <li class="help__item help__item--bowls">Bowls and cups</li>
+                <li class="help__item help__item--shampoos">Shampoos</li>
+                <li class="help__item help__item--vitamins">Vitamins</li>
+                <li class="help__item help__item--med">Medicines</li>
+                <li class="help__item help__item--collars">Collars / leashes</li>
+                <li class="help__item help__item--sleep">Sleeping areas</li>
             </ul>
         </section>
 
         <section class="donation">
-            <img class="donation__image" src="../../assets/images/donation-dog.png" width="505" height="261" alt="Cute puppy">
-            <div class="donation__info">
-                <h2 class="donation__title">You can also make a donation</h2>
-                <p class="donation__bank">Name of the bank / Type of bank account</p>
-                <a class="donation__link" href="#">8380 2880 8028 8791 7435</a>
-                <p class="donation__note">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+            <div class="donation__wrapper">
+                <img class="donation__image" src="../../assets/images/donation-dog.png" width="505" height="261" alt="Cute puppy">
+                <div class="donation__info">
+                    <h2 class="donation__title">You can also make a donation</h2>
+                    <p class="donation__bank">Name of the bank / Type of bank account</p>
+                    <a class="donation__link" href="#">8380 2880 8028 8791 7435</a>
+                    <p class="donation__note">Legal information and lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a ipsum at libero sagittis dignissim sed ac diam. Praesent ultrices maximus tortor et vulputate. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="main-footer">
-        <div class="main-footer__info">
+        <div class="main-footer__wrapper">               
             <div class="main-footer__left">
                 <p class="main-footer__title">For questions and suggestions</p>
                 <ul class="main-footer__list">
@@ -123,16 +139,16 @@
                 <p class="main-footer__title">We are waiting for your visit</p>
                 <ul class="main-footer__list">
                     <li class="main-footer__item">
-                        <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/muZpyRQqQmiZQ3ML7">1 Central Street, Boston (entrance from the store)</a>
+                        <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/muZpyRQqQmiZQ3ML7" target="_blank">1 Central Street, Boston (entrance from the store)</a>
                     </li>
                     <li class="main-footer__item">
-                        <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/RNcFZazCLyFw9SpU9">18 South Park, London</a>
+                        <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/RNcFZazCLyFw9SpU9" target="_blank">18 South Park, London</a>
                     </li>
                 </ul>
             </div>
+    
+            <img class="main-footer__image" src="../../assets/images/footer-puppy.png" width="300" height="310" alt="Puppy with its tongue sticking out lifts one pow">
         </div>
-
-        <img class="main-footer__image" src="../../assets/images/footer-puppy.png" width="300" height="310" alt="Puppy with its tongue sticking out lifts one pow">
     </footer>
 </body>
 

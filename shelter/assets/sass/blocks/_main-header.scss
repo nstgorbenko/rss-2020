@@ -1,0 +1,13 @@
+.main-header {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 180px;
+}
+
+.main-header__wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}
