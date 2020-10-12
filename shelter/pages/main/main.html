@@ -9,9 +9,9 @@
 </head>
 
 <body class="page">
-    <header class="main-header">
+    <header class="main-header main-header--homepage">
         <div class="main-header__wrapper">
-            <nav class="main-navigation">
+            <nav class="main-navigation main-navigation--homepage">
                 <a class="main-navigation__logo">
                     <h1 class="main-navigation__logo-title">Cozy House 
                         <span class="main-navigation__logo-subtitle">Shelter for pets in Boston</span>
@@ -22,7 +22,7 @@
                         <a class="main-navigation__link main-navigation__link--current">About the shelter</a>
                     </li>
                     <li class="main-navigation__item">
-                        <a class="main-navigation__link" href="#">Our pets</a>
+                        <a class="main-navigation__link" href="../pets/pets.html">Our pets</a>
                     </li>
                     <li class="main-navigation__item">
                         <a class="main-navigation__link" href="#">Help the shelter</a>
@@ -61,7 +61,17 @@
             <div class="pets__wrapper">
                 <h2 class="pets__title">Our friends who <br>are looking for a house</h2>
                 <div class="slider pets__slider">
-                    <ul class="pets__list">
+                    <button class="slider__button slider__button--prev" type="button">Previous pet card
+                        <svg class="slider__button-image slider__button-image--prev" width="14" height="6" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z"/>
+                        </svg>
+                    </button>
+                    <button class="slider__button slider__button--next" type="button">Next pet card
+                        <svg class="slider__button-image slider__button-image--next" width="14" height="6" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z"/>
+                        </svg>
+                    </button>
+                    <ul class="pets__list pets__list--slider">
                         <li class="pet-card">
                             <img class="pet-card__image" src="../../assets/images/pets-katrine.png" width="270" height="270" alt="Katrine cat">
                             <p class="pet-card__name">Katrine</p>
@@ -78,16 +88,6 @@
                             <a class="button button--light pet-card__link" href="#">Learn more</a>
                         </li>
                     </ul>
-                    <button class="slider__button slider__button--prev">Previous pet card
-                        <svg class="slider__button-image slider__button-image--prev" width="14" height="6" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z"/>
-                        </svg>
-                    </button>
-                    <button class="slider__button slider__button--next">Next pet card
-                        <svg class="slider__button-image slider__button-image--next" width="14" height="6" viewBox="0 0 14 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 4V2L11 2V0L14 3L11 6V4L0 4Z"/>
-                        </svg>
-                    </button>
                 </div>
                 <a class="button" href="#">Get to know the rest</a>
             </div>

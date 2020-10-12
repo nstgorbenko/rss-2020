@@ -57,4 +57,8 @@
         background: url("../../assets/icons/icon-marker.svg") 0 50% no-repeat;
         margin: 12px 0;
     }
+
+    &:focus {
+        color: $color-light-s;
+    }
 }

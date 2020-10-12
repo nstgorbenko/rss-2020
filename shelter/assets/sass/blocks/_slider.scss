@@ -3,7 +3,6 @@
 }
 
 .slider__button {
-    @include link-reset();
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -24,6 +23,8 @@
     &:focus:not(:disabled) {
         background-color: $color-primary-light;
         box-shadow: none;
+        border: none;
+        outline: none;
     }
 
     &:disabled {

@@ -19,7 +19,7 @@
                 </a>
                 <ul class="main-navigation__list">
                     <li class="main-navigation__item">
-                        <a class="main-navigation__link" href="#">About the shelter</a>
+                        <a class="main-navigation__link" href="../main/main.html">About the shelter</a>
                     </li>
                     <li class="main-navigation__item">
                         <a class="main-navigation__link main-navigation__link--current">Our pets</a>
@@ -36,67 +36,83 @@
     </header>
 
     <main class="main">
-        <section class="pets">
+        <section class="pets main__pets">
             <div class="pets__wrapper">
                 <h1 class="pets__title">Our friends who <br>are looking for a house</h1>
                 <ul class="pets__list">
-                    <li class="pet-card">
+                    <li class="pet-card pets__list-item">
                         <img class="pet-card__image" src="../../assets/images/pets-katrine.png" width="270" height="270" alt="Katrine cat">
                         <p class="pet-card__name">Katrine</p>
                         <a class="button button--light pet-card__link" href="#">Learn more</a>
                     </li>
-                    <li class="pet-card">
+                    <li class="pet-card pets__list-item">
                         <img class="pet-card__image" src="../../assets/images/pets-jennifer.png" width="270" height="270" alt="Jennifer puppy">
                         <p class="pet-card__name">Jennifer</p>
                         <a class="button button--light pet-card__link" href="#">Learn more</a>
                     </li>
-                    <li class="pet-card">
+                    <li class="pet-card pets__list-item">
                         <img class="pet-card__image" src="../../assets/images/pets-woody.png" width="270" height="270" alt="Woody dog">
                         <p class="pet-card__name">Woody</p>
                         <a class="button button--light pet-card__link" href="#">Learn more</a>
                     </li>
-                    <li class="pet-card">
+                    <li class="pet-card pets__list-item">
                         <img class="pet-card__image" src="../../assets/images/pets-sophia.png" width="270" height="270" alt="Sophia puppy">
                         <p class="pet-card__name">Sophia</p>
                         <a class="button button--light pet-card__link" href="#">Learn more</a>
                     </li>
-                    <li class="pet-card">
+                    <li class="pet-card pets__list-item">
                         <img class="pet-card__image" src="../../assets/images/pets-timmy.png" width="270" height="270" alt="Timmy cat">
                         <p class="pet-card__name">Timmy</p>
                         <a class="button button--light pet-card__link" href="#">Learn more</a>
                     </li>
-                    <li class="pet-card">
+                    <li class="pet-card pets__list-item">
                         <img class="pet-card__image" src="../../assets/images/pets-charly.png" width="270" height="270" alt="Charly dog">
                         <p class="pet-card__name">Charly</p>
                         <a class="button button--light pet-card__link" href="#">Learn more</a>
                     </li>
-                    <li class="pet-card">
+                    <li class="pet-card pets__list-item">
                         <img class="pet-card__image" src="../../assets/images/pets-scarlett.png" width="270" height="270" alt="Scarlett puppy">
                         <p class="pet-card__name">Scarlett</p>
                         <a class="button button--light pet-card__link" href="#">Learn more</a>
                     </li>
-                    <li class="pet-card">
+                    <li class="pet-card pets__list-item">
                         <img class="pet-card__image" src="../../assets/images/pets-freddie.png" width="270" height="270" alt="Freddie cat">
                         <p class="pet-card__name">Freddie</p>
                         <a class="button button--light pet-card__link" href="#">Learn more</a>
                     </li>
                 </ul>
-                <div class="pagination">
+                <div class="pagination pets__pagination">
                     <ul class="pagination__list">
                         <li class="pagination__item">
-                            <a class="pagination__link pagination__link--very-prev pagination__link--disabled" href="#" aria-label="Go to first page"></a>
+                            <button class="pagination__link pagination__link--very-prev" type="button" aria-label="Go to first page" disabled>
+                                <svg class="pagination__link-icon" width="25" height="11" viewBox="0 0 25 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.0055 6.08789L0.972265 10.7852V9.44727L8.48203 5.53125L0.972265 1.625V0.287109L10.0055 4.98438V6.08789ZM24.0766 6.08789L15.0434 10.7852V9.44727L22.5531 5.53125L15.0434 1.625V0.287109L24.0766 4.98438V6.08789Z"/>
+                                    </svg>
+                            </button>
                         </li>
                         <li class="pagination__item">
-                            <a class="pagination__link pagination__link--prev pagination__link--disabled" href="#" aria-label="Go to previous page"></a>
+                            <button class="pagination__link pagination__link--prev" type="button" aria-label="Go to previous page" disabled>
+                                <svg class="pagination__link-icon" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.04102 6.08789L0.0078125 10.7852V9.44727L7.51758 5.53125L0.0078125 1.625V0.287109L9.04102 4.98438V6.08789Z"/>
+                                </svg>
+                            </button>
                         </li>
                         <li class="pagination__item">
-                            <a class="pagination__link" href="#" aria-label="Current page">1</a>
+                            <button class="pagination__link pagination__link--current" type="button" aria-label="Current page">1</button>
                         </li>
                         <li class="pagination__item">
-                            <a class="pagination__link  pagination__link--next" href="#" aria-label="Go to next page"></a>
+                            <button class="pagination__link  pagination__link--next" type="button" aria-label="Go to next page">
+                                <svg class="pagination__link-icon" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.04102 6.08789L0.0078125 10.7852V9.44727L7.51758 5.53125L0.0078125 1.625V0.287109L9.04102 4.98438V6.08789Z"/>
+                                </svg>
+                            </button>
                         </li>
                         <li class="pagination__item">
-                            <a class="pagination__link  pagination__link--very-next" href="#" aria-label="Go to last page"></a>
+                            <button class="pagination__link  pagination__link--very-next" type="button" aria-label="Go to last page">
+                                <svg class="pagination__link-icon" width="25" height="11" viewBox="0 0 25 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.0055 6.08789L0.972265 10.7852V9.44727L8.48203 5.53125L0.972265 1.625V0.287109L10.0055 4.98438V6.08789ZM24.0766 6.08789L15.0434 10.7852V9.44727L22.5531 5.53125L15.0434 1.625V0.287109L24.0766 4.98438V6.08789Z"/>
+                                    </svg>
+                            </button>
                         </li>
                     </ul>
                 </div>

@@ -403,17 +403,28 @@ template {
 }
 
 .main-header {
+  position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  min-height: 120px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  background-color: #fff;
+  width: 100%;
+}
+
+.main-header--homepage {
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   min-height: 180px;
+  background-color: transparent;
 }
 
 .main-header__wrapper {
@@ -440,8 +451,12 @@ template {
   font-weight: 400;
   letter-spacing: 0.06em;
   margin: 0;
-  color: #F1CDB3;
+  color: #545454;
   text-align: center;
+}
+
+.main-navigation--homepage .main-navigation__logo-title {
+  color: #F1CDB3;
 }
 
 .main-navigation__logo-subtitle {
@@ -453,11 +468,15 @@ template {
   font-family: "Arial", sans-serif;
   display: block;
   padding: 9px 0 0 2px;
+  color: #292929;
+}
+
+.main-navigation--homepage .main-navigation__logo-subtitle {
   color: #FFFFFF;
 }
 
 .main-navigation__list {
-  margin: 10;
+  margin: 0;
   padding: 0;
   list-style: none;
   display: -webkit-box;
@@ -479,15 +498,27 @@ template {
   letter-spacing: normal;
   font-family: "Arial", sans-serif;
   margin-left: 35px;
-  color: #F6F6F6;
+  color: #545454;
 }
 
 .main-navigation__link--current {
   border-bottom: 3px solid #F1CDB3;
-  color: #FAFAFA;
+  color: #292929;
 }
 
 .main-navigation__link:hover, .main-navigation__link:focus {
+  color: #292929;
+}
+
+.main-navigation--homepage .main-navigation__link {
+  color: #CDCDCD;
+}
+
+.main-navigation--homepage .main-navigation__link--current {
+  color: #FAFAFA;
+}
+
+.main-navigation--homepage .main-navigation__link:hover, .main-navigation--homepage .main-navigation__link:focus {
   color: #FAFAFA;
 }
 
@@ -521,6 +552,10 @@ template {
 
 .main__intro {
   padding-top: 180px;
+}
+
+.main__pets {
+  margin-top: 120px;
 }
 
 .pets {
@@ -565,16 +600,30 @@ template {
 }
 
 .pets__list {
-  margin: 10;
+  margin: 0;
   padding: 0;
   list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 0;
+}
+
+.pets__list--slider {
   margin: 0 105px;
+}
+
+.pets__list-item {
+  margin-bottom: 30px;
+}
+
+.pets__pagination {
+  margin-top: 30px;
 }
 
 .pet-card {
@@ -616,6 +665,80 @@ template {
 
 .pet-card__link {
   margin-bottom: 30px;
+}
+
+.pagination {
+  width: 340px;
+}
+
+.pagination__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pagination__link {
+  font-family: "Georgia", serif;
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  -webkit-box-shadow: inset 0 0 0 2px #F1CDB3;
+          box-shadow: inset 0 0 0 2px #F1CDB3;
+  background-color: transparent;
+  color: #292929;
+  text-align: center;
+}
+
+.pagination__link--current {
+  background-color: #F1CDB3;
+}
+
+.pagination__link:hover:not(:disabled), .pagination__link:focus:not(:disabled) {
+  background-color: #FDDCC4;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+.pagination__link:active:not(:disabled) {
+  background-color: #F1CDB3;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pagination__link:disabled {
+  -webkit-box-shadow: inset 0 0 0 2px #CDCDCD;
+          box-shadow: inset 0 0 0 2px #CDCDCD;
+  color: #CDCDCD;
+  cursor: auto;
+}
+
+.pagination__link-icon {
+  fill: #292929;
+}
+
+.pagination__link:disabled .pagination__link-icon {
+  fill: #CDCDCD;
+}
+
+.pagination__link--prev .pagination__link-icon,
+.pagination__link--very-prev .pagination__link-icon {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .main-footer {
@@ -660,7 +783,7 @@ template {
 }
 
 .main-footer__list {
-  margin: 10;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -692,5 +815,9 @@ template {
   padding: 5px 0 5px 40px;
   background: url("../../assets/icons/icon-marker.svg") 0 50% no-repeat;
   margin: 12px 0;
+}
+
+.main-footer__link:focus {
+  color: #FAFAFA;
 }
 /*# sourceMappingURL=pets.css.map */

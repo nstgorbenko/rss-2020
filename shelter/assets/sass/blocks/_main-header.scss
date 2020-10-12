@@ -1,10 +1,20 @@
 .main-header {
+    position: fixed;
     display: flex;
     align-items: center;
-    position: absolute;
+    min-height: 120px;
     left: 50%;
     transform: translateX(-50%);
-    min-height: 180px;
+    background-color: #fff;
+    width: 100%;
+
+    &--homepage {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        min-height: 180px;
+        background-color: transparent;
+    }
 }
 
 .main-header__wrapper {

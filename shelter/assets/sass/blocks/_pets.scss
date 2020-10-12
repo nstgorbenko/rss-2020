@@ -29,6 +29,19 @@
 .pets__list {
     @include list-reset();
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0 105px;
+    margin: 0;
+
+    &--slider {
+        margin: 0 105px;
+    }
+}
+
+.pets__list-item {
+    margin-bottom: 30px;
+}
+
+.pets__pagination {
+    margin-top: 30px;
 }

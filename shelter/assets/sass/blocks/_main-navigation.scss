@@ -7,8 +7,12 @@
 .main-navigation__logo-title {
     @include font(3.2rem, 1.1, 400, 0.06em);
     margin: 0;
-    color: $color-primary;
+    color: $color-dark-l;
     text-align: center;
+
+    .main-navigation--homepage & {
+        color: $color-primary;
+    }
 }
 
 .main-navigation__logo-subtitle {
@@ -16,7 +20,11 @@
     font-family: "Arial", sans-serif;
     display: block;
     padding: 9px 0 0 2px;
-    color: $color-light-xl;
+    color: $color-dark-3xl;
+
+    .main-navigation--homepage & {
+        color: $color-light-xl;
+    }
 }
 
 .main-navigation__list {
@@ -31,15 +39,28 @@
     @include font(1.5rem);
     font-family: "Arial", sans-serif;
     margin-left: 35px;
-    color: $color-light-l;
+    color: $color-dark-l;
 
     &--current {
         border-bottom: 3px solid $color-primary;
-        color: $color-light-s;
+        color: $color-dark-3xl;
     }
 
     &:hover,
     &:focus {
-        color: $color-light-s;
+        color: $color-dark-3xl;
+    }
+
+    .main-navigation--homepage & {
+        color: $color-dark-s;
+
+        &--current {
+            color: $color-light-s;
+        }
+
+        &:hover,
+        &:focus {
+            color: $color-light-s;
+        }
     }
 }
