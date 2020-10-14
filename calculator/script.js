@@ -9,42 +9,57 @@ class Calculator {
     clear() {
         this.currentOperand = '';
         this.previousOperand = '';
+        this.isComputationFinished = false;
         this.operation = null;
     }
 
     delete() {
-        if (this.currentOperand === 'error') {
-            this.currentOperand = ''
+        if (this.currentOperand === 'error' || this.isComputationFinished) {
+                this.currentOperand = '';
+                this.isComputationFinished = false;
+                return;
         }
+
         this.currentOperand = this.currentOperand.slice(0, -1);
     }
 
     appendNumber(number) {
-        if (number === '.' && this.currentOperand.indexOf('.') !== -1) {
+        if (number === '.' && this.currentOperand.indexOf('.') !== -1 ||
+            number === '√x' && this.currentOperand.indexOf('^') !== -1 ||
+            number === 'xy' && this.currentOperand === '' ||
+            number === 'xy' && this.currentOperand === '-' ||
+            number === 'xy' && this.currentOperand.indexOf('^') !== -1 ||
+            number === 'xy' && this.currentOperand.indexOf('√') !== -1) {
+                return;
+        }
+
+        if (number === '±' && this.currentOperand.indexOf('^') !== -1) {
+            const powerIndex = this.currentOperand.indexOf('^') + 1;
+            this.currentOperand = this.currentOperand.split('');
+
+            if (this.currentOperand[powerIndex] === '-') {
+                this.currentOperand.splice(powerIndex, 1);
+            } else {
+                this.currentOperand.splice(powerIndex, 0, '-');
+            }
+
+            this.currentOperand = this.currentOperand.join('');
             return;
         }
 
-        if (number === '±' && this.currentOperand === '') {
+        if (number === '±' && this.currentOperand[0] === '-' ||
+            number === '√x' && this.currentOperand[0] === '√') {
+                this.currentOperand = this.currentOperand.slice(1);
+                return;
+        }
+
+        if (number === '±' && this.currentOperand === '0') {
             this.currentOperand = '-';
             return;
         }
 
-        if (number === '±' && this.currentOperand === '-') {
-            this.currentOperand = '';
-            return;
-        }
-
-        if (number === '±' && this.currentOperand[0] === '-') {
-            this.currentOperand = this.currentOperand.slice(1);
-            return;
-        }
-
-        if (number === '±' && this.currentOperand !== '') {
+        if (number === '±') {
             this.currentOperand = `-${this.currentOperand}`;
-            return;
-        }
-
-        if (number === '√x' && this.currentOperand.indexOf('^') !== -1) {
             return;
         }
 
@@ -56,27 +71,8 @@ class Calculator {
             return;
         }
 
-        if (number === '√x' && this.currentOperand === '') {
-            this.currentOperand = '√';
-            return;
-        }
-
-        if (number === '√x' && this.currentOperand === '√') {
-            this.currentOperand = '';
-            return;
-        }
-
-        if (number === '√x' && this.currentOperand[0] === '√') {
-            this.currentOperand = this.currentOperand.slice(1);
-            return;
-        }
-
-        if (number === '√x' && this.currentOperand !== '') {
+        if (number === '√x') {
             this.currentOperand = `√${this.currentOperand}`;
-            return;
-        }
-
-        if (number === 'xy' && this.currentOperand === '' || number === 'xy' && this.currentOperand.indexOf('^') !== -1 || number === 'xy' && this.currentOperand.indexOf('√') !== -1) {
             return;
         }
 
@@ -85,27 +81,32 @@ class Calculator {
             return;
         }
 
-        if (number === '.' && this.currentOperand === '') {
-            this.currentOperand += '0.';
-            return;
+        if (number === '.' && this.currentOperand === '' ||
+            number === '.' && this.currentOperand === '-' ||
+            number === '.' && this.currentOperand === '√' ||
+            number === '.' && this.currentOperand === '-√') {
+                this.currentOperand += '0.';
+                return;
         }
 
-        if (number === '.' && this.currentOperand === '-' || number === '.' && this.currentOperand === '√' || number === '.' && this.currentOperand === '-√') {
-            this.currentOperand += '0.';
-            return;
-        }
-
-        if (number !== '.' && this.currentOperand === '0') {
-            this.currentOperand = number;
-            return;
+        if (number !== '.' && this.currentOperand === '0' ||
+            number !== '.' && this.currentOperand === '-0' ||
+            number !== '.' && this.currentOperand === '√0' ||
+            number !== '.' && this.currentOperand.length > 1 && this.currentOperand.indexOf('^0') === this.currentOperand.length - 2 ||
+            number !== '.' && this.currentOperand.length > 2 && this.currentOperand.indexOf('^-0') === this.currentOperand.length - 3) {
+                this.currentOperand = this.currentOperand.slice(0, -1);
         }
 
         this.currentOperand += number;
     }
 
     chooseOperation(operation) {
-        if (this.currentOperand === '' && this.previousOperand === '' || this.currentOperand === '-' || this.currentOperand === '√' || this.currentOperand === 'error') {
-            return;
+        if (this.currentOperand === '' && this.previousOperand === '' ||
+            this.currentOperand[this.currentOperand.length - 1] === '^' ||
+            this.currentOperand === '-' ||
+            this.currentOperand === '√' ||
+            this.currentOperand === 'error') {
+                return;
         };
 
         if (this.currentOperand === '' && this.previousOperand !== '') {
@@ -132,6 +133,7 @@ class Calculator {
         };
 
         this.operation = operation;
+        this.isComputationFinished = false;
         this.previousOperand = this.currentOperand;
         this.currentOperand = '';
     }
@@ -140,9 +142,11 @@ class Calculator {
         if (this.currentOperand[0] === '√') {
             this.currentOperand = String(Math.sqrt(this.currentOperand.slice(1)));
         }
+
         if (this.currentOperand[0] === '-' && this.currentOperand[1] === '√') {
             this.currentOperand = `-${String(Math.sqrt(this.currentOperand.slice(2)))}`;
         }
+
         if (this.currentOperand.indexOf('^') !== -1) {
             const operand = this.currentOperand.split('^')
             this.currentOperand = String(Math.pow(Number(operand[0]), Number(operand[1])));
@@ -173,16 +177,26 @@ class Calculator {
             default:
                 throw new Error(`Unknown operation type: ${this.operation}`);
         }
+
         this.isComputationFinished = true;
         this.currentOperand = computationResult.toString();
         this.previousOperand = '';
         this.operation = null;
     }
 
-    getDisplayNumber(number) {     
+    getDisplayNumber(number) {
         if (number === 'error') {
             return 'error';
-        }   
+        }
+
+        if (number === '' ||
+            number[number.length - 1] === '-' ||
+            number[number.length - 1] === '+' ||
+            number[number.length - 1] === '*' ||
+            number[number.length - 1] === '÷') {
+                return number;
+            }
+
         const fixedLengthNumber = this.isComputationFinished ? (parseFloat(Number(number).toFixed(7))).toString() : number;
         const integerDigits = fixedLengthNumber.split('.')[0].toLocaleString();
         const decimalDigits = fixedLengthNumber.split('.')[1];
@@ -194,10 +208,12 @@ class Calculator {
 
     updateDisplay() {
         this.currentOperandScreen.innerText = this.getDisplayNumber(this.currentOperand);
+        this.currentOperand = this.currentOperandScreen.innerText;
 
         this.previousOperandScreen.innerText = this.operation != null
             ? `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`
             : '';
+
     }
 }
 
