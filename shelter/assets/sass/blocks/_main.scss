@@ -1,5 +1,15 @@
+.main {
+    @media (max-width: $tablet-width) {
+        min-width: $mobile-width-min;
+    }
+}
+
 .main__intro {
     padding-top: 180px;
+
+    @media (max-width: $tablet-width) {
+        padding-top: 151px;
+    }
 }
 
 .main__pets {

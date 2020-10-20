@@ -15,9 +15,26 @@
         min-height: 180px;
         background-color: transparent;
     }
+
+    @media (max-width: $tablet-width) {
+        min-width: $mobile-width-min;
+        
+        &--homepage {
+            min-height: 120px;
+        }
+    }
 }
 
 .main-header__wrapper {
     width: 1200px;
     margin: 0 auto;
+
+    @media (max-width: $tablet-width) {
+        width: 100%;
+        padding: 0 30px;
+    }
+
+    @media (max-width: $mobile-width) {
+        padding: 0 10px;
+    }
 }

@@ -4,6 +4,15 @@
     align-items: center;
     width: 1152px;
     margin: 81px auto 45px;
+
+    @media (max-width: $tablet-width) {
+        width: 90%;
+    }
+
+    @media (max-width: $mobile-width) {
+        width: 100%;
+        margin: 42px auto 12px;
+    }
 }
 
 .help__title {
@@ -14,6 +23,12 @@
     padding-left: 2px;
     text-align: center;
     color: $color-dark-l;
+
+    @media (max-width: $mobile-width) {
+        @include font(2.5rem, 1.3, 400, 0.06em);
+        width: 80%;
+        margin-bottom: 42px;
+    }
 }
 
 .help__list {
@@ -22,49 +37,73 @@
     justify-content: center;
     flex-wrap: wrap;
     margin-left: 2px;
+
+    @media (max-width: $tablet-width) {
+        justify-content: flex-start;
+        margin-left: 0;
+    }
+
+    @media (max-width: $mobile-width) {
+        max-width: 500px;
+    }
 }
 
 .help__item {
     @include font(2.0rem, 1.15, 400, 0.06em);
     padding-top: 90px;
     margin: 0 60px 55px;
+    min-width: 60px;
     text-align: center;
     color: $color-dark-l;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+
+    @media (max-width: $tablet-width) {
+        margin: 0 0 55px;
+        width: 33.3%;
+    }
+
+    @media (max-width: $mobile-width) {
+        @include font(1.5rem, 1.1, 400, 0.06em);
+        width: 50%;
+        margin: 0 0 30px;
+        padding-top: 71px;
+        background-size: 50px;
+    }
 
     &--food {
-        background: url("../../assets/icons/icon-pet-food.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-pet-food.svg");
     }
 
     &--transport {
-        background: url("../../assets/icons/icon-transportation.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-transportation.svg");
     }
 
     &--toys {
-        width: 60px;
-        background: url("../../assets/icons/icon-toys.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-toys.svg");
     }
 
     &--bowls {
-        background: url("../../assets/icons/icon-bowls-and-cups.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-bowls-and-cups.svg");
     }
 
     &--shampoos {
-        background: url("../../assets/icons/icon-shampoos.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-shampoos.svg");
     }
 
     &--vitamins {
-        background: url("../../assets/icons/icon-vitamins.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-vitamins.svg");
     }
 
     &--med {
-        background: url("../../assets/icons/icon-medicines.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-medicines.svg");
     }
 
     &--collars {
-        background: url("../../assets/icons/icon-collars-leashes.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-collars-leashes.svg");
     }
 
     &--sleep {
-        background: url("../../assets/icons/icon-sleeping-area.svg") 50% 0 no-repeat;
+        background-image: url("../../assets/icons/icon-sleeping-area.svg");
     }
 }

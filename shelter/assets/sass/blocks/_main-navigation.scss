@@ -4,6 +4,14 @@
     align-items: center;
 }
 
+.main-navigation__header {
+    @media (max-width: $mobile-width) {
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+}
+
 .main-navigation__logo-title {
     @include font(3.2rem, 1.1, 400, 0.06em);
     margin: 0;
@@ -27,11 +35,28 @@
     }
 }
 
+.main-navigation__button {
+    display: none;
+
+    @media (max-width: $mobile-width) {
+        display: block;
+        margin-right: 43px;
+        margin-top: 3px;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+    }
+}
+
 .main-navigation__list {
     @include list-reset();
     display: flex;
     margin-right: 2px;
     padding: 1px 0 2px;
+
+    @media (max-width: $mobile-width) {
+        display: none;
+    }
 }
 
 .main-navigation__link {

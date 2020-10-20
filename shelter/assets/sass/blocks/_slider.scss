@@ -15,8 +15,20 @@
     border-radius: 50%;
     cursor: pointer;
 
+    @media (max-width: $mobile-width) {
+        top: auto;
+        bottom: -98px;
+        left: 43px;
+    }
+
     &--next {
         right: 0;
+
+        @media (max-width: $mobile-width) {
+            top: auto;
+            left: auto;
+            right: 43px;
+        }
     }
 
     &:hover:not(:disabled),

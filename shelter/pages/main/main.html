@@ -12,11 +12,20 @@
     <header class="main-header main-header--homepage">
         <div class="main-header__wrapper">
             <nav class="main-navigation main-navigation--homepage">
-                <a class="main-navigation__logo">
-                    <h1 class="main-navigation__logo-title">Cozy House 
-                        <span class="main-navigation__logo-subtitle">Shelter for pets in Boston</span>
-                    </h1>
-                </a>
+                <div class="main-navigation__header">
+                    <a class="main-navigation__logo">
+                        <h1 class="main-navigation__logo-title">Cozy House 
+                            <span class="main-navigation__logo-subtitle">Shelter for pets in Boston</span>
+                        </h1>
+                    </a>
+                    <button class="main-navigation__button" type="button" aria-label="Toggle menu">
+                        <svg width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line y1="21" x2="30" y2="21" stroke="#F1CDB3" stroke-width="2"/>
+                            <line y1="11" x2="30" y2="11" stroke="#F1CDB3" stroke-width="2"/>
+                            <line y1="1" x2="30" y2="1" stroke="#F1CDB3" stroke-width="2"/>
+                        </svg>
+                    </button>
+                </div>
                 <ul class="main-navigation__list">
                     <li class="main-navigation__item">
                         <a class="main-navigation__link main-navigation__link--current">About the shelter</a>
@@ -72,17 +81,17 @@
                         </svg>
                     </button>
                     <ul class="pets__list pets__list--slider">
-                        <li class="pet-card">
+                        <li class="pet-card pets__list-item pets__list-item--homepage">
                             <img class="pet-card__image" src="../../assets/images/pets-katrine.png" width="270" height="270" alt="Katrine cat">
                             <p class="pet-card__name">Katrine</p>
                             <a class="button button--light pet-card__link" href="#">Learn more</a>
                         </li>
-                        <li class="pet-card">
+                        <li class="pet-card pets__list-item pets__list-item--homepage">
                             <img class="pet-card__image" src="../../assets/images/pets-jennifer.png" width="270" height="270" alt="Jennifer puppy">
                             <p class="pet-card__name">Jennifer</p>
                             <a class="button button--light pet-card__link" href="#">Learn more</a>
                         </li>
-                        <li class="pet-card">
+                        <li class="pet-card pets__list-item pets__list-item--homepage">
                             <img class="pet-card__image" src="../../assets/images/pets-woody.png" width="270" height="270" alt="Woody dog">
                             <p class="pet-card__name">Woody</p>
                             <a class="button button--light pet-card__link" href="#">Learn more</a>
@@ -122,31 +131,32 @@
     </main>
 
     <footer class="main-footer">
-        <div class="main-footer__wrapper">               
-            <div class="main-footer__left">
-                <p class="main-footer__title">For questions and suggestions</p>
-                <ul class="main-footer__list">
-                    <li class="main-footer__item">
-                        <a class="main-footer__link main-footer__link--email" href="mailto:email@shelter.com">email@shelter.com</a>
-                    </li>
-                    <li class="main-footer__item">
-                        <a class="main-footer__link main-footer__link--phone" href="tel:+136745677554">+13 674 567 75 54</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="main-footer__right">
-                <p class="main-footer__title">We are waiting for your visit</p>
-                <ul class="main-footer__list">
-                    <li class="main-footer__item">
-                        <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/muZpyRQqQmiZQ3ML7" target="_blank">1 Central Street, Boston (entrance from the store)</a>
-                    </li>
-                    <li class="main-footer__item">
-                        <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/RNcFZazCLyFw9SpU9" target="_blank">18 South Park, London</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="main-footer__wrapper">    
+            <div class="main-footer__info">
+                <div class="main-footer__left">
+                    <p class="main-footer__title">For questions and suggestions</p>
+                    <ul class="main-footer__list">
+                        <li class="main-footer__item">
+                            <a class="main-footer__link main-footer__link--email" href="mailto:email@shelter.com">email@shelter.com</a>
+                        </li>
+                        <li class="main-footer__item">
+                            <a class="main-footer__link main-footer__link--phone" href="tel:+136745677554">+13 674 567 75 54</a>
+                        </li>
+                    </ul>
+                </div>
     
+                <div class="main-footer__right">
+                    <p class="main-footer__title">We are waiting for your visit</p>
+                    <ul class="main-footer__list">
+                        <li class="main-footer__item">
+                            <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/muZpyRQqQmiZQ3ML7" target="_blank">1 Central Street, Boston (entrance from the store)</a>
+                        </li>
+                        <li class="main-footer__item">
+                            <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/RNcFZazCLyFw9SpU9" target="_blank">18 South Park, London</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>           
             <img class="main-footer__image" src="../../assets/images/footer-puppy.png" width="300" height="310" alt="Puppy with its tongue sticking out lifts one pow">
         </div>
     </footer>
