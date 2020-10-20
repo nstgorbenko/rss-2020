@@ -531,11 +531,15 @@ template {
   .main-navigation__button {
     display: block;
     margin-right: 43px;
-    margin-top: 3px;
+    margin-top: 2px;
     padding: 0;
     border: none;
     background-color: transparent;
   }
+}
+
+.main-navigation__button--homepage {
+  margin-top: 3px;
 }
 
 .main-navigation__list {
@@ -894,8 +898,26 @@ template {
   background-color: #F6F6F6;
 }
 
+@media (max-width: 1279px) {
+  .pets {
+    padding: 81px 0 77px;
+  }
+}
+
 @media (max-width: 767px) {
   .pets {
+    padding: 42px 0 42px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .pets--homepage {
+    padding: 81px 0 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .pets--homepage {
     padding: 42px 0 42px;
   }
 }
@@ -944,6 +966,12 @@ template {
   color: #545454;
 }
 
+@media (max-width: 1279px) {
+  .pets__title {
+    margin-bottom: 29px;
+  }
+}
+
 @media (max-width: 767px) {
   .pets__title {
     font-family: "Georgia", serif;
@@ -953,6 +981,18 @@ template {
     letter-spacing: 0.06em;
     margin-bottom: 42px;
     width: 300px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .pets__title--homepage {
+    margin-bottom: 59px;
+  }
+}
+
+@media (max-width: 767px) {
+  .pets__title--homepage {
+    margin-bottom: 42px;
   }
 }
 
@@ -984,6 +1024,19 @@ template {
   margin: 0;
 }
 
+@media (max-width: 1279px) {
+  .pets__list {
+    width: 100%;
+    padding: 0 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .pets__list {
+    padding: 0;
+  }
+}
+
 .pets__list--slider {
   margin: 0 105px;
 }
@@ -991,6 +1044,8 @@ template {
 @media (max-width: 1279px) {
   .pets__list--slider {
     margin: 0 64px;
+    padding: 0;
+    width: auto;
   }
 }
 
@@ -1002,6 +1057,18 @@ template {
 
 .pets__list-item {
   margin-bottom: 30px;
+}
+
+@media (max-width: 1279px) {
+  .pets__list-item:nth-child(7), .pets__list-item:nth-child(8) {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .pets__list-item:nth-child(4), .pets__list-item:nth-child(5), .pets__list-item:nth-child(6) {
+    display: none;
+  }
 }
 
 .pets__list-item--homepage {
@@ -1022,6 +1089,18 @@ template {
 
 .pets__pagination {
   margin-top: 30px;
+}
+
+@media (max-width: 1279px) {
+  .pets__pagination {
+    margin-top: 9px;
+  }
+}
+
+@media (max-width: 767px) {
+  .pets__pagination {
+    margin-top: 12px;
+  }
 }
 
 .pet-card {

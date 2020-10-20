@@ -2,8 +2,22 @@
     padding: 81px 0 100px;
     background-color: $color-light-l;
 
+    @media (max-width: $tablet-width) {
+        padding: 81px 0 77px;
+    }
+
     @media (max-width: $mobile-width) {
         padding: 42px 0 42px;
+    }
+
+    &--homepage {
+        @media (max-width: $tablet-width) {
+            padding: 81px 0 100px;
+        }
+
+        @media (max-width: $mobile-width) {
+            padding: 42px 0 42px;
+        }
     }
 }
 
@@ -35,10 +49,24 @@
     text-align: center;
     color: $color-dark-l;
 
+    @media (max-width: $tablet-width) {
+        margin-bottom: 29px;
+    }
+
     @media (max-width: $mobile-width) {
         @include font(2.5rem, 1.3, 400, 0.06em);
         margin-bottom: 42px;
         width: 300px;
+    }
+
+    &--homepage {
+        @media (max-width: $tablet-width) {
+            margin-bottom: 59px;
+        }
+
+        @media (max-width: $mobile-width) {
+            margin-bottom: 42px;
+        }
     }
 }
 
@@ -58,11 +86,22 @@
     justify-content: space-between;
     margin: 0;
 
+    @media (max-width: $tablet-width) {
+        width: 100%;
+        padding: 0 64px;
+    }
+
+    @media (max-width: $mobile-width) {
+        padding: 0;
+    }
+
     &--slider {
         margin: 0 105px;
 
         @media (max-width: $tablet-width) {
             margin: 0 64px;
+            padding: 0;
+            width: auto;
         }
 
         @media (max-width: $mobile-width) {
@@ -73,6 +112,21 @@
 
 .pets__list-item {
     margin-bottom: 30px;
+
+    @media (max-width: $tablet-width) {
+        &:nth-child(7),
+        &:nth-child(8) {
+            display: none;
+        }
+    }
+
+    @media (max-width: $mobile-width) {
+        &:nth-child(4),
+        &:nth-child(5),
+        &:nth-child(6) {
+            display: none;
+        }
+    }
 
     &--homepage {
         margin-bottom: 0;
@@ -93,4 +147,12 @@
 
 .pets__pagination {
     margin-top: 30px;
+
+    @media (max-width: $tablet-width) {
+        margin-top: 9px;
+    }
+
+    @media (max-width: $mobile-width) {
+        margin-top: 12px;
+    }
 }

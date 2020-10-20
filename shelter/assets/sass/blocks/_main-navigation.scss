@@ -41,10 +41,14 @@
     @media (max-width: $mobile-width) {
         display: block;
         margin-right: 43px;
-        margin-top: 3px;
+        margin-top: 2px;
         padding: 0;
         border: none;
         background-color: transparent;
+    }
+
+    &--homepage {
+        margin-top: 3px;
     }
 }
 
