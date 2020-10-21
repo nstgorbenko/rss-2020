@@ -1,25 +1,12 @@
 html {
   box-sizing: border-box;
+  font-size: 10px;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: inherit;
-}
-
-html,
-body {
-  @include font();
-  height: 100%;
-  font-size: 10px;
-}
-
-body {
-  @include reset();
-  display: flex;
-  flex-direction: column;
-  position: relative;
 }
 
 img {

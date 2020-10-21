@@ -7,7 +7,8 @@
     }
 
     @media (max-width: $mobile-width) {
-        padding: 42px 0 42px;
+        margin-top: 0;
+        padding: 162px 0 42px;
     }
 
     &--homepage {
@@ -16,6 +17,7 @@
         }
 
         @media (max-width: $mobile-width) {
+            margin: 0;
             padding: 42px 0 42px;
         }
     }
