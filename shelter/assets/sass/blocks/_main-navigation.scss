@@ -12,6 +12,14 @@
     }
 }
 
+.main-navigation__logo {
+    @include link-reset();
+    
+    .main-header--homepage & {
+        cursor: default;
+    }
+}
+
 .main-navigation__logo-title {
     @include font(3.2rem, 1.1, 400, 0.06em);
     margin: 0;
@@ -90,6 +98,22 @@
         &:hover,
         &:focus {
             color: $color-light-s;
+        }
+    }
+
+    .main-navigation__item:nth-child(1n + 3) & {
+        cursor: default;
+
+        &:hover,
+        &:focus {
+            color: $color-dark-l;
+        }
+    }
+
+    .main-navigation--homepage .main-navigation__item:nth-child(1n + 3) & {
+        &:hover,
+        &:focus {
+            color: $color-dark-s;
         }
     }
 }

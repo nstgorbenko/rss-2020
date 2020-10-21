@@ -492,6 +492,17 @@ template {
   }
 }
 
+.main-navigation__logo {
+  display: inline-block;
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+.main-header--homepage .main-navigation__logo {
+  cursor: default;
+}
+
 .main-navigation__logo-title {
   font-family: "Georgia", serif;
   font-size: 3.2rem;
@@ -593,6 +604,18 @@ template {
 
 .main-navigation--homepage .main-navigation__link:hover, .main-navigation--homepage .main-navigation__link:focus {
   color: #FAFAFA;
+}
+
+.main-navigation__item:nth-child(1n + 3) .main-navigation__link {
+  cursor: default;
+}
+
+.main-navigation__item:nth-child(1n + 3) .main-navigation__link:hover, .main-navigation__item:nth-child(1n + 3) .main-navigation__link:focus {
+  color: #545454;
+}
+
+.main-navigation--homepage .main-navigation__item:nth-child(1n + 3) .main-navigation__link:hover, .main-navigation--homepage .main-navigation__item:nth-child(1n + 3) .main-navigation__link:focus {
+  color: #CDCDCD;
 }
 
 .button {
@@ -810,13 +833,13 @@ template {
 }
 
 @media (max-width: 1279px) {
-  .pets__list-item:nth-child(7), .pets__list-item:nth-child(8) {
+  .pets__list-item:nth-child(1n + 7) {
     display: none;
   }
 }
 
 @media (max-width: 767px) {
-  .pets__list-item:nth-child(4), .pets__list-item:nth-child(5), .pets__list-item:nth-child(6) {
+  .pets__list-item:nth-child(1n + 4) {
     display: none;
   }
 }
@@ -1166,6 +1189,8 @@ template {
 
 .main-footer__image {
   margin: 0 auto;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 @media (max-width: 767px) {

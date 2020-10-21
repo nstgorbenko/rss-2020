@@ -114,17 +114,14 @@
     margin-bottom: 30px;
 
     @media (max-width: $tablet-width) {
-        &:nth-child(7),
-        &:nth-child(8) {
-            display: none;
+        &:nth-child(1n + 7) {
+            display: none; 
         }
     }
 
     @media (max-width: $mobile-width) {
-        &:nth-child(4),
-        &:nth-child(5),
-        &:nth-child(6) {
-            display: none;
+        &:nth-child(1n + 4) {
+            display: none; 
         }
     }
 
