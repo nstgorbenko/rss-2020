@@ -410,6 +410,10 @@ template {
   height: 100%;
 }
 
+.page--overlay {
+  overflow: hidden;
+}
+
 .page__wrapper {
   overflow-x: hidden;
   position: relative;

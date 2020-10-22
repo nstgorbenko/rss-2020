@@ -5,6 +5,10 @@
   flex-direction: column;
   position: relative;
   height: 100%;
+
+  &--overlay {
+    overflow: hidden;
+  }
 }
 
 .page__wrapper {

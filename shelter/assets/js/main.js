@@ -4,11 +4,13 @@ const mainHeader = document.querySelector('.main-header');
 const mainNav = document.querySelector('.main-navigation');
 const mainNavButton = document.querySelector('.main-navigation__button');
 const overlay = document.querySelector('.overlay');
+const page = document.querySelector('.page');
 
 const toggleMenu = () => {
     mainHeader.classList.toggle('main-header--overlay');
     mainNav.classList.toggle('main-navigation--burger');
     overlay.classList.toggle('overlay__show');
+    page.classList.toggle('page--overlay');
 };
 
 mainNavButton.addEventListener('click', toggleMenu);
@@ -24,5 +26,6 @@ window.addEventListener('resize', () => {
         mainHeader.classList.remove('main-header--overlay');
         mainNav.classList.remove('main-navigation--burger');
         overlay.classList.remove('overlay__show');
+        page.classList.remove('page--overlay');
     }
 });
