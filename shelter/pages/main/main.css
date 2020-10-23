@@ -1180,21 +1180,10 @@ template {
   }
 }
 
-.pets__list--slider {
-  margin: 0 105px;
-}
-
 @media (max-width: 1279px) {
   .pets__list--slider {
-    margin: 0 64px;
+    width: 100%;
     padding: 0;
-    width: auto;
-  }
-}
-
-@media (max-width: 767px) {
-  .pets__list--slider {
-    margin: 0;
   }
 }
 
@@ -1216,18 +1205,6 @@ template {
 
 .pets__list-item--homepage {
   margin-bottom: 0;
-}
-
-@media (max-width: 1279px) {
-  .pets__list-item--homepage:nth-child(3) {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .pets__list-item--homepage:nth-child(2) {
-    display: none;
-  }
 }
 
 .pets__pagination {
@@ -1291,6 +1268,67 @@ template {
   position: relative;
 }
 
+.slider__container {
+  position: relative;
+  overflow: hidden;
+  margin: 0 105px;
+}
+
+@media (max-width: 1279px) {
+  .slider__container {
+    margin: 0 64px;
+    padding: 0;
+    width: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .slider__container {
+    margin: 0;
+  }
+}
+
+.slider__item {
+  display: none;
+  -webkit-animation: 0.5s ease-in-out;
+          animation: 0.5s ease-in-out;
+}
+
+.slider__item--active, .slider__item--next {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.slider__item--next {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.slider__item--to-left {
+  -webkit-animation-name: left;
+          animation-name: left;
+}
+
+.slider__item--from-right {
+  -webkit-animation-name: right;
+          animation-name: right;
+}
+
+.slider__item--to-right {
+  -webkit-animation-name: right;
+          animation-name: right;
+  animation-direction: reverse;
+}
+
+.slider__item--from-left {
+  -webkit-animation-name: left;
+          animation-name: left;
+  animation-direction: reverse;
+}
+
 .slider__button {
   position: absolute;
   top: 50%;
@@ -1304,6 +1342,7 @@ template {
           box-shadow: inset 0 0 0 2px #F1CDB3;
   border: none;
   border-radius: 50%;
+  z-index: 1;
   cursor: pointer;
 }
 
@@ -1357,6 +1396,42 @@ template {
 .slider__button-image--prev {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(180deg);
           transform: translateX(-50%) translateY(-50%) rotate(180deg);
+}
+
+@-webkit-keyframes left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@keyframes left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+
+@-webkit-keyframes right {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes right {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
+  }
 }
 
 .help {

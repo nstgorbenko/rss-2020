@@ -930,21 +930,10 @@ template {
   }
 }
 
-.pets__list--slider {
-  margin: 0 105px;
-}
-
 @media (max-width: 1279px) {
   .pets__list--slider {
-    margin: 0 64px;
+    width: 100%;
     padding: 0;
-    width: auto;
-  }
-}
-
-@media (max-width: 767px) {
-  .pets__list--slider {
-    margin: 0;
   }
 }
 
@@ -966,18 +955,6 @@ template {
 
 .pets__list-item--homepage {
   margin-bottom: 0;
-}
-
-@media (max-width: 1279px) {
-  .pets__list-item--homepage:nth-child(3) {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .pets__list-item--homepage:nth-child(2) {
-    display: none;
-  }
 }
 
 .pets__pagination {
