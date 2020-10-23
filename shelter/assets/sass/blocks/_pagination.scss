@@ -23,20 +23,22 @@
     background-color: transparent;
     color: $color-dark-3xl;
     text-align: center;
+    cursor: pointer;
 
     &--current {
         background-color: $color-primary;
+        cursor: default;
     }
 
-    &:hover:not(:disabled),
-    &:focus:not(:disabled) {
+    &:hover:not(:disabled):not(.pagination__link--current),
+    &:focus:not(:disabled):not(.pagination__link--current) {
         background-color: $color-primary-light;
         box-shadow: none;
         border: none;
         outline: none;
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(.pagination__link--current) {
         background-color: $color-primary;
         box-shadow: none;
     }

@@ -442,6 +442,11 @@ template {
   background-color: transparent;
 }
 
+.main-header--popup {
+  background-color: #F6F6F6;
+  z-index: 0;
+}
+
 .main-header--homepage {
   position: absolute;
   left: 50%;
@@ -1036,21 +1041,26 @@ template {
 }
 
 .pets {
-  padding: 81px 0 100px;
+  margin-top: 0;
+  padding: 201px 0 100px;
   background-color: #F6F6F6;
 }
 
 @media (max-width: 1279px) {
   .pets {
-    padding: 81px 0 77px;
+    margin-top: 0;
+    padding: 201px 0 77px;
   }
 }
 
 @media (max-width: 767px) {
   .pets {
-    margin-top: 0;
     padding: 162px 0 42px;
   }
+}
+
+.pets--homepage {
+  padding: 81px 0 100px;
 }
 
 @media (max-width: 1279px) {

@@ -1,17 +1,20 @@
 .pets {
-    padding: 81px 0 100px;
+    margin-top: 0;
+    padding: 201px 0 100px;
     background-color: $color-light-l;
 
     @media (max-width: $tablet-width) {
-        padding: 81px 0 77px;
+        margin-top: 0;
+        padding: 201px 0 77px;
     }
 
     @media (max-width: $mobile-width) {
-        margin-top: 0;
         padding: 162px 0 42px;
     }
 
     &--homepage {
+        padding: 81px 0 100px;
+
         @media (max-width: $tablet-width) {
             padding: 81px 0 100px;
         }
