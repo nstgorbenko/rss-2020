@@ -155,18 +155,44 @@
             </div>
         </footer>
     </div>
+    
     <div class="overlay"></div>
 
     <!-- Pet card slide-->
     <template id="slider-item">
         <ul class="pets__list pets__list--slider slider__item">
             <li class="pet-card pets__list-item pets__list-item--homepage">
-                <img class="pet-card__image" src="../../assets/images/pets-katrine.png" width="270" height="270" alt="Katrine cat">
+                <img class="pet-card__image" src="../../assets/images/katrine.png" width="270" height="270" alt="Katrine cat">
                 <p class="pet-card__name">Katrine</p>
-                <a class="button button--light pet-card__link" href="#">Learn more</a>
+                <a class="button button--light pet-card__link">Learn more</a>
             </li>
         </ul>
-      </template>
+    </template>
+
+    <!-- Popup pet card -->
+    <template id="popup-card">
+        <div class="pet-popup">
+            <img class="pet-popup__image" src="../../assets/images/jennifer.png" width="500" height="500" alt="Jennifer">
+            <div class="pet-popup__info">
+                <p class="pet-popup__name">Jennifer</p>
+                <p class="pet-popup__breed">Dog - Labrador</p>
+                <p class="pet-popup__description">Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate to play up a storm in the house if she has all of her favorite toys.</p>
+                <ul class="pet-popup__feature-list">
+                    <li class="pet-popup__feature-item">Age: 
+                        <span class="pet-popup__feature-value pet-popup__feature-value--age">2 months</span></li>
+                    <li class="pet-popup__feature-item">Inoculations: 
+                        <span class="pet-popup__feature-value pet-popup__feature-value--inoculation">none</span></li>
+                    <li class="pet-popup__feature-item">Diseases: 
+                        <span class="pet-popup__feature-value pet-popup__feature-value--diseases">none</span>
+                    </li>
+                    <li class="pet-popup__feature-item">Parasites: 
+                        <span class="pet-popup__feature-value pet-popup__feature-value--parasites">none</span>
+                    </li>
+                </ul>
+            </div>
+            <button class="pet-popup__button" type="button">Close popup</button>
+        </div>
+    </template>
 
     <script src="../../assets/js/main.js"></script>
 </body>

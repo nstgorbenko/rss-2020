@@ -4,6 +4,7 @@
     align-items: center;
     border-radius: 9px;
     background-color: $color-light-s;
+    cursor: pointer;
 
     &:hover,
     &:focus {
@@ -26,4 +27,9 @@
 
 .pet-card__link {
     margin-bottom: 30px;
+
+    .pet-card:hover & {
+        background-color: $color-primary-light;
+        box-shadow: none;
+    }
 }

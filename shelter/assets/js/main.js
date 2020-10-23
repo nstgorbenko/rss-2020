@@ -1,38 +1,56 @@
 // -----BURGER MENU-----
 
-const CURRENT_PAGE_LINK = 'main-navigation__link--current';
-
 const mainHeader = document.querySelector('.main-header');
 const mainNav = document.querySelector('.main-navigation');
 const mainNavButton = document.querySelector('.main-navigation__button');
 const overlay = document.querySelector('.overlay');
 const page = document.querySelector('.page');
 
-const toggleMenu = () => {
-    mainHeader.classList.toggle('main-header--overlay');
-    mainNav.classList.toggle('main-navigation--burger');
-    overlay.classList.toggle('overlay__show');
-    page.classList.toggle('page--overlay');
+const openOverlay = () => {
+    overlay.classList.add('overlay__show');
+    page.classList.add('page--overlay');
 };
 
-mainNavButton.addEventListener('click', toggleMenu);
-overlay.addEventListener('click', toggleMenu);
-mainNav.addEventListener(`click`, (evt) => {
-    if (evt.target.classList.contains(CURRENT_PAGE_LINK)) {
-        toggleMenu();
+const closeOverlay = () => {
+    overlay.classList.remove('overlay__show');
+    page.classList.remove('page--overlay');
+};
+
+const onCurrentLinkClick = () => {
+    closeMenu();
+};
+
+const openMenu = () => {
+    openOverlay();
+    overlay.addEventListener('click', closeMenu);
+    mainHeader.classList.add('main-header--overlay');
+    mainNav.classList.add('main-navigation--burger');
+    mainNav.querySelector('.main-navigation__link--current').addEventListener(`click`, onCurrentLinkClick);
+};
+
+const closeMenu = () => {
+    closeOverlay();
+    overlay.removeEventListener('click', closeMenu);
+    mainHeader.classList.remove('main-header--overlay');
+    mainNav.classList.remove('main-navigation--burger');
+    mainNav.querySelector('.main-navigation__link--current').removeEventListener(`click`, onCurrentLinkClick);
+};
+
+mainNavButton.addEventListener('click', () => {
+    if (mainNav.classList.contains('main-navigation--burger')) {
+        closeMenu();
+        return;
     }
+    openMenu();
 });
 
 window.addEventListener('resize', () => {
-    if (window.innerWidth >= 768) {
-        mainHeader.classList.remove('main-header--overlay');
-        mainNav.classList.remove('main-navigation--burger');
-        overlay.classList.remove('overlay__show');
-        page.classList.remove('page--overlay');
+    if (window.innerWidth >= 768 && mainNav.classList.contains('main-navigation--burger')) {
+        closeMenu();
     }
 });
 
-// -----SLIDER-----
+// -----POPUP && SLIDER-----
 
 const screenBreakToCardsCount = {
     1280: 3,
@@ -82,6 +100,8 @@ const createCard = (cardData) => {
     card.querySelector('.pet-card__image').src = cardData.img;
     card.querySelector('.pet-card__image').alt = cardData.name;
     card.querySelector('.pet-card__name').textContent = cardData.name;
+
+    card.addEventListener('click', () => openCardPopup(cardData));
 
     return card;
 };
@@ -164,6 +184,57 @@ const changeSliderView = () => {
         currentBreak = screenBreak;
         cardsCount = screenBreakToCardsCount[screenBreak];
         renderFirstSlide();
+    }
+};
+
+const popupCardTemplate = document.querySelector('#popup-card').content.querySelector('.pet-popup');
+const pageWrapper = document.querySelector('.page__wrapper');
+
+const createPopup = (popupData) => {
+    const popup = popupCardTemplate.cloneNode(true);
+
+    popup.querySelector('.pet-popup__image').src = popupData.img;
+    popup.querySelector('.pet-popup__image').alt = popupData.name;
+    popup.querySelector('.pet-popup__name').textContent = popupData.name;
+    popup.querySelector('.pet-popup__breed').textContent = `${popupData.type} - ${popupData.breed}`;
+    popup.querySelector('.pet-popup__description').textContent = popupData.description;
+    popup.querySelector('.pet-popup__feature-value--age').textContent = popupData.age;
+    popup.querySelector('.pet-popup__feature-value--diseases').textContent = popupData.diseases.join(', ');
+    popup.querySelector('.pet-popup__feature-value--parasites').textContent = popupData.parasites.join(', ');
+    popup.querySelector('.pet-popup__button').addEventListener('click', closeCardPopup);
+
+    return popup;
+};
+
+const onOverlayMouseOver = () => {
+    const popup = document.querySelector('.pet-popup');
+    popup.querySelector('.pet-popup__button').classList.add('pet-popup__button--hover');
+};
+
+const onOverlayMouseOut = () => {
+    const popup = document.querySelector('.pet-popup');
+    popup.querySelector('.pet-popup__button').classList.remove('pet-popup__button--hover');
+};
+
+const openCardPopup = (popupData) => {
+    const newPopup = createPopup(popupData);
+    newPopup.classList.add('pet-popup--show');
+    pageWrapper.after(newPopup);
+
+    openOverlay();
+    overlay.addEventListener('click', closeCardPopup);
+    overlay.addEventListener('mouseover', onOverlayMouseOver);
+    overlay.addEventListener('mouseout', onOverlayMouseOut);
+};
+
+const closeCardPopup = () => {
+    const popup = document.querySelector('.pet-popup');
+    if (popup) {
+        closeOverlay();
+        overlay.removeEventListener('click', closeCardPopup);
+        overlay.removeEventListener('mouseover', onOverlayMouseOver);
+        overlay.removeEventListener('mouseout', onOverlayMouseOut)
+        popup.remove();
     }
 };
 
