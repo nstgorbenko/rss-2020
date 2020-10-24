@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,14 +8,29 @@
   <link rel="stylesheet" href="style.css" />
   <title>momentum</title>
 </head>
-<body>
-  <time class="time"></time>
-  <h1>
-    <span class="greeting"></span>
-    <span class="name" contenteditable="true"></span>
-  </h1>
-  <h2>What Is Your Focus For Today?</h2>
-  <h2 class="focus" contenteditable="true"></h2>
+
+<body class="page">
+  <p class="date"></p>
+
+  <div class="time">
+    <div class="time__hours"></div>
+    <span class="time__colon">:</span>
+    <div class="time__minutes"></div>
+    <span class="time__colon">:</span>
+    <div class="time__seconds"></div>
+  </div>
+
+  <p class="greeting">
+    <span class="greeting__phrase">Good evening, </span>
+    <span class="greeting__name" contenteditable="true" data-key="name" tabindex="0"></span>
+  </p>
+
+  <div class="focus">
+    <p class="focus__question">What is your main focus for today?</p>
+    <p class="focus__point" contenteditable="true" data-key="focus"></p>
+  </div>
+
   <script src="script.js"></script>
 </body>
+
 </html>
