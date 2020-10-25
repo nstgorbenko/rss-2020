@@ -46,10 +46,12 @@ html {
   font-size: 2rem;
 }
 
-.greeting__name {
-  display: inline-block;
-  min-width: 10px;
-  opacity: 0.5;
+.greeting {
+  display: flex;
+  justify-content: center;
+}
+
+.greeting p {
   outline: none;
 }
 
@@ -59,7 +61,6 @@ html {
 }
 
 .focus__point {
-  opacity: 0.5;
   outline: none;
 }
 

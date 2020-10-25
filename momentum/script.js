@@ -77,7 +77,7 @@ const writeValue = (evt) => {
 
 const setValue = (evt) => {
   const field = evt.target;
-  field.innerHTML = '';
+  field.textContent = '';
 
   field.addEventListener('blur', writeValue);
   field.addEventListener('keydown', writeValue);
@@ -88,8 +88,8 @@ const init = () => {
   showDate();
   getValue(name);
   getValue(focus);
-  name.addEventListener('focus', setValue);
-  focus.addEventListener('focus', setValue);
+  name.addEventListener('click', setValue);
+  focus.addEventListener('click', setValue);
 }
 
 init();
