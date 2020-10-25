@@ -161,14 +161,26 @@ const createImageList = () => {
   return [...night, ...morning, ...afternoon, ...evening];
 };
 
+const disableSliderButtons = () => {
+  prevBtn.disabled = true;
+  nextBtn.disabled = true;
+};
+
+const enableSliderButtons = () => {
+  prevBtn.disabled = false;
+  nextBtn.disabled = false;
+};
+
 const setBackground = (hour) => {
+  disableSliderButtons();
   const image = document.createElement('img');
   image.src = todayImages[hour];
   image.onload = () => {
     page.style.backgroundImage = `url("assets/images/overlay.png"), url(${todayImages[hour]})`;
     currentImage = hour;
+    image.remove();
+    enableSliderButtons();
   };
-  image.remove();
 };
 
 const changeBackground = (imageNumber) => {
