@@ -43,6 +43,9 @@ const focus = document.querySelector('.focus__point');
 const prevBtn = document.querySelector('.slide-btn--prev');
 const nextBtn = document.querySelector('.slide-btn--next');
 
+const quote = document.querySelector('.quote__text');
+const quoteBtn = document.querySelector('.quote__btn');
+
 const addZero = (number) => String(number).padStart(2, '0');
 const isEmpty = (string) => string.trim() === '';
 const isEnterKey = ({key}) => key === 'Enter';
@@ -213,11 +216,19 @@ const setChangeOnTime = () => {
   setTimeout(setChangeOnTime, 1000);
 };
 
+const getQuote = async () => {
+  const url = 'https://api.adviceslip.com/advice';
+  const result = await fetch(url);
+  const data = await result.json();
+  quote.textContent = data.slip.advice;
+};
+
 const init = () => {
   const today = new Date();
   todayImages = createImageList();
 
   setBackground(today.getHours()); // TODO: show page when image loaded
+  getQuote();
   setGreetingPhrase();
 
   showDate();
@@ -231,6 +242,7 @@ const init = () => {
 
   prevBtn.addEventListener('click', () => changeBackground(currentImage - 1));
   nextBtn.addEventListener('click', () => changeBackground(currentImage + 1));
+  quoteBtn.addEventListener('click', getQuote);
 }
 
 init();
