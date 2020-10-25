@@ -1,13 +1,22 @@
+const IMAGES_COUNT = 6;
+const IMAGES_TOTAL_COUNT = 20;
+
+const DayTime = {
+  NIGHT: 'night',
+  MORNING: 'morning',
+  AFTERNOON: 'day',
+  EVENING: 'evening',
+};
 const Hour = {
   NIGHT: 6,
   MORNING: 12,
-  AFTERNOON: 18
+  AFTERNOON: 18,
 };
 const Greeting = {
+  NIGHT: 'Good night,\u00a0',
   MORNING: 'Good morning,\u00a0',
   AFTERNOON: 'Good afternoon,\u00a0',
   EVENING: 'Good evening,\u00a0',
-  NIGHT: 'Good night,\u00a0',
 }
 const Key = {
   NAME: 'name',
@@ -17,6 +26,9 @@ const Key = {
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+let todayImages = [];
+
+const page = document.querySelector('.page');
 const date = document.querySelector('.date');
 const hours = document.querySelector('.time__hours');
 const minutes = document.querySelector('.time__minutes');
@@ -30,6 +42,7 @@ const focus = document.querySelector('.focus__point');
 const addZero = (number) => String(number).padStart(2, '0');
 const isEmpty = (string) => string.trim() === '';
 const isEnterKey = ({key}) => key === 'Enter';
+const getRandomIntegerNumber = (min, max) => min + Math.floor(Math.random() * (max - min));
 
 const showDate = () => {
   const today = new Date();
@@ -54,8 +67,6 @@ const showTime = () => {
   colons.forEach((colon) => {
     colon.style.opacity = isColon ? '1' : '0';
   });
-
-  setTimeout(showTime, 1000);
 }
 
 const setGreetingPhrase = () => {
@@ -108,7 +119,73 @@ const setValue = (evt) => {
   field.addEventListener('keydown', writeValue);
 };
 
+const getUniqueNumbersList = (numbersCount, upperLimit) => {
+  const images = [];
+
+  while (images.length < numbersCount) {
+    const randomImageIndex = getRandomIntegerNumber(1, upperLimit + 1);
+
+    if (images.indexOf(randomImageIndex) === -1) {
+      images.push(randomImageIndex);
+    } else {
+      continue;
+    }
+  }
+
+  return images;
+};
+
+const createDayTimeImageList = (dayTime, indexList) => {
+  const imageList  = [];
+
+  for (let i = 0; i < indexList.length; i++) {
+    imageList.push(`assets/images/${dayTime}/${addZero(indexList[i])}.jpg`);
+  }
+
+  return imageList;
+}
+
+const createImageList = () => {
+  const imageList = [];
+  const imageIndexes = getUniqueNumbersList(IMAGES_COUNT, IMAGES_TOTAL_COUNT);
+
+  const night = createDayTimeImageList(DayTime.NIGHT, imageIndexes);
+  const morning = createDayTimeImageList(DayTime.MORNING, imageIndexes);
+  const afternoon = createDayTimeImageList(DayTime.AFTERNOON, imageIndexes);
+  const evening = createDayTimeImageList(DayTime.EVENING, imageIndexes);
+
+  return [...night, ...morning, ...afternoon, ...evening];
+};
+
+const setBackground = () => {
+  const today = new Date();
+  const hour = today.getHours();
+  page.style.backgroundImage = `url("assets/images/overlay.png"), url(${todayImages[hour]})`;
+};
+
+const setChangeOnTime = () => {
+  const today = new Date();
+  const hour = today.getHours();
+  const minute = today.getMinutes();
+  const second = today.getSeconds();
+
+  showTime();
+  if (hour === 0 && minute === 0 && second === 0) {
+    showDate();
+  }
+
+  if (minute === 0 && second === 0) {
+    setBackground();
+    setGreetingPhrase();
+  }
+
+  setTimeout(setChangeOnTime, 1000);
+};
+
+
 const init = () => {
+  todayImages = createImageList();
+  setBackground();
   showDate();
   showTime();
   setGreetingPhrase();
@@ -119,3 +196,4 @@ const init = () => {
 }
 
 init();
+setChangeOnTime();
