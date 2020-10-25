@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/owfont-regular.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Momentum</title>
+</head>
+
+<body class="page">
+  <button class="slide-btn slide-btn--prev" type="button"></button>
+  <button class="slide-btn slide-btn--next" type="button"></button>
+
+  <div class="weather">
+    <div class="weather__main">
+      <span class="weather__icon owf"></span>
+      <p class="weather__temp"></p>
+    </div>
+
+    <p class="weather__humidity"></p>
+    <p class="weather__wind"></p>
+  </div>
+
+  <div class="page__center">
+    <p class="date"></p>
+    <p class="city" contenteditable="true" data-key="city" tabindex="0">Krasnodar</p>
+
+    <div class="time">
+      <div class="time__hours"></div>
+      <span class="time__colon">:</span>
+      <div class="time__minutes"></div>
+      <span class="time__colon">:</span>
+      <div class="time__seconds"></div>
+    </div>
+  
+    <div class="greeting">
+      <p class="greeting__phrase"></p>
+      <p class="greeting__name" contenteditable="true" data-key="name" tabindex="0"></p>
+    </div>
+  
+    <div class="focus">
+      <p class="focus__question">What is your main focus for today?</p>
+      <p class="focus__point" contenteditable="true" data-key="focus"></p>
+    </div>
+  </div>
+
+  <p class="quote">
+    <q class="quote__text"></q>
+    <button class="quote__btn" type="button"></button>
+  </p>
+
+  <p class="error">City not found. Please try again</p>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
