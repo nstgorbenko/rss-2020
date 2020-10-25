@@ -21,6 +21,8 @@ html {
   color: #ffffff;
   text-align: center;
   transition: background-image 1s;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .page__center {
@@ -45,20 +47,39 @@ html {
   outline: none;
 }
 
+.slide-btn:hover {
+  transform: translate(-1rem, -50%) rotate(180deg);
+  transition: transform 0.3s;
+  opacity: 0.8;
+}
+
 .slide-btn--next {
   left: auto;
   right: 0;
   transform: translateY(-50%) rotate(0);
 }
 
+.slide-btn--next:hover {
+  transform: translate(1rem, -50%);
+}
+
 .date {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px #000000;
+}
+
+.city {
+  outline: none;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px #000000;
 }
 
 .time {
   display: flex;
   margin-bottom: 2rem;
   font-size: 8rem;
+  text-shadow: 0 0 10px #000000;
 }
 
 .time div {
@@ -71,13 +92,11 @@ html {
 }
 
 .greeting {
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-
-.greeting {
   display: flex;
   justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px #000000;
 }
 
 .greeting__name {
@@ -86,7 +105,8 @@ html {
 
 .focus {
   margin-bottom: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
+  text-shadow: 0 0 10px #000000;
 }
 
 .focus__point {
@@ -97,12 +117,19 @@ html {
   position: relative;
   width: 50%;
   min-width: 288px;
+  min-height: 3.75rem;
 }
 
 .quote__text {
   font-size: 1.5rem;
   opacity: 0.8;
-  min-width: 3.75rem;
+  transition: opacity 1s;
+  text-shadow: 0 0 10px #000000;
+}
+
+.quote__text::before,
+.quote__text::after {
+  display: none;
 }
 
 .quote__btn {
@@ -122,18 +149,18 @@ html {
   border: none;
 }
 
+.quote__btn:hover {
+  transform: rotate(-360deg);
+  transition: transform 0.3s;
+}
+
 .weather {
   align-self: flex-end;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  min-height: 7rem;
-}
-
-.city {
-  outline: none;
-  margin-bottom: 2rem;
-  font-size: 2rem;
+  min-height: 6rem;
+  margin-bottom: -3rem;
 }
 
 .weather__main {
@@ -144,6 +171,7 @@ html {
 
 .weather__icon {
   font-size: 3rem;
+  text-shadow: 0 0 10px #000000;
 }
 
 .weather__temp {
@@ -151,23 +179,16 @@ html {
   flex-shrink: 0;
   font-size: 1.5rem;
   text-align: center;
+  text-shadow: 0 0 10px #000000;
 }
 
 .weather__humidity,
 .weather__wind {
-    min-width: 10rem;
-    align-self: flex-start;
-    text-align: left;
-}
-
-@media (max-width: 768px) {
-  html {
-    font-size: 8px;
-  }
-
-  .quote__text {
-    font-size: 1.75rem;
-  }
+  min-width: 10rem;
+  align-self: flex-start;
+  text-align: left;
+  font-size: 1rem;
+  text-shadow: 0 0 10px #000000;
 }
 
 .error {
@@ -176,4 +197,89 @@ html {
   color: #ff6255;
   opacity: 0;
   transition: opacity 1s;
+}
+
+@media (max-width: 1279px) {
+  html {
+    font-size: 12px;
+  }
+
+  .quote {
+    min-height: 8.8rem;
+  }
+
+  .quote__text {
+    font-size: 1.75rem;
+  }
+
+  .weather__humidity,
+  .weather__wind {
+    font-size: 1.5rem; 
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 10px;
+  }
+
+  .weather__humidity,
+  .weather__wind {
+    font-size: 1.75rem; 
+  }
+
+  .quote__text {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 10px;
+  }
+
+  .weather {
+    align-self: center;
+    align-items: center;
+    margin-bottom: 0;
+  }
+
+  .quote__btn {
+    right: -1.5rem;
+  }
+
+  .weather__main {
+    justify-content: center;
+  }
+
+  .weather__humidity,
+  .weather__wind {
+    align-self: center;
+  }
+
+  .slide-btn {
+    top: 20%;
+    left: 0;
+    transform: translateY(-20%) rotate(180deg);
+  }
+  
+  .slide-btn--next {
+    left: auto;
+    right: 0;
+    transform: translateY(-20%) rotate(0);
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 8px;
+  }
+
+  .weather__temp {
+    font-size: 1.75rem;
+  }
+
+  .quote__btn {
+    right: -1.5rem;
+  }
 }

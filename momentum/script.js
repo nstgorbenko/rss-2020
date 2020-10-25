@@ -40,6 +40,12 @@ const greeting = document.querySelector('.greeting__phrase');
 const name = document.querySelector('.greeting__name');
 const focus = document.querySelector('.focus__point');
 
+const city = document.querySelector('.city');
+const weatherIcon = document.querySelector('.weather__icon');
+const weatherTemp = document.querySelector('.weather__temp');
+const weatherHumidity = document.querySelector('.weather__humidity');
+const weatherWind = document.querySelector('.weather__wind');
+
 const prevBtn = document.querySelector('.slide-btn--prev');
 const nextBtn = document.querySelector('.slide-btn--next');
 
@@ -224,17 +230,20 @@ const setChangeOnTime = () => {
 };
 
 const getQuote = async () => {
-  const url = 'https://api.adviceslip.com/advice';
+  const url = 'https://favqs.com/api/qotd';
   const result = await fetch(url);
   const data = await result.json();
-  quote.textContent = data.slip.advice;
-};
 
-const city = document.querySelector('.city');
-const weatherIcon = document.querySelector('.weather__icon');
-const weatherTemp = document.querySelector('.weather__temp');
-const weatherHumidity = document.querySelector('.weather__humidity');
-const weatherWind = document.querySelector('.weather__wind');
+  if (data.quote.body.length > 120) {
+    getQuote();
+  } else {
+    quote.style.opacity = '0';
+    setTimeout(() => {
+      quote.style.opacity = '1';
+      quote.textContent = data.quote.body;
+    }, 1000);
+  }
+};
 
 const getWeather = async () => {
   if (city.textContent === '[enter city]') {
@@ -271,7 +280,6 @@ const init = () => {
   todayImages = createImageList();
 
   setBackground(today.getHours());
-  getQuote();
   setGreetingPhrase();
 
   showDate();
@@ -287,6 +295,8 @@ const init = () => {
 
   prevBtn.addEventListener('click', () => changeBackground(currentImage - 1));
   nextBtn.addEventListener('click', () => changeBackground(currentImage + 1));
+  
+  document.addEventListener('DOMContentLoaded', getQuote);
   quoteBtn.addEventListener('click', getQuote);
   document.addEventListener('DOMContentLoaded', getWeather);
 }
