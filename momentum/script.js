@@ -1,9 +1,21 @@
+const Hour = {
+  NIGHT: 6,
+  MORNING: 12,
+  AFTERNOON: 18
+};
+const Greeting = {
+  MORNING: 'Good morning,\u00a0',
+  AFTERNOON: 'Good afternoon,\u00a0',
+  EVENING: 'Good evening,\u00a0',
+  NIGHT: 'Good night,\u00a0',
+}
 const Key = {
   NAME: 'name',
   FOCUS: 'focus',
 };
-const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 const date = document.querySelector('.date');
 const hours = document.querySelector('.time__hours');
@@ -13,10 +25,10 @@ const colons = document.querySelectorAll('.time__colon');
 
 const greeting = document.querySelector('.greeting__phrase');
 const name = document.querySelector('.greeting__name');
-
 const focus = document.querySelector('.focus__point');
 
 const addZero = (number) => String(number).padStart(2, '0');
+const isEmpty = (string) => string.trim() === '';
 const isEnterKey = ({key}) => key === 'Enter';
 
 const showDate = () => {
@@ -46,7 +58,20 @@ const showTime = () => {
   setTimeout(showTime, 1000);
 }
 
-const isEmpty = (string) => string.trim() === '';
+const setGreetingPhrase = () => {
+  const today = new Date();
+  const hour = today.getHours();
+
+  if (hour < Hour.NIGHT) {
+    greeting.textContent = Greeting.NIGHT;
+  } else if (hour < Hour.MORNING) {
+    greeting.textContent = Greeting.MORNING;
+  } else if (hour < Hour.AFTERNOON) {
+    greeting.textContent = Greeting.AFTERNOON;
+  } else {
+    greeting.textContent = Greeting.EVENING;
+  }
+}
 
 const getValue = (field) => {
   const key = field.dataset.key;
@@ -84,8 +109,9 @@ const setValue = (evt) => {
 };
 
 const init = () => {
-  showTime();
   showDate();
+  showTime();
+  setGreetingPhrase();
   getValue(name);
   getValue(focus);
   name.addEventListener('click', setValue);
