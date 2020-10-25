@@ -46,6 +46,8 @@ const nextBtn = document.querySelector('.slide-btn--next');
 const quote = document.querySelector('.quote__text');
 const quoteBtn = document.querySelector('.quote__btn');
 
+const error = document.querySelector('.error');
+
 const addZero = (number) => String(number).padStart(2, '0');
 const isEmpty = (string) => string.trim() === '';
 const isEnterKey = ({key}) => key === 'Enter';
@@ -109,7 +111,12 @@ const writeValue = (evt) => {
     if (isEmpty(field.textContent)) {
       getValue(field);
     } else {
-      localStorage.setItem(key, field.textContent);
+      if (key === 'city') {
+        getWeather().then((data) => {
+          return data ? localStorage.setItem(key, field.textContent) : false});
+      } else {
+        localStorage.setItem(key, field.textContent);
+      }
     }
 
     field.blur();
@@ -223,11 +230,47 @@ const getQuote = async () => {
   quote.textContent = data.slip.advice;
 };
 
+const city = document.querySelector('.city');
+const weatherIcon = document.querySelector('.weather__icon');
+const weatherTemp = document.querySelector('.weather__temp');
+const weatherHumidity = document.querySelector('.weather__humidity');
+const weatherWind = document.querySelector('.weather__wind');
+
+const getWeather = async () => {
+  if (city.textContent === '[enter city]') {
+    return;
+  }
+
+  try {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.textContent}&lang=en&appid=edd3c583836a0b84ecdc0753c7b12283&units=metric`;
+    const result = await fetch(url);
+    const data = await result.json();
+
+    if (data.cod === 200) {
+      weatherIcon.classList = 'weather__icon owf';
+      weatherIcon.classList.add(`owf-${data.weather[0].id}`);
+      weatherTemp.textContent = `${Math.round(data.main.temp)} °C`;
+      weatherHumidity.textContent = `Humidity: ${data.main.humidity} %`;
+      weatherWind.textContent = `Wind speed: ${data.wind.speed} m/s`;
+      return true;
+    } else {
+      weatherIcon.classList = 'weather__icon owf';
+      weatherTemp.textContent = ``;
+      weatherHumidity.textContent = ``;
+      weatherWind.textContent = ``;
+      error.style.opacity = '1';
+      setTimeout(() => {error.style.opacity = '0'}, 2000);
+    }
+  } catch (error) {
+    return false;
+  }
+};
+
 const init = () => {
   const today = new Date();
   todayImages = createImageList();
 
-  setBackground(today.getHours()); // TODO: show page when image loaded
+  setBackground(today.getHours());
   getQuote();
   setGreetingPhrase();
 
@@ -236,13 +279,16 @@ const init = () => {
 
   getValue(name);
   getValue(focus);
+  getValue(city);
 
   name.addEventListener('click', setValue);
   focus.addEventListener('click', setValue);
+  city.addEventListener('click', setValue);
 
   prevBtn.addEventListener('click', () => changeBackground(currentImage - 1));
   nextBtn.addEventListener('click', () => changeBackground(currentImage + 1));
   quoteBtn.addEventListener('click', getQuote);
+  document.addEventListener('DOMContentLoaded', getWeather);
 }
 
 init();
