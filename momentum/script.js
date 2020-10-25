@@ -27,6 +27,7 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const WEEKDAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 let todayImages = [];
+let currentImage = 0;
 
 const page = document.querySelector('.page');
 const date = document.querySelector('.date');
@@ -38,6 +39,9 @@ const colons = document.querySelectorAll('.time__colon');
 const greeting = document.querySelector('.greeting__phrase');
 const name = document.querySelector('.greeting__name');
 const focus = document.querySelector('.focus__point');
+
+const prevBtn = document.querySelector('.slide-btn--prev');
+const nextBtn = document.querySelector('.slide-btn--next');
 
 const addZero = (number) => String(number).padStart(2, '0');
 const isEmpty = (string) => string.trim() === '';
@@ -157,10 +161,25 @@ const createImageList = () => {
   return [...night, ...morning, ...afternoon, ...evening];
 };
 
-const setBackground = () => {
-  const today = new Date();
-  const hour = today.getHours();
-  page.style.backgroundImage = `url("assets/images/overlay.png"), url(${todayImages[hour]})`;
+const setBackground = (hour) => {
+  const image = document.createElement('img');
+  image.src = todayImages[hour];
+  image.onload = () => {
+    page.style.backgroundImage = `url("assets/images/overlay.png"), url(${todayImages[hour]})`;
+    currentImage = hour;
+  };
+  image.remove();
+};
+
+const changeBackground = (imageNumber) => {
+  if (imageNumber < 0) {
+    currentImage = 23;
+  } else if (imageNumber > 23) {
+    currentImage = 0;
+  } else {
+    currentImage = imageNumber;
+  }
+  setBackground(currentImage);
 };
 
 const setChangeOnTime = () => {
@@ -175,24 +194,31 @@ const setChangeOnTime = () => {
   }
 
   if (minute === 0 && second === 0) {
-    setBackground();
+    setBackground(hour);
     setGreetingPhrase();
   }
 
   setTimeout(setChangeOnTime, 1000);
 };
 
-
 const init = () => {
+  const today = new Date();
   todayImages = createImageList();
-  setBackground();
+
+  setBackground(today.getHours()); // TODO: show page when image loaded
+  setGreetingPhrase();
+
   showDate();
   showTime();
-  setGreetingPhrase();
+
   getValue(name);
   getValue(focus);
+
   name.addEventListener('click', setValue);
   focus.addEventListener('click', setValue);
+
+  prevBtn.addEventListener('click', () => changeBackground(currentImage - 1));
+  nextBtn.addEventListener('click', () => changeBackground(currentImage + 1));
 }
 
 init();
