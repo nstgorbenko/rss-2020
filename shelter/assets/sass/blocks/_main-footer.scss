@@ -95,6 +95,13 @@
     @include list-reset();
 }
 
+.main-footer__item {
+    @media (max-width: $mobile-width) {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 .main-footer__link {
     @include link-reset();
     @include font(2.0rem, 1.15, 400, 0.06em);
@@ -108,13 +115,17 @@
 
     &--email {
         background: url("../../assets/icons/icon-email.svg") 0 0 no-repeat;
+
+        @media (max-width: $mobile-width) {
+            align-self: center;
+        }
     }
 
     &--phone {
         background: url("../../assets/icons/icon-phone.svg") 0 0 no-repeat;
 
         @media (max-width: $mobile-width) {
-            margin-left: 6px;
+            align-self: center;
         }
     }
 

@@ -1026,12 +1026,6 @@ template {
   margin-bottom: 30px;
 }
 
-.pet-card:hover .pet-card__link {
-  background-color: #FDDCC4;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
 .pagination {
   width: 340px;
 }
@@ -1252,6 +1246,18 @@ template {
   list-style: none;
 }
 
+@media (max-width: 767px) {
+  .main-footer__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .main-footer__link {
   display: inline-block;
   text-decoration: none;
@@ -1277,13 +1283,23 @@ template {
   background: url("../../assets/icons/icon-email.svg") 0 0 no-repeat;
 }
 
+@media (max-width: 767px) {
+  .main-footer__link--email {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
 .main-footer__link--phone {
   background: url("../../assets/icons/icon-phone.svg") 0 0 no-repeat;
 }
 
 @media (max-width: 767px) {
   .main-footer__link--phone {
-    margin-left: 6px;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
   }
 }
 

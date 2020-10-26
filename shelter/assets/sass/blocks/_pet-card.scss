@@ -27,9 +27,4 @@
 
 .pet-card__link {
     margin-bottom: 30px;
-
-    .pet-card:hover & {
-        background-color: $color-primary-light;
-        box-shadow: none;
-    }
 }
