@@ -1,0 +1,32 @@
+@mixin font($size: 10px, $height: 1.6, $weight: 400, $space: normal) {
+  font-family: "Georgia", serif;
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+  letter-spacing: $space;
+}
+
+@mixin link-reset {
+  display: inline-block;
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin pseudo($width, $height, $content: "") {
+  content: $content;
+  position: absolute;
+  width: $width;
+  height: $height;
+}
+
+@mixin reset {
+  margin: 0;
+  padding: 0;
+}

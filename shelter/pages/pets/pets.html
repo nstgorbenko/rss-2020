@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy House. Our pets</title>
+    <link rel="stylesheet" href="./pets.css">
+</head>
+
+<body class="page">
+    <div class="page__wrapper">
+        <header class="main-header">
+            <div class="main-header__wrapper">
+                <nav class="main-navigation">
+                    <div class="main-navigation__header">
+                        <a class="main-navigation__logo" href="../main/main.html">
+                            <h1 class="main-navigation__logo-title">Cozy House 
+                                <span class="main-navigation__logo-subtitle">Shelter for pets in Boston</span>
+                            </h1>
+                        </a>
+                        <button class="main-navigation__button" type="button" aria-label="Toggle menu">
+                            <svg class="main-navigation__button-icon main-navigation__button-icon--dark" width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <line y1="21" x2="30" y2="21" stroke-width="2"/>
+                                <line y1="11" x2="30" y2="11" stroke-width="2"/>
+                                <line y1="1" x2="30" y2="1" stroke-width="2"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="main-navigation__menu">
+                        <a class="main-navigation__logo main-navigation__logo--light" href="../main/main.html">
+                            <h1 class="main-navigation__logo-title">Cozy House 
+                                <span class="main-navigation__logo-subtitle">Shelter for pets in Boston</span>
+                            </h1>
+                        </a>
+                        <ul class="main-navigation__list">
+                            <li class="main-navigation__item">
+                                <a class="main-navigation__link" href="../main/main.html">About the shelter</a>
+                            </li>
+                            <li class="main-navigation__item">
+                                <a class="main-navigation__link main-navigation__link--current" href="#">Our pets</a>
+                            </li>
+                            <li class="main-navigation__item">
+                                <a class="main-navigation__link">Help the shelter</a>
+                            </li>
+                            <li class="main-navigation__item">
+                                <a class="main-navigation__link">Contacts</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+    
+        <main class="main">
+            <section class="pets main__pets">
+                <div class="pets__wrapper">
+                    <h1 class="pets__title">Our friends who <br>are looking for a house</h1>
+                    <ul class="pets__list"></ul>
+                    <div class="pagination pets__pagination">
+                        <ul class="pagination__list">
+                            <li class="pagination__item">
+                                <button class="pagination__link pagination__link--very-prev" type="button" aria-label="Go to first page" disabled>
+                                    <svg class="pagination__link-icon" width="25" height="11" viewBox="0 0 25 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0055 6.08789L0.972265 10.7852V9.44727L8.48203 5.53125L0.972265 1.625V0.287109L10.0055 4.98438V6.08789ZM24.0766 6.08789L15.0434 10.7852V9.44727L22.5531 5.53125L15.0434 1.625V0.287109L24.0766 4.98438V6.08789Z"/>
+                                        </svg>
+                                </button>
+                            </li>
+                            <li class="pagination__item">
+                                <button class="pagination__link pagination__link--prev" type="button" aria-label="Go to previous page" disabled>
+                                    <svg class="pagination__link-icon" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.04102 6.08789L0.0078125 10.7852V9.44727L7.51758 5.53125L0.0078125 1.625V0.287109L9.04102 4.98438V6.08789Z"/>
+                                    </svg>
+                                </button>
+                            </li>
+                            <li class="pagination__item">
+                                <button class="pagination__link pagination__link--current" type="button" aria-label="Current page">1</button>
+                            </li>
+                            <li class="pagination__item">
+                                <button class="pagination__link  pagination__link--next" type="button" aria-label="Go to next page">
+                                    <svg class="pagination__link-icon" width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.04102 6.08789L0.0078125 10.7852V9.44727L7.51758 5.53125L0.0078125 1.625V0.287109L9.04102 4.98438V6.08789Z"/>
+                                    </svg>
+                                </button>
+                            </li>
+                            <li class="pagination__item">
+                                <button class="pagination__link  pagination__link--very-next" type="button" aria-label="Go to last page">
+                                    <svg class="pagination__link-icon" width="25" height="11" viewBox="0 0 25 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10.0055 6.08789L0.972265 10.7852V9.44727L8.48203 5.53125L0.972265 1.625V0.287109L10.0055 4.98438V6.08789ZM24.0766 6.08789L15.0434 10.7852V9.44727L22.5531 5.53125L15.0434 1.625V0.287109L24.0766 4.98438V6.08789Z"/>
+                                        </svg>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    
+        <footer class="main-footer">
+            <div class="main-footer__wrapper">    
+                <div class="main-footer__info">
+                    <div class="main-footer__left">
+                        <p class="main-footer__title">For questions and suggestions</p>
+                        <ul class="main-footer__list">
+                            <li class="main-footer__item">
+                                <a class="main-footer__link main-footer__link--email" href="mailto:email@shelter.com">email@shelter.com</a>
+                            </li>
+                            <li class="main-footer__item">
+                                <a class="main-footer__link main-footer__link--phone" href="tel:+136745677554">+13 674 567 75 54</a>
+                            </li>
+                        </ul>
+                    </div>
+        
+                    <div class="main-footer__right">
+                        <p class="main-footer__title">We are waiting for your visit</p>
+                        <ul class="main-footer__list">
+                            <li class="main-footer__item">
+                                <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/muZpyRQqQmiZQ3ML7" target="_blank">1 Central Street, Boston (entrance from the store)</a>
+                            </li>
+                            <li class="main-footer__item">
+                                <a class="main-footer__link main-footer__link--marker" href="https://goo.gl/maps/RNcFZazCLyFw9SpU9" target="_blank">18 South Park, London</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>           
+                <img class="main-footer__image" src="../../assets/images/footer-puppy.png" width="300" height="310" alt="Puppy with its tongue sticking out lifts one pow">
+            </div>
+        </footer>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Pet card-->
+    <template id="pet-card">
+        <li class="pet-card pets__list-item">
+            <img class="pet-card__image" src="../../assets/images/katrine.png" width="270" height="270" alt="Katrine cat">
+            <p class="pet-card__name">Katrine</p>
+            <a class="button button--light pet-card__link" href="#">Learn more</a>
+        </li>
+    </template>
+
+    <!-- Popup pet card -->
+    <template id="popup-card">
+        <div class="pet-popup">
+            <img class="pet-popup__image" src="../../assets/images/jennifer.png" width="500" height="500" alt="Jennifer">
+            <div class="pet-popup__info">
+                <p class="pet-popup__name">Jennifer</p>
+                <p class="pet-popup__breed">Dog - Labrador</p>
+                <p class="pet-popup__description">Jennifer is a sweet 2 months old Labrador that is patiently waiting to find a new forever home. This girl really enjoys being able to go outside to run and play, but won't hesitate to play up a storm in the house if she has all of her favorite toys.</p>
+                <ul class="pet-popup__feature-list">
+                    <li class="pet-popup__feature-item">Age: 
+                        <span class="pet-popup__feature-value pet-popup__feature-value--age">2 months</span></li>
+                    <li class="pet-popup__feature-item">Inoculations: 
+                        <span class="pet-popup__feature-value pet-popup__feature-value--inoculation">none</span></li>
+                    <li class="pet-popup__feature-item">Diseases: 
+                        <span class="pet-popup__feature-value pet-popup__feature-value--diseases">none</span>
+                    </li>
+                    <li class="pet-popup__feature-item">Parasites: 
+                        <span class="pet-popup__feature-value pet-popup__feature-value--parasites">none</span>
+                    </li>
+                </ul>
+            </div>
+            <button class="pet-popup__button" type="button">Close popup</button>
+        </div>
+    </template>
+
+    <script src="../../assets/js/main.js"></script>
+</body>
+
+</html>

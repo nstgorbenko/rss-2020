@@ -1,0 +1,109 @@
+.help {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1152px;
+    margin: 81px auto 45px;
+
+    @media (max-width: $tablet-width) {
+        width: 90%;
+    }
+
+    @media (max-width: $mobile-width) {
+        width: 100%;
+        margin: 42px auto 12px;
+    }
+}
+
+.help__title {
+    @include font(3.5rem, 1.3, 400, 0.06em);
+    width: 350px;
+    margin: 0;
+    margin-bottom: 59px;
+    padding-left: 2px;
+    text-align: center;
+    color: $color-dark-l;
+
+    @media (max-width: $mobile-width) {
+        @include font(2.5rem, 1.3, 400, 0.06em);
+        width: 80%;
+        margin-bottom: 42px;
+    }
+}
+
+.help__list {
+    @include list-reset();
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 2px;
+
+    @media (max-width: $tablet-width) {
+        justify-content: flex-start;
+        margin-left: 0;
+    }
+
+    @media (max-width: $mobile-width) {
+        max-width: 500px;
+    }
+}
+
+.help__item {
+    @include font(2.0rem, 1.15, 400, 0.06em);
+    padding-top: 90px;
+    margin: 0 60px 55px;
+    min-width: 60px;
+    text-align: center;
+    color: $color-dark-l;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+
+    @media (max-width: $tablet-width) {
+        margin: 0 0 55px;
+        width: 33.3%;
+    }
+
+    @media (max-width: $mobile-width) {
+        @include font(1.5rem, 1.1, 400, 0.06em);
+        width: 50%;
+        margin: 0 0 30px;
+        padding-top: 71px;
+        background-size: 50px;
+    }
+
+    &--food {
+        background-image: url("../../assets/icons/icon-pet-food.svg");
+    }
+
+    &--transport {
+        background-image: url("../../assets/icons/icon-transportation.svg");
+    }
+
+    &--toys {
+        background-image: url("../../assets/icons/icon-toys.svg");
+    }
+
+    &--bowls {
+        background-image: url("../../assets/icons/icon-bowls-and-cups.svg");
+    }
+
+    &--shampoos {
+        background-image: url("../../assets/icons/icon-shampoos.svg");
+    }
+
+    &--vitamins {
+        background-image: url("../../assets/icons/icon-vitamins.svg");
+    }
+
+    &--med {
+        background-image: url("../../assets/icons/icon-medicines.svg");
+    }
+
+    &--collars {
+        background-image: url("../../assets/icons/icon-collars-leashes.svg");
+    }
+
+    &--sleep {
+        background-image: url("../../assets/icons/icon-sleeping-area.svg");
+    }
+}

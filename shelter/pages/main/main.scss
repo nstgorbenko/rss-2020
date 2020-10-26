@@ -1,0 +1,27 @@
+// Utils
+@import "../../assets/sass/utils/_mixins.scss";
+@import "../../assets/sass/utils/_variables.scss";
+
+
+// Base
+@import "../../assets/sass/base/_fonts.scss";
+@import "../../assets/sass/base/_global.scss";
+@import "../../assets/sass/base/_normalize.scss";
+
+
+// Blocks
+@import "../../assets/sass/blocks/_page.scss";
+@import "../../assets/sass/blocks/_main-header.scss";
+@import "../../assets/sass/blocks/_main-navigation.scss";
+@import "../../assets/sass/blocks/_intro.scss";
+@import "../../assets/sass/blocks/_button.scss";
+@import "../../assets/sass/blocks/_main.scss";
+@import "../../assets/sass/blocks/_about.scss";
+@import "../../assets/sass/blocks/_pets.scss";
+@import "../../assets/sass/blocks/_pet-card.scss";
+@import "../../assets/sass/blocks/_slider.scss";
+@import "../../assets/sass/blocks/_help.scss";
+@import "../../assets/sass/blocks/_donation.scss";
+@import "../../assets/sass/blocks/_main-footer.scss";
+@import "../../assets/sass/blocks/_overlay.scss";
+@import "../../assets/sass/blocks/_pet-popup";

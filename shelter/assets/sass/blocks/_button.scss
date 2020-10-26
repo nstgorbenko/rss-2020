@@ -1,0 +1,19 @@
+.button {
+    @include font(1.7rem, 1.3, 400, 0.06em);
+    @include link-reset();
+    padding: 15px 45px;
+    color: $color-dark-3xl;
+    background-color: $color-primary;
+    border-radius: 10rem;
+
+    &--light {
+        background-color: transparent;
+        box-shadow: inset 0 0 0 2px $color-primary;
+    }
+
+    &:hover,
+    &:focus {
+        background-color: $color-primary-light;
+        box-shadow: none;
+    }
+}

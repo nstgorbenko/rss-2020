@@ -1,0 +1,132 @@
+.slider {
+    position: relative;
+}
+
+.slider__container {
+    position: relative;
+    overflow: hidden;
+    margin: 0 105px;
+
+    @media (max-width: $tablet-width) {
+        margin: 0 64px;
+        padding: 0;
+        width: auto;
+    }
+
+    @media (max-width: $mobile-width) {
+        margin: 0;
+    }
+}
+
+.slider__item {
+    display: none;
+    animation: 0.5s ease-in-out;
+
+    &--active,
+    &--next {
+        position: relative;
+        display: flex;
+    }
+
+    &--next {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    &--to-left {
+        animation-name: left;
+    }
+      
+    &--from-right {
+        animation-name: right;
+    }
+      
+    &--to-right {
+        animation-name: right;
+        animation-direction: reverse;
+    }
+      
+    &--from-left {
+        animation-name: left;
+        animation-direction: reverse;
+    }
+}
+
+.slider__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    font-size: 0;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 2px $color-primary;
+    border: none;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+
+    @media (max-width: $mobile-width) {
+        top: auto;
+        bottom: -98px;
+        left: 43px;
+    }
+
+    &--next {
+        right: 0;
+
+        @media (max-width: $mobile-width) {
+            top: auto;
+            left: auto;
+            right: 43px;
+        }
+    }
+
+    &:hover:not(:disabled),
+    &:focus:not(:disabled) {
+        background-color: $color-primary-light;
+        box-shadow: none;
+        border: none;
+        outline: none;
+    }
+
+    &:disabled {
+        box-shadow: inset 0 0 0 2px $color-dark-s;
+        cursor: auto;
+
+        .slider__button-image {
+            fill: $color-dark-s;
+        }
+    }
+}
+
+.slider__button-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    fill: $color-dark-3xl;
+
+    &--prev {
+        transform: translateX(-50%) translateY(-50%) rotate(180deg);
+    }
+}
+  
+@keyframes left {
+    from {
+        left: 0;
+    }
+    to {
+        left: -100%;
+    }
+}
+  
+@keyframes right {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0;
+    }
+}
