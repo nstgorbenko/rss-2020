@@ -1,7 +1,7 @@
 import AbstractComponent from "./abstract-component.js";
 import {Case, INTERACTIVE_KEYS, KeyWidth, Language, Sound} from "../const.js";
 
-const createKeyTemplate = (key, activeCase, isActiveShift, isMute) => {
+const createKeyTemplate = (key, activeCase, isActiveShift, isMute, isDial) => {
     const {upper, lower, code} = key;
 
     const isSymbolKey = upper !== null && lower.toUpperCase() !== upper;
@@ -15,9 +15,11 @@ const createKeyTemplate = (key, activeCase, isActiveShift, isMute) => {
     const isCapsLockActive = isCaps && code === 'CapsLock';
     const isShiftActive = isActiveShift && (code === 'ShiftLeft' || code === 'ShiftRight');
     const isSoundActive = !isMute && code === 'Sound';
+    const isVoiceDialActive = isDial && code === 'VoiceDial';
     const activeKeyClass = `${isCapsLockActive ? ` keyboard__key--interactive-on` : ''}
       ${isShiftActive ? ` keyboard__key--interactive-on` : ''}
-      ${isSoundActive ? ` keyboard__key--interactive-on` : ''}`;
+      ${isSoundActive ? ` keyboard__key--interactive-on` : ''}
+      ${isVoiceDialActive ? ` keyboard__key--interactive-on` : ''}`;
 
     const isMaxWideKey = KeyWidth.MAX_WIDE.indexOf(code) !== -1;
     const isWideKey = KeyWidth.WIDE.indexOf(code) !== -1;
@@ -37,17 +39,18 @@ const createKeyTemplate = (key, activeCase, isActiveShift, isMute) => {
 
 
 export default class Key extends AbstractComponent {
-    constructor(key, activeCase, isActiveShift, lang, isMute) {
+    constructor(key, activeCase, isActiveShift, lang, isMute, isDial) {
         super();
         this._item = key;
         this._activeCase = activeCase;
         this._isActiveShift = isActiveShift;
         this._lang = lang;
         this._isMute = isMute;
+        this._isDial = isDial;
     }
 
     getTemplate() {
-      return createKeyTemplate(this._item, this._activeCase, this._isActiveShift, this._isMute);
+      return createKeyTemplate(this._item, this._activeCase, this._isActiveShift, this._isMute, this._isDial);
     }
 
     getCode() {
@@ -101,7 +104,10 @@ export default class Key extends AbstractComponent {
       if (this._item.code === 'Sound') {
         this._isMute = !this._isMute;
       }
+      if (this._item.code === 'VoiceDial') {
+        this._isDial = !this._isDial;
+      }
 
-      handler(this._item, this._activeCase, this._isActiveShift, this._isMute);
+      handler(this._item, this._activeCase, this._isActiveShift, this._isMute, this._isDial);
     }
   }

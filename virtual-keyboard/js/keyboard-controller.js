@@ -5,6 +5,7 @@ import RowComponent from "./components/row.js";
 import {render} from "./utils.js";
 import {Case, Language, ROWS_ORDER} from "./const.js";
 
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 export default class KeyboardController {
   constructor(container, output, keyboardModel) {
@@ -16,7 +17,9 @@ export default class KeyboardController {
     this._isActiveShift = false;
     this._lang = Language.RU;
     this._isMute = true;
+    this._isDial = false;
     this._text = '';
+    this._recognition = null;
 
     this._keys = [];
     this._changeOutput = this._changeOutput.bind(this);
@@ -34,7 +37,7 @@ export default class KeyboardController {
         for (let j = 0; j < ROWS_ORDER[i].length; j++) {
             const keyCode = ROWS_ORDER[i][j];
             const keyInfo = this._keyboardModel.getKey(keyCode);
-            const key = new KeyComponent(keyInfo, this._case, this._isActiveShift, this._lang, this._isMute);
+            const key = new KeyComponent(keyInfo, this._case, this._isActiveShift, this._lang, this._isMute, this._isDial);
             key.setClickHandler(this._changeOutput);
             this._keys.push(key);
             render(row.getElement(), key);
@@ -42,6 +45,7 @@ export default class KeyboardController {
         render(keyboard.getElement(), row);
     }
     render(container, keyboard);
+    this._isDial && this._listenSpeech();
   }
 
   _listenPhysicalKeyboard() {
@@ -68,7 +72,7 @@ export default class KeyboardController {
     this._output.value = this._text;
   }
 
-  _changeOutput(symbol, activeCase, isActiveShift, isMute) {
+  _changeOutput(symbol, activeCase, isActiveShift, isMute, isDial) {
     const output = this._output;
     output.focus();
 
@@ -125,8 +129,13 @@ export default class KeyboardController {
         this._lang = this._keyboardModel.switchLang();
         this.render();
         break;
-      // case 'VoiceDial':
-      //   break;
+      case 'VoiceDial':
+        this._isDial = isDial;
+        if (!this._isDial) {
+          this._stopListenSpeech();
+        }
+        this.render();
+        break;
       case 'ArrowLeft':
         cursorPosition = cursorPosition !== 0 ? cursorPosition - 1 : 0;
         break;
@@ -172,5 +181,35 @@ export default class KeyboardController {
 
     this._updateOutput();
     output.setSelectionRange(cursorPosition, cursorPosition);
+  }
+
+  _writeSpeech(evt) {
+    const transcript = Array.from(evt.results)
+      .map(result => result[0])
+      .map(result => result.transcript)
+      .join('');
+
+    if (evt.results[0].isFinal) {
+      this._text += ` ${transcript}`;
+      this._updateOutput();
+    }
+  }
+
+  _listenSpeech() {
+    this._recognition = new SpeechRecognition();
+    this._recognition.interimResults = true;
+    this._recognition.lang = this._lang === Language.RU ? "ru-RU" : "en-US";
+
+    this._recognition.addEventListener("result", (evt) => this._writeSpeech(evt));
+    this._recognition.addEventListener("end", this._recognition.start);
+    this._recognition.start();
+  }
+
+  _stopListenSpeech() {
+    this._recognition.removeEventListener("result", this._writeSpeech);
+    this._recognition.removeEventListener("end", this._recognition.start);
+    this._recognition.abort();
+    this._recognition.stop();
+    this._recognition = null;
   }
 }
