@@ -18,7 +18,7 @@ html {
   font-size: 2rem;
   font-family: "Open Sans", "Arial", sans-serif;
   color: #283645;
-  border: 2px solid #e5e5e5;
+  border: 2px solid #c4c4c4;
   border-radius: 0.5rem;
   outline: none;
   resize: none;
@@ -29,13 +29,13 @@ html {
   opacity: 1;
 }
 
-.output:hover {
-  border: 2px solid #c4c4c4;
+.toggle {
+  display: block;
+  margin: 5rem auto ;
 }
 
-.output:active,
-.output:focus {
-  border: 2px solid #283645;
+.input--hidden {
+  display: none;
 }
 
 .keyboard {
@@ -56,6 +56,7 @@ html {
 }
 
 .keyboard__key {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -74,7 +75,8 @@ html {
   box-shadow: 0 0.2em 0 0.05em #222222;
 }
 
-.keyboard__key:active {
+.keyboard__key:active,
+.keyboard__key--clicked {
   position: relative;
   top: 0.2em;
   color: #aaa;
@@ -92,4 +94,19 @@ html {
 
 .keyboard__key--small {
   width: 3.2rem;
+}
+
+.keyboard__key--interactive::after {
+  position: absolute;
+  content: '';
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+}
+
+.keyboard__key--interactive-on::after {
+  background: #08ff00;
 }

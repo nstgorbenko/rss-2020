@@ -1,0 +1,266 @@
+export default [{
+    upper: 'Ё',
+    lower: 'ё',
+    code: 'Backquote',
+}, {
+    upper: '!',
+    lower: '1',
+    code: 'Digit1',
+}, {
+    upper: '"',
+    lower: '2',
+    code: 'Digit2',
+}, {
+    upper: '№',
+    lower: '3',
+    code: 'Digit3',
+}, {
+    upper: ';',
+    lower: '4',
+    code: 'Digit4',
+}, {
+    upper: '%',
+    lower: '5',
+    code: 'Digit5',
+}, {
+    upper: ':',
+    lower: '6',
+    code: 'Digit6',
+}, {
+    upper: '?',
+    lower: '7',
+    code: 'Digit7',
+}, {
+    upper: '*',
+    lower: '8',
+    code: 'Digit8',
+}, {
+    upper: '(',
+    lower: '9',
+    code: 'Digit9',
+}, {
+    upper: ')',
+    lower: '0',
+    code: 'Digit0',
+}, {
+    upper: '_',
+    lower: '-',
+    code: 'Minus',
+}, {
+    upper: '+',
+    lower: '=',
+    code: 'Equal',
+}, {
+    upper: '/',
+    lower: '\\',
+    code: 'Backslash',
+}, {
+    upper: null,
+    lower: 'Del',
+    code: 'Delete',
+}, {
+    upper: null,
+    lower: 'Tab',
+    code: 'Tab',
+}, {
+    upper: 'Й',
+    lower: 'й',
+    code: 'KeyQ',
+}, {
+    upper: 'Ц',
+    lower: 'ц',
+    code: 'KeyW',
+}, {
+    upper: 'У',
+    lower: 'у',
+    code: 'KeyE',
+}, {
+    upper: 'К',
+    lower: 'к',
+    code: 'KeyR',
+}, {
+    upper: 'Е',
+    lower: 'е',
+    code: 'KeyT',
+}, {
+    upper: 'Н',
+    lower: 'н',
+    code: 'KeyY',
+}, {
+    upper: 'Г',
+    lower: 'г',
+    code: 'KeyU',
+}, {
+    upper: 'Ш',
+    lower: 'ш',
+    code: 'KeyI',
+}, {
+    upper: 'Щ',
+    lower: 'щ',
+    code: 'KeyO',
+}, {
+    upper: 'З',
+    lower: 'з',
+    code: 'KeyP',
+}, {
+    upper: 'Х',
+    lower: 'х',
+    code: 'BracketLeft',
+}, {
+    upper: 'Ъ',
+    lower: 'ъ',
+    code: 'BracketRight',
+}, {
+    upper: null,
+    lower: 'Backspace',
+    code: 'Backspace',
+},{
+    upper: null,
+    lower: 'CapsLock',
+    code: 'CapsLock',
+}, {
+    upper: 'Ф',
+    lower: 'ф',
+    code: 'KeyA',
+}, {
+    upper: 'Ы',
+    lower: 'ы',
+    code: 'KeyS',
+}, {
+    upper: 'В',
+    lower: 'в',
+    code: 'KeyD',
+}, {
+    upper: 'А',
+    lower: 'а',
+    code: 'KeyF',
+}, {
+    upper: 'П',
+    lower: 'п',
+    code: 'KeyG',
+}, {
+    upper: 'Р',
+    lower: 'р',
+    code: 'KeyH',
+}, {
+    upper: 'О',
+    lower: 'о',
+    code: 'KeyJ',
+}, {
+    upper: 'Л',
+    lower: 'л',
+    code: 'KeyK',
+}, {
+    upper: 'Д',
+    lower: 'д',
+    code: 'KeyL',
+}, {
+    upper: 'Ж',
+    lower: 'ж',
+    code: 'Semicolon',
+}, {
+    upper: 'Э',
+    lower: 'э',
+    code: 'Quote',
+}, {
+    upper: null,
+    lower: 'Enter',
+    code: 'Enter',
+}, {
+    upper: null,
+    lower: 'Shift',
+    code: 'ShiftLeft',
+}, {
+    upper: 'Я',
+    lower: 'я',
+    code: 'KeyZ',
+}, {
+    upper: 'Ч',
+    lower: 'ч',
+    code: 'KeyX',
+}, {
+    upper: 'С',
+    lower: 'с',
+    code: 'KeyC',
+}, {
+    upper: 'М',
+    lower: 'м',
+    code: 'KeyV',
+}, {
+    upper: 'И',
+    lower: 'и',
+    code: 'KeyB',
+}, {
+    upper: 'Т',
+    lower: 'т',
+    code: 'KeyN',
+}, {
+    upper: 'Ь',
+    lower: 'ь',
+    code: 'KeyM',
+}, {
+    upper: 'Б',
+    lower: 'б',
+    code: 'Comma',
+}, {
+    upper: 'Ю',
+    lower: 'ю',
+    code: 'Period',
+}, {
+    upper: ',',
+    lower: '.',
+    code: 'Slash',
+}, {
+    upper: null,
+    lower: '&uarr;',
+    code: 'ArrowUp',
+}, {
+    upper: null,
+    lower: 'Shift',
+    code: 'ShiftRight',
+}, {
+    upper: null,
+    lower: 'Ctrl',
+    code: 'ControlLeft',
+}, {
+    upper: null,
+    lower: 'RU',
+    code: 'SwitchLang',
+},{
+    upper: null,
+    lower: 'Alt',
+    code: 'AltLeft',
+}, {
+    upper: null,
+    lower: 'Voice',
+    code: 'VoiceDial',
+},{
+    upper: ' ',
+    lower: ' ',
+    code: 'Space',
+}, {
+    upper: null,
+    lower: 'Alt',
+    code: 'AltRight',
+}, {
+    upper: null,
+    lower: 'Ctrl',
+    code: 'ControlRight',
+}, {
+    upper: null,
+    lower: '&larr;',
+    code: 'ArrowLeft',
+}, {
+    upper: null,
+    lower: '&darr;',
+    code: 'ArrowDown',
+}, {
+    upper: null,
+    lower: '&rarr;',
+    code: 'ArrowRight',
+}, {
+    upper: null,
+    lower: '&#9835;',
+    code: 'Sound',
+}];
+  
