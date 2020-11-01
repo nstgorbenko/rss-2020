@@ -16,18 +16,17 @@ const createKeyTemplate = (key, activeCase, isActiveShift, isMute, isDial) => {
     const isShiftActive = isActiveShift && (code === 'ShiftLeft' || code === 'ShiftRight');
     const isSoundActive = !isMute && code === 'Sound';
     const isVoiceDialActive = isDial && code === 'VoiceDial';
-    const activeKeyClass = `${isCapsLockActive ? ` keyboard__key--interactive-on` : ''}
-      ${isShiftActive ? ` keyboard__key--interactive-on` : ''}
-      ${isSoundActive ? ` keyboard__key--interactive-on` : ''}
-      ${isVoiceDialActive ? ` keyboard__key--interactive-on` : ''}`;
+    const activeKeyClass = `${(isCapsLockActive || isShiftActive || isSoundActive || isVoiceDialActive) ? ` keyboard__key--interactive-on` : ''}`;
 
     const isMaxWideKey = KeyWidth.MAX_WIDE.indexOf(code) !== -1;
     const isWideKey = KeyWidth.WIDE.indexOf(code) !== -1;
     const isSmallKey = KeyWidth.SMALL.indexOf(code) !== -1;
-    const extraClass = `${isMaxWideKey ? ` keyboard__key--wide-max` : ''}
-      ${isWideKey ? ` keyboard__key--wide` : ''}
-      ${isSmallKey ? ` keyboard__key--small` : ''}
-      ${isInteractiveKey ? ` keyboard__key--interactive` : ''}`;
+    const funcClass = isFuncKey ? ` keyboard__key--${code}` : '';
+    const extraClass = `${isMaxWideKey ? ' keyboard__key--wide-max' : ''}
+      ${isWideKey ? ' keyboard__key--wide' : ''}
+      ${isSmallKey ? ' keyboard__key--small' : ''}
+      ${isInteractiveKey ? ' keyboard__key--interactive' : ''}
+      ${funcClass}`;
 
     return (
         `<div class="keyboard__key${extraClass}${activeKeyClass}">

@@ -12,9 +12,6 @@ const keyboardController = new KeyboardController(keyboardContainer, output, key
 keyboardController.render();
 
 toggle.addEventListener('click', () => {
-    // const song = new Audio();
-    // song.src = './assets/audio/ru.mp3';
-    // song.play();
     if (keyboardContainer.classList.contains('input--hidden')) {
         keyboardContainer.classList.remove('input--hidden');
         toggle.textContent = 'Close keyboard';
