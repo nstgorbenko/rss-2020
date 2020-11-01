@@ -3,7 +3,7 @@ import KeyComponent from "./components/key.js";
 import RowComponent from "./components/row.js";
 
 import {render} from "./utils.js";
-import {Case, ROWS_ORDER} from "./const.js";
+import {Case, Language, ROWS_ORDER} from "./const.js";
 
 
 export default class KeyboardController {
@@ -14,6 +14,8 @@ export default class KeyboardController {
 
     this._case = Case.LOWER;
     this._isActiveShift = false;
+    this._lang = Language.RU;
+    this._isMute = true;
     this._text = '';
 
     this._keys = [];
@@ -32,7 +34,7 @@ export default class KeyboardController {
         for (let j = 0; j < ROWS_ORDER[i].length; j++) {
             const keyCode = ROWS_ORDER[i][j];
             const keyInfo = this._keyboardModel.getKey(keyCode);
-            const key = new KeyComponent(keyInfo, this._case, this._isActiveShift);
+            const key = new KeyComponent(keyInfo, this._case, this._isActiveShift, this._lang, this._isMute);
             key.setClickHandler(this._changeOutput);
             this._keys.push(key);
             render(row.getElement(), key);
@@ -66,7 +68,7 @@ export default class KeyboardController {
     this._output.value = this._text;
   }
 
-  _changeOutput(symbol, activeCase, isActiveShift) {
+  _changeOutput(symbol, activeCase, isActiveShift, isMute) {
     const output = this._output;
     output.focus();
 
@@ -120,7 +122,7 @@ export default class KeyboardController {
       case 'AltRight':
         break;
       case 'SwitchLang':
-        this._keyboardModel.switchLang();
+        this._lang = this._keyboardModel.switchLang();
         this.render();
         break;
       // case 'VoiceDial':
@@ -147,8 +149,10 @@ export default class KeyboardController {
         const rightStringPart = rightParagraphString[0].length + rightParagraphString[1].length;
         cursorPosition += (rightStringPart + 1);
         break;
-      // case 'Sound':
-      //   break;
+      case 'Sound':
+        this._isMute = isMute;
+        this.render();
+        break;
       default:
         const isSymbolKey = symbol.upper !== null && symbol.lower.toUpperCase() !== symbol.upper;
         let caseToShow;

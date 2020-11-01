@@ -23,3 +23,12 @@ export const ROWS_ORDER = [
     ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
     ['ControlLeft', 'SwitchLang', 'AltLeft', 'VoiceDial', 'Space', 'AltRight', 'ControlRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'Sound'],
 ];
+
+export const Sound = {
+    RU: new Audio('./assets/audio/ru.mp3'),
+    EN: new Audio('./assets/audio/en.mp3'),
+    SHIFT: new Audio('./assets/audio/shift.mp3'),
+    CAPS_LOCK: new Audio('./assets/audio/caps.mp3'),
+    ENTER: new Audio('./assets/audio/enter.mp3'),
+    BACKSPACE: new Audio('./assets/audio/backspace.mp3'),
+  };

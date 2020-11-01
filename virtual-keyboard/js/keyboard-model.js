@@ -18,5 +18,6 @@ export default class KeyboardModel {
   switchLang() {
     this._activeLang = this._activeLang === Language.RU ? Language.EN : Language.RU;
     this._keys = this._layouts[this._activeLang];
+    return this._activeLang;
   }
 }
