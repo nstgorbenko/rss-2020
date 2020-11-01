@@ -16,7 +16,7 @@ export default class KeyboardController {
     this._case = Case.LOWER;
     this._isActiveShift = false;
     this._lang = Language.RU;
-    this._isMute = true;
+    this._isMute = false;
     this._isDial = false;
     this._text = '';
     this._recognition = null;

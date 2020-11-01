@@ -60,7 +60,7 @@ html {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   width: 5rem;
   height: 100%;
   margin: 0.25rem;
