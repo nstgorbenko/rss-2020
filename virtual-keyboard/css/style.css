@@ -1,0 +1,181 @@
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.output {
+  display: block;
+  width: 90vw;
+  height: 40vh;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-size: 2rem;
+  font-family: "Open Sans", "Arial", sans-serif;
+  color: #333333;
+  border: 2px solid #333333;
+  border-radius: 0.5rem;
+  outline: none;
+  resize: none;
+}
+
+.output::placeholder {
+  color:  #cdcdcd;
+  opacity: 1;
+}
+
+.toggle {
+  display: block;
+  margin: 5rem auto ;
+}
+
+.input--hidden {
+  display: none;
+}
+
+.keyboard {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.keyboard__row {
+  display: flex;
+  width: 82.5rem;
+  margin-bottom: 0.75rem;
+  height: 5rem;
+}
+
+.keyboard__key,
+.toggle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 5rem;
+  height: 100%;
+  margin: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1.6rem;
+  text-align: center;
+  color: #eeeeee;
+  background: #333333;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  border: 1px solid #444444;
+  border-bottom-color: #555555;
+  box-shadow: 0 0.2em 0 0.05em #222222;
+}
+
+.keyboard__key:active,
+.keyboard__key--clicked,
+.toggle:active {
+  position: relative;
+  top: 0.2em;
+  color: #aaa;
+  background: #2a2a2a;
+  box-shadow: 0 0 0 0.05em #000000;
+}
+
+.keyboard__key--wide {
+  flex-grow: 1;
+}
+
+.keyboard__key--wide-max {
+  flex-grow: 2;
+}
+
+.keyboard__key--small {
+  width: 3.2rem;
+}
+
+.keyboard__key--interactive::after {
+  position: absolute;
+  content: '';
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+}
+
+.keyboard__key--interactive-on::after {
+  background: #08ff00;
+}
+
+@media (max-width: 850px) {
+  html {
+    font-size: 8px;
+  }
+
+  .keyboard__key,
+  .toggle {
+    font-size: 1.8rem;
+    padding: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  html {
+    font-size: 5.6px;
+  }
+
+  .keyboard__key,
+  .toggle {
+    font-size: 2.5rem;
+    padding: 0.5rem;
+  }
+
+  .upper {
+    margin-bottom: -2px;
+  }
+
+  .keyboard__key--Backspace {
+    color: transparent;
+    background: #333333 url("../assets/backspace.svg") 50% 50% no-repeat;
+    background-size: 3.6rem 3.6rem;
+  }
+
+  .keyboard__key--Backspace:active {
+    color: transparent;
+  }
+
+  .keyboard__key--CapsLock {
+    color: transparent;
+    background: #333333 url("../assets/capslock.svg") 50% 50% no-repeat;
+    background-size: 3.6rem 3.6rem;
+  }
+
+  .keyboard__key--CapsLock:active {
+    color: transparent;
+  }
+
+  .keyboard__key--VoiceDial {
+    color: transparent;
+    background: #333333 url("../assets/voice.svg") 50% 50% no-repeat;
+    background-size: 3.6rem 3.6rem;
+  }
+
+  .keyboard__key--VoiceDial:active {
+    color: transparent;
+  }
+}
+
+.toggle {
+  flex-direction: row;
+  justify-content: center;
+  width: 20rem;
+  text-align: center;
+  margin: 3rem auto;
+  outline: none;
+}
