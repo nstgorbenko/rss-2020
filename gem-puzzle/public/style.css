@@ -1,0 +1,57 @@
+body {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.field {
+  position: relative;
+  width: 800px;
+  height: 800px;
+  margin: 0 auto;
+  border: 3px solid black;
+  background-color: rgb(179, 240, 240);
+  border-radius: 20px;
+}
+
+.field__cell {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  background-color: lightcyan;
+  border-radius: 15px;
+  font-size: 50px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+  opacity: 0;
+}
+
+.field__cell--empty {
+  background-color: inherit;
+  font-size: 0;
+  border: none;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button {
+  margin-top: 20px;
+  width: 300px;
+  align-self: start;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: 700;
+  cursor: pointer;
+}
