@@ -4,9 +4,10 @@ export default class PuzzleModel {
   constructor() {
     this.initialCells = [];
     this.currentCells = [];
-    this.size = DEFAULT_LEVEL;
+    this.level = DEFAULT_LEVEL;
 
     this.soundModeChangeHandlers = [];
+    this.levelChangeHandlers = [];
   }
 
   get() {
@@ -28,6 +29,12 @@ export default class PuzzleModel {
     localStorage.removeItem('cells');
   }
 
+  setNewState() {
+    localStorage.removeItem('cells');
+    this.initialCells = this.generateCellsOrder();
+    this.currentCells = this.initialCells;
+  }
+
   update(...cells) {
     cells.forEach((cell) => {
       const cellIndex = this.currentCells.findIndex(({ value }) => value === cell.value);
@@ -47,11 +54,11 @@ export default class PuzzleModel {
   generateWinningList() {
     const winningList = [];
 
-    for (let i = 0; i < this.size * this.size; i += 1) {
+    for (let i = 0; i < this.level * this.level; i += 1) {
       winningList.push({
-        row: Math.trunc(i / this.size),
-        column: i % this.size,
-        value: i === this.size * this.size - 1 ? null : i + 1,
+        row: Math.trunc(i / this.level),
+        column: i % this.level,
+        value: i === this.level * this.level - 1 ? null : i + 1,
       });
     }
 
@@ -74,7 +81,7 @@ export default class PuzzleModel {
           }
           break;
         case 'right':
-          if (nullCell.column !== this.size - 1) {
+          if (nullCell.column !== this.level - 1) {
             const switchCell = initialList.find(({ row, column }) => (
               row === nullCell.row && column === nullCell.column + 1
             ));
@@ -83,7 +90,7 @@ export default class PuzzleModel {
           }
           break;
         case 'bottom':
-          if (nullCell.row !== this.size - 1) {
+          if (nullCell.row !== this.level - 1) {
             const switchCell = initialList.find(({ row, column }) => (
               row === nullCell.row + 1 && column === nullCell.column
             ));
@@ -113,8 +120,18 @@ export default class PuzzleModel {
     PuzzleModel.callHandlers(this.soundModeChangeHandlers);
   }
 
+  setLevel(level) {
+    this.level = level;
+    this.setNewState();
+    PuzzleModel.callHandlers(this.levelChangeHandlers);
+  }
+
   addSoundModeChangeHandler(handler) {
     this.soundModeChangeHandlers.push(handler);
+  }
+
+  addLevelModeChangeHandler(handler) {
+    this.levelChangeHandlers.push(handler);
   }
 
   static callHandlers(handlers) {

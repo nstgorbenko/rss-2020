@@ -4,7 +4,7 @@ const createPuzzleCellTemplate = ({ row, column, value }, size) => {
   const isEmptyCell = value === null;
   const emptyCellClass = isEmptyCell ? 'field__cell--empty' : '';
   return (
-    `<div class='field__cell ${emptyCellClass}' style='top: ${row * size}%; left: ${column * size}%;'>${value}</div>`
+    `<div class='field__cell ${emptyCellClass}' style='top: ${row * size}%; left: ${column * size}%; width: ${size}%; height: ${size}%'>${value}</div>`
   );
 };
 

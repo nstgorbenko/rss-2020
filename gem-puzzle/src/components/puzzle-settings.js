@@ -7,27 +7,27 @@ const createPuzzleSettingsTemplate = () => {
         <button class="settings__item-label settings__item-label--back" type="button">Back to game</button>
         <div class="settings__part">
           <p class="settings__name">New Game</p>
-          <ul class="settings__list">
+          <ul class="settings__list settings__list--level">
             <li class="settings__item"></li>
-              <input class="settings__item-input visually-hidden" type="radio" name="level" id="level-3">
+              <input class="settings__item-input visually-hidden" type="radio" name="level" value="3" id="level-3">
               <label class="settings__item-label" for="level-3">3 * 3</label>
             <li class="settings__item"></li>
-              <input class="settings__item-input visually-hidden" type="radio" name="level" id="level-4" checked>
+              <input class="settings__item-input visually-hidden" type="radio" name="level" value="4" id="level-4" checked>
               <label class="settings__item-label" for="level-4">4 * 4</label>
             <li class="settings__item">
-              <input class="settings__item-input visually-hidden" type="radio" name="level" id="level-5">
+              <input class="settings__item-input visually-hidden" type="radio" name="level" value="5" id="level-5">
               <label class="settings__item-label" for="level-5">5 * 5</label>
             </li>
             <li class="settings__item">
-              <input class="settings__item-input visually-hidden" type="radio" name="level" id="level-6">
+              <input class="settings__item-input visually-hidden" type="radio" name="level" value="6" id="level-6">
               <label class="settings__item-label" for="level-6">6 * 6</label>
             </li>
             <li class="settings__item">
-              <input class="settings__item-input visually-hidden" type="radio" name="level" id="level-7">
+              <input class="settings__item-input visually-hidden" type="radio" name="level" value="7" id="level-7">
               <label class="settings__item-label" for="level-7">7 * 7</label>
             </li>
             <li class="settings__item">
-              <input class="settings__item-input visually-hidden" type="radio" name="level" id="level-8">
+              <input class="settings__item-input visually-hidden" type="radio" name="level" value="8" id="level-8">
               <label class="settings__item-label" for="level-8">8 * 8</label>
             </li>
           </ul>
@@ -60,7 +60,6 @@ export default class PuzzleSettings extends AbstractComponent {
     this.isLoud = false;
 
     this.hide = this.hide.bind(this);
-
     this.subscribeOnEvents();
   }
 
@@ -84,6 +83,12 @@ export default class PuzzleSettings extends AbstractComponent {
     this.getElement().querySelector('.settings__list--audio').addEventListener('change', (evt) => {
       this.isLoud = evt.target.value === 'on';
       handler(this.isLoud);
+    });
+  }
+
+  setChangeLevelHandler(handler) {
+    this.getElement().querySelector('.settings__list--level').addEventListener('change', (evt) => {
+      handler(Number(evt.target.value));
     });
   }
 }

@@ -14,7 +14,7 @@ export default class PuzzleController {
   constructor(container, puzzleModel) {
     this.container = container;
     this.puzzleModel = puzzleModel;
-    this.size = DEFAULT_LEVEL;
+    this.level = DEFAULT_LEVEL;
     this.startTime = null;
     this.moves = null;
     this.isSound = false;
@@ -31,8 +31,10 @@ export default class PuzzleController {
     this.restartGame = this.restartGame.bind(this);
     this.swapSells = this.swapSells.bind(this);
     this.soundModeChangeHandler = this.soundModeChangeHandler.bind(this);
+    this.levelModeChangeHandler = this.levelModeChangeHandler.bind(this);
 
     this.puzzleModel.addSoundModeChangeHandler(this.soundModeChangeHandler);
+    this.puzzleModel.addLevelModeChangeHandler(this.levelModeChangeHandler);
   }
 
   render() {
@@ -57,8 +59,9 @@ export default class PuzzleController {
   }
 
   renderPuzzleField() {
-    const cellSize = puzzleLevelToPercentCellSize[this.size];
     const puzzleCells = this.puzzleModel.get();
+    this.level = Math.sqrt(puzzleCells.length);
+    const cellSize = puzzleLevelToPercentCellSize[this.level];
     const puzzleFieldComponent = new PuzzleFieldComponent();
 
     puzzleCells.forEach((cell) => {
@@ -147,6 +150,10 @@ export default class PuzzleController {
 
   soundModeChangeHandler() {
     this.isSound = !this.isSound;
+  }
+
+  levelModeChangeHandler() {
+    this.render();
   }
 
   makeSound() {
