@@ -15,7 +15,8 @@ export default class PuzzleController {
     this.container = container;
     this.puzzleModel = puzzleModel;
     this.size = DEFAULT_LEVEL;
-    this.startTime = new Date();
+    this.startTime = null;
+    this.moves = null;
 
     this.emptyCellComponent = null;
     this.activeCellComponent = null;
@@ -31,6 +32,7 @@ export default class PuzzleController {
 
   render() {
     this.startTime = new Date();
+    this.moves = 0;
     this.container.innerHTML = '';
     this.renderPuzzleStats();
     this.renderPuzzleField();
@@ -40,12 +42,13 @@ export default class PuzzleController {
   renderPuzzleStats() {
     const puzzleStatsComponent = new PuzzleStatsComponent();
     this.puzzleTimeComponent = new PuzzleTimeComponent();
-    const puzzleMovesComponent = new PuzzleMovesComponent();
+    this.puzzleMovesComponent = new PuzzleMovesComponent();
 
-    render(puzzleStatsComponent.getElement(), this.puzzleTimeComponent, puzzleMovesComponent);
+    render(puzzleStatsComponent.getElement(), this.puzzleTimeComponent, this.puzzleMovesComponent);
     render(this.container, puzzleStatsComponent);
 
     this.puzzleTimeComponent.update(this.startTime);
+    this.puzzleMovesComponent.update(this.moves);
   }
 
   renderPuzzleField() {
@@ -92,6 +95,8 @@ export default class PuzzleController {
     const swap = { row: emptyCellRow, column: emptyCellColumn };
     this.emptyCellComponent.update({ row, column });
     cell.update(swap);
+    this.moves += 1;
+    this.puzzleMovesComponent.update(this.moves);
     this.puzzleModel.update(this.emptyCellComponent.getValue(), cell.getValue());
   }
 
@@ -118,6 +123,8 @@ export default class PuzzleController {
     const swap = { row: emptyCellRow, column: emptyCellColumn };
     emptyCell.update({ row, column });
     this.activeCellComponent.update(swap);
+    this.moves += 1;
+    this.puzzleMovesComponent.update(this.moves);
     this.puzzleModel.update(emptyCell.getValue(), this.activeCellComponent.getValue());
   }
 

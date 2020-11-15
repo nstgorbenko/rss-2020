@@ -8,6 +8,6 @@ export default class PuzzleMenu extends AbstractComponent {
   }
 
   update(value) {
-    this.getElement().textContent = value;
+    this.getElement().textContent = `Moves: ${value}`;
   }
 }
