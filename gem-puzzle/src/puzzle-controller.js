@@ -13,10 +13,13 @@ export default class PuzzleController {
     this.puzzleModel = puzzleModel;
     this.emptyCell = null;
     this.size = DEFAULT_LEVEL;
+    this.activeCell = null;
 
     this.makeMove = this.makeMove.bind(this);
+    this.dragAndDrop = this.dragAndDrop.bind(this);
     this.saveGame = this.saveGame.bind(this);
     this.restartGame = this.restartGame.bind(this);
+    this.swapSells = this.swapSells.bind(this);
   }
 
   render() {
@@ -33,6 +36,7 @@ export default class PuzzleController {
     puzzleCells.forEach((cell) => {
       const puzzleCellComponent = new PuzzleCellComponent(cell, cellSize);
       puzzleCellComponent.setClickHandler(this.makeMove);
+      puzzleCellComponent.setMouseDownHandler(this.dragAndDrop);
       if (cell.value === null) {
         this.emptyCell = puzzleCellComponent;
       }
@@ -69,6 +73,32 @@ export default class PuzzleController {
     this.emptyCell.update({ row, column });
     cell.update(swap);
     this.puzzleModel.update(this.emptyCell.getValue(), cell.getValue());
+  }
+
+  dragAndDrop(cell) {
+    const { row: emptyCellRow, column: emptyCellColumn } = this.emptyCell.getValue();
+    const { row, column } = cell.getValue();
+
+    const rowDiff = Math.abs(emptyCellRow - row);
+    const columnDiff = Math.abs(emptyCellColumn - column);
+
+    if (rowDiff + columnDiff > 1 || cell === this.emptyCell) {
+      return;
+    }
+
+    this.activeCell = cell;
+    cell.setDragProps();
+    this.emptyCell.setDropProps(this.swapSells);
+  }
+
+  swapSells(emptyCell) {
+    const { row: emptyCellRow, column: emptyCellColumn } = emptyCell.getValue();
+    const { row, column } = this.activeCell.getValue();
+
+    const swap = { row: emptyCellRow, column: emptyCellColumn };
+    emptyCell.update({ row, column });
+    this.activeCell.update(swap);
+    this.puzzleModel.update(emptyCell.getValue(), this.activeCell.getValue());
   }
 
   saveGame() {
