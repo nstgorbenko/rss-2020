@@ -5,6 +5,8 @@ export default class PuzzleModel {
     this.initialCells = [];
     this.currentCells = [];
     this.size = DEFAULT_LEVEL;
+
+    this.soundModeChangeHandlers = [];
   }
 
   get() {
@@ -104,5 +106,18 @@ export default class PuzzleModel {
     }
 
     return initialList;
+  }
+
+  setSoundMode(isLoud) {
+    this.isLoudMode = isLoud;
+    PuzzleModel.callHandlers(this.soundModeChangeHandlers);
+  }
+
+  addSoundModeChangeHandler(handler) {
+    this.soundModeChangeHandlers.push(handler);
+  }
+
+  static callHandlers(handlers) {
+    handlers.forEach((handler) => handler());
   }
 }

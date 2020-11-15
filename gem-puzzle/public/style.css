@@ -1,9 +1,20 @@
 body {
   display: flex;
+  position: relative;
   flex-direction: column;
-  width: 800px;
-  margin: 0 auto;
-  margin-top: 10px;
+  align-items: center;
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
 }
 
 .field {
@@ -41,19 +52,25 @@ body {
   border: none;
 }
 
-.menu {
+.footer {
   display: flex;
   justify-content: space-around;
 }
 
 .button {
-  margin-top: 20px;
-  width: 300px;
-  align-self: start;
+  margin: 20px 20px 0;
+  width: 350px;
   padding: 10px;
   font-size: 30px;
   font-weight: 700;
+  border-radius: 20px;
   cursor: pointer;
+  background-color: lightcyan;
+  outline: none;
+}
+
+.button:hover {
+  background-color: rgb(179, 240, 240);
 }
 
 .hide {
@@ -68,6 +85,91 @@ body {
 
 .stats__time,
 .stats__moves {
+  min-width: 200px;
   width: 50%;
   margin-left: 50px;
+}
+
+.settings {
+  display: none;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(179, 214, 214, 0.9);
+}
+
+.settings--show {
+  display: flex;
+}
+
+.settings__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 40%;
+  height: 50%;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: rgb(179, 240, 240);
+  border: 3px solid black;
+  border-radius: 20px;
+}
+
+.settings__name {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.settings__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.settings__item-label {
+  display: block;
+  min-width: 40px;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  background-color: rgb(179, 240, 240);
+  border: 3px solid black;
+  border-radius: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+}
+
+.settings__item-label:hover {
+  background-color: rgb(114, 223, 223);
+}
+
+.settings__item-input:checked ~ .settings__item-label {
+  background-color: rgb(23, 230, 230);
+}
+
+.settings__item-label--wide {
+  padding: 10px 50px;
+}
+
+.settings__item-label--back {
+  font-weight: bold;
+  background-color: rgb(114, 223, 223);
+}
+
+.settings__item-label--back:hover {
+  background-color: rgb(23, 230, 230);
 }

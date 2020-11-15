@@ -1,11 +1,11 @@
-import { DEFAULT_LEVEL, puzzleLevelToPercentCellSize } from './const';
+import { DEFAULT_LEVEL, puzzleLevelToPercentCellSize, SOUND } from './const';
 import { render } from './utils';
 
 import PuzzleCellComponent from './components/puzzle-cell';
 import PuzzleFieldComponent from './components/puzzle-field';
-import PuzzleMenuComponent from './components/puzzle-menu';
+import PuzzleFooterComponent from './components/puzzle-footer';
 import PuzzleMovesComponent from './components/puzzle-moves';
-import PuzzleStatsComponent from './components/puzzle-stats';
+import PuzzleInfoComponent from './components/puzzle-info';
 import PuzzleTimeComponent from './components/puzzle-time';
 import RestartButtonComponent from './components/restart-button';
 import SaveButtonComponent from './components/save-button';
@@ -17,17 +17,22 @@ export default class PuzzleController {
     this.size = DEFAULT_LEVEL;
     this.startTime = null;
     this.moves = null;
+    this.isSound = false;
 
     this.emptyCellComponent = null;
     this.activeCellComponent = null;
     this.puzzleTimeComponent = null;
     this.puzzleMovesComponent = null;
+    this.settingsComponent = null;
 
     this.makeMove = this.makeMove.bind(this);
     this.dragAndDrop = this.dragAndDrop.bind(this);
     this.saveGame = this.saveGame.bind(this);
     this.restartGame = this.restartGame.bind(this);
     this.swapSells = this.swapSells.bind(this);
+    this.soundModeChangeHandler = this.soundModeChangeHandler.bind(this);
+
+    this.puzzleModel.addSoundModeChangeHandler(this.soundModeChangeHandler);
   }
 
   render() {
@@ -40,12 +45,12 @@ export default class PuzzleController {
   }
 
   renderPuzzleStats() {
-    const puzzleStatsComponent = new PuzzleStatsComponent();
+    const puzzleInfoComponent = new PuzzleInfoComponent();
     this.puzzleTimeComponent = new PuzzleTimeComponent();
     this.puzzleMovesComponent = new PuzzleMovesComponent();
 
-    render(puzzleStatsComponent.getElement(), this.puzzleTimeComponent, this.puzzleMovesComponent);
-    render(this.container, puzzleStatsComponent);
+    render(puzzleInfoComponent.getElement(), this.puzzleTimeComponent, this.puzzleMovesComponent);
+    render(this.container, puzzleInfoComponent);
 
     this.puzzleTimeComponent.update(this.startTime);
     this.puzzleMovesComponent.update(this.moves);
@@ -70,15 +75,15 @@ export default class PuzzleController {
   }
 
   renderPuzzleMenu() {
-    const puzzleMenuComponent = new PuzzleMenuComponent();
+    const puzzleFooterComponent = new PuzzleFooterComponent();
     const restartButtonComponent = new RestartButtonComponent();
     const saveButtonComponent = new SaveButtonComponent();
 
     restartButtonComponent.setClickHandler(this.restartGame);
     saveButtonComponent.setClickHandler(this.saveGame);
 
-    render(puzzleMenuComponent.getElement(), restartButtonComponent, saveButtonComponent);
-    render(this.container, puzzleMenuComponent);
+    render(puzzleFooterComponent.getElement(), restartButtonComponent, saveButtonComponent);
+    render(this.container, puzzleFooterComponent);
   }
 
   makeMove(cell) {
@@ -92,6 +97,7 @@ export default class PuzzleController {
       return;
     }
 
+    this.makeSound();
     const swap = { row: emptyCellRow, column: emptyCellColumn };
     this.emptyCellComponent.update({ row, column });
     cell.update(swap);
@@ -119,6 +125,7 @@ export default class PuzzleController {
   swapSells(emptyCell) {
     const { row: emptyCellRow, column: emptyCellColumn } = emptyCell.getValue();
     const { row, column } = this.activeCellComponent.getValue();
+    this.makeSound();
 
     const swap = { row: emptyCellRow, column: emptyCellColumn };
     emptyCell.update({ row, column });
@@ -136,5 +143,15 @@ export default class PuzzleController {
   restartGame() {
     this.puzzleModel.resetCurrentState();
     this.render();
+  }
+
+  soundModeChangeHandler() {
+    this.isSound = !this.isSound;
+  }
+
+  makeSound() {
+    if (this.isSound) {
+      SOUND.play();
+    }
   }
 }

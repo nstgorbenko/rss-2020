@@ -18,3 +18,5 @@ export const puzzleLevelToPercentCellSize = {
 };
 
 export const RANDOMIZER = 200;
+
+export const SOUND = new Audio('./sound.mp3');
