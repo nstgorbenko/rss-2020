@@ -3,7 +3,7 @@ body {
   flex-direction: column;
   width: 800px;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .field {
@@ -58,4 +58,16 @@ body {
 
 .hide {
   display: none;
+}
+
+.stats {
+  display: flex;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.stats__time,
+.stats__moves {
+  width: 50%;
+  margin-left: 50px;
 }
