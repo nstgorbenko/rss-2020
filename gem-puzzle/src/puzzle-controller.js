@@ -4,6 +4,7 @@ import { render } from './utils';
 import PuzzleCellComponent from './components/puzzle-cell';
 import PuzzleFieldComponent from './components/puzzle-field';
 import PuzzleFooterComponent from './components/puzzle-footer';
+import PuzzleMessageComponent from './components/puzzle-message';
 import PuzzleMovesComponent from './components/puzzle-moves';
 import PuzzleInfoComponent from './components/puzzle-info';
 import PuzzleTimeComponent from './components/puzzle-time';
@@ -14,9 +15,12 @@ export default class PuzzleController {
   constructor(container, puzzleModel) {
     this.container = container;
     this.puzzleModel = puzzleModel;
+
+    this.puzzleContainer = null;
     this.level = DEFAULT_LEVEL;
     this.image = null;
     this.startTime = null;
+    this.time = null;
     this.moves = null;
     this.isSound = false;
 
@@ -25,6 +29,7 @@ export default class PuzzleController {
     this.puzzleTimeComponent = null;
     this.puzzleMovesComponent = null;
     this.settingsComponent = null;
+    this.puzzleMessageComponent = null;
 
     this.makeMove = this.makeMove.bind(this);
     this.dragAndDrop = this.dragAndDrop.bind(this);
@@ -39,9 +44,19 @@ export default class PuzzleController {
   }
 
   render() {
+    this.puzzleMessageComponent = new PuzzleMessageComponent();
+    render(this.container, this.puzzleMessageComponent);
+
+    this.puzzleContainer = document.createElement('div');
+    this.puzzleContainer.classList.add('wrapper');
+    this.container.append(this.puzzleContainer);
+    this.rerender();
+  }
+
+  rerender() {
     this.startTime = new Date();
     this.moves = 0;
-    this.container.innerHTML = '';
+    this.puzzleContainer.innerHTML = '';
     this.renderPuzzleStats();
     this.renderPuzzleField();
     this.renderPuzzleMenu();
@@ -53,7 +68,7 @@ export default class PuzzleController {
     this.puzzleMovesComponent = new PuzzleMovesComponent();
 
     render(puzzleInfoComponent.getElement(), this.puzzleTimeComponent, this.puzzleMovesComponent);
-    render(this.container, puzzleInfoComponent);
+    render(this.puzzleContainer, puzzleInfoComponent);
 
     this.puzzleTimeComponent.update(this.startTime);
     this.puzzleMovesComponent.update(this.moves);
@@ -75,7 +90,7 @@ export default class PuzzleController {
       render(puzzleFieldComponent.getElement(), puzzleCellComponent);
     });
 
-    render(this.container, puzzleFieldComponent);
+    render(this.puzzleContainer, puzzleFieldComponent);
   }
 
   renderPuzzleMenu() {
@@ -87,7 +102,7 @@ export default class PuzzleController {
     saveButtonComponent.setClickHandler(this.saveGame);
 
     render(puzzleFooterComponent.getElement(), restartButtonComponent, saveButtonComponent);
-    render(this.container, puzzleFooterComponent);
+    render(this.puzzleContainer, puzzleFooterComponent);
   }
 
   makeMove(cell) {
@@ -108,6 +123,7 @@ export default class PuzzleController {
     this.moves += 1;
     this.puzzleMovesComponent.update(this.moves);
     this.puzzleModel.update(this.emptyCellComponent.getValue(), cell.getValue());
+    this.checkWinning();
   }
 
   dragAndDrop(cell) {
@@ -146,7 +162,7 @@ export default class PuzzleController {
 
   restartGame() {
     this.puzzleModel.resetCurrentState();
-    this.render();
+    this.rerender();
   }
 
   soundModeChangeHandler() {
@@ -154,12 +170,24 @@ export default class PuzzleController {
   }
 
   levelModeChangeHandler() {
-    this.render();
+    this.rerender();
   }
 
   makeSound() {
     if (this.isSound) {
       SOUND.play();
+    }
+  }
+
+  checkWinning() {
+    const cells = this.puzzleModel.getCurrentState();
+    const isFinish = cells
+      .filter(({ value }) => value !== null)
+      .every(({ row, column, value }) => value === row * this.level + column + 1);
+
+    if (isFinish) {
+      this.time = this.puzzleTimeComponent.getTime();
+      this.puzzleMessageComponent.show(this.time, this.moves);
     }
   }
 }

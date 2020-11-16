@@ -96,9 +96,9 @@ body {
   margin-left: 50px;
 }
 
-.settings {
+.settings,
+.message {
   display: none;
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -110,11 +110,17 @@ body {
   background-color: rgba(179, 214, 214, 0.9);
 }
 
-.settings--show {
+.message {
+  z-index: 3;
+}
+
+.settings--show,
+.message--show {
   display: flex;
 }
 
-.settings__wrapper {
+.settings__wrapper,
+.message__wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -129,7 +135,8 @@ body {
   border-radius: 20px;
 }
 
-.settings__name {
+.settings__name,
+.message__text {
   font-size: 30px;
   font-weight: bold;
   margin: 10px 0;
@@ -145,7 +152,8 @@ body {
   list-style: none;
 }
 
-.settings__item-label {
+.settings__item-label,
+.message__button {
   display: block;
   min-width: 40px;
   text-align: center;
@@ -159,7 +167,8 @@ body {
   outline: none;
 }
 
-.settings__item-label:hover {
+.settings__item-label:hover,
+.message__button:hover {
   background-color: rgb(114, 223, 223);
 }
 
@@ -178,4 +187,10 @@ body {
 
 .settings__item-label--back:hover {
   background-color: rgb(23, 230, 230);
+}
+
+.message__title {
+  font-size: 70px;
+  font-weight: bold;
+  margin: 10px 0;
 }
