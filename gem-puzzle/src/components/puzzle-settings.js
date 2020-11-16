@@ -1,10 +1,11 @@
 import AbstractComponent from './abstract-component';
+import PuzzleStatsComponent from './puzzle-stats';
 
 const createPuzzleSettingsTemplate = () => {
   return (
     `<div class="settings">
       <div class="settings__wrapper">
-        <button class="settings__item-label settings__item-label--back" type="button">Back to game</button>
+        <button class="settings__item-label settings__item-label--wide back-to-game" type="button">Back to game</button>
         <div class="settings__part">
           <p class="settings__name">New Game</p>
           <ul class="settings__list settings__list--level">
@@ -49,7 +50,17 @@ const createPuzzleSettingsTemplate = () => {
         </div>
         <div class="settings__part">
           <p class="settings__name">Statistics</p>
-          <button class="settings__item-label settings__item-label--wide" type="button">Show</button>
+          <button class="settings__item-label settings__item-label--wide show-stats" type="button">Show</button>
+          <div class="stats">
+            <div class="stats__row stats__row--header">
+              <div class="stats__cell">Moves</div>
+              <div class="stats__cell">Time</div>
+              <div class="stats__cell">Level</div>
+            </div>
+            <div class="stats__body">
+            </div>
+            <button class="settings__item-label settings__item-label--wide back-to-stats">Back</button>
+          </div>
         </div>
       </div>
     </div>`
@@ -62,6 +73,8 @@ export default class PuzzleSettings extends AbstractComponent {
     this.isLoud = false;
 
     this.hide = this.hide.bind(this);
+    this.showStats = this.showStats.bind(this);
+    this.hideStats = this.hideStats.bind(this);
     this.subscribeOnEvents();
   }
 
@@ -77,8 +90,17 @@ export default class PuzzleSettings extends AbstractComponent {
     this.getElement().classList.remove('settings--show');
   }
 
+  showStats() {
+    this.getElement().querySelector('.stats').classList.add('stats--show');
+  }
+
+  hideStats() {
+    this.getElement().querySelector('.stats').classList.remove('stats--show');
+  }
+
   subscribeOnEvents() {
-    this.getElement().querySelector('.settings__item-label--back').addEventListener('click', this.hide);
+    this.getElement().querySelector('.back-to-game').addEventListener('click', this.hide);
+    this.getElement().querySelector('.back-to-stats').addEventListener('click', this.hideStats);
   }
 
   setChangeSoundHandler(handler) {
@@ -94,5 +116,18 @@ export default class PuzzleSettings extends AbstractComponent {
         handler(Number(evt.target.value));
       }
     });
+  }
+
+  setStatsClickHandler(handler) {
+    this.getElement().querySelector('.show-stats').addEventListener('click', () => {
+      handler();
+    });
+  }
+
+  renderStats(stats) {
+    const statsContainer = this.getElement().querySelector('.stats__body');
+    statsContainer.innerHTML = '';
+    stats.forEach((stat) => statsContainer.append(new PuzzleStatsComponent(stat).getElement()));
+    this.showStats();
   }
 }

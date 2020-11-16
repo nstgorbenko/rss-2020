@@ -1,7 +1,7 @@
 import AbstractComponent from './abstract-component';
 import { formatDuration } from '../utils';
 
-const createPuzzleTimeTemplate = () => ('<div class="stats__time">Time: 00:00:00</div>');
+const createPuzzleTimeTemplate = () => ('<div class="info__time">Time: 00:00:00</div>');
 
 export default class PuzzleTime extends AbstractComponent {
   constructor() {

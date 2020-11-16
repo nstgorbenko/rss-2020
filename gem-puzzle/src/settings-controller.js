@@ -12,6 +12,7 @@ export default class SettingsController {
     this.show = this.show.bind(this);
     this.soundChangeHandler = this.soundChangeHandler.bind(this);
     this.levelChangeHandler = this.levelChangeHandler.bind(this);
+    this.statsClickChangeHandler = this.statsClickChangeHandler.bind(this);
   }
 
   render() {
@@ -21,6 +22,7 @@ export default class SettingsController {
     this.settingsButtonComponent.setClickHandler(this.show);
     this.puzzleSettingsComponent.setChangeSoundHandler(this.soundChangeHandler);
     this.puzzleSettingsComponent.setChangeLevelHandler(this.levelChangeHandler);
+    this.puzzleSettingsComponent.setStatsClickHandler(this.statsClickChangeHandler);
 
     render(this.container, this.settingsButtonComponent, this.puzzleSettingsComponent);
   }
@@ -36,5 +38,10 @@ export default class SettingsController {
   levelChangeHandler(level) {
     this.puzzleModel.setLevel(level);
     this.puzzleSettingsComponent.hide();
+  }
+
+  statsClickChangeHandler() {
+    const stats = this.puzzleModel.getStats();
+    this.puzzleSettingsComponent.renderStats(stats);
   }
 }

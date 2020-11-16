@@ -138,6 +138,10 @@ export default class PuzzleModel {
     this.levelChangeHandlers.push(handler);
   }
 
+  getStats() {
+    return JSON.parse(localStorage.getItem('wins'));
+  }
+
   static callHandlers(handlers) {
     handlers.forEach((handler) => handler());
   }

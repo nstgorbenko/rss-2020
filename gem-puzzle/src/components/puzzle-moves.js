@@ -1,6 +1,6 @@
 import AbstractComponent from './abstract-component';
 
-const createPuzzleMovesTemplate = () => ('<div class="stats__moves">Moves: 0</div>');
+const createPuzzleMovesTemplate = () => ('<div class="info__moves">Moves: 0</div>');
 
 export default class PuzzleMoves extends AbstractComponent {
   getTemplate() {

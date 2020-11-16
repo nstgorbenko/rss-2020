@@ -153,6 +153,7 @@ export default class PuzzleController {
     this.moves += 1;
     this.puzzleMovesComponent.update(this.moves);
     this.puzzleModel.update(emptyCell.getValue(), this.activeCellComponent.getValue());
+    this.checkWinning();
   }
 
   saveGame() {
@@ -188,6 +189,16 @@ export default class PuzzleController {
     if (isFinish) {
       this.time = this.puzzleTimeComponent.getTime();
       this.puzzleMessageComponent.show(this.time, this.moves);
+      this.saveWinningInfo({ moves: this.moves, time: this.time, level: this.level });
     }
+  }
+
+  saveWinningInfo(newWinning) {
+    const currentWinnings = JSON.parse(localStorage.getItem('wins')) || [];
+    currentWinnings.push(newWinning);
+    const newWinnings = currentWinnings
+      .sort((a, b) => a.moves - b.moves)
+      .slice(0, 10);
+    localStorage.setItem('wins', JSON.stringify(newWinnings));
   }
 }
