@@ -1,5 +1,4 @@
 import AbstractComponent from './abstract-component';
-import { IMAGE_SIZE } from '../const';
 
 const createPuzzleCellTemplate = ({ row, column, value }, level, image) => {
   const isEmptyCell = value === null;

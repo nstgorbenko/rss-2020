@@ -10,8 +10,6 @@ export const Duration = {
 
 export const IMAGE_COUNT = 50;
 
-export const IMAGE_SIZE = 900;
-
-export const RANDOMIZER = 2;
+export const RANDOMIZER = 250;
 
 export const SOUND = new Audio('./sound.mp3');
