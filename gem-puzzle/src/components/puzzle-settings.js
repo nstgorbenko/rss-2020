@@ -8,12 +8,14 @@ const createPuzzleSettingsTemplate = () => {
         <div class="settings__part">
           <p class="settings__name">New Game</p>
           <ul class="settings__list settings__list--level">
-            <li class="settings__item"></li>
+            <li class="settings__item">
               <input class="settings__item-input visually-hidden" type="radio" name="level" value="3" id="level-3">
               <label class="settings__item-label" for="level-3">3 * 3</label>
-            <li class="settings__item"></li>
+            </li>
+            <li class="settings__item">
               <input class="settings__item-input visually-hidden" type="radio" name="level" value="4" id="level-4" checked>
               <label class="settings__item-label" for="level-4">4 * 4</label>
+            </li>
             <li class="settings__item">
               <input class="settings__item-input visually-hidden" type="radio" name="level" value="5" id="level-5">
               <label class="settings__item-label" for="level-5">5 * 5</label>
@@ -87,8 +89,10 @@ export default class PuzzleSettings extends AbstractComponent {
   }
 
   setChangeLevelHandler(handler) {
-    this.getElement().querySelector('.settings__list--level').addEventListener('change', (evt) => {
-      handler(Number(evt.target.value));
+    this.getElement().querySelector('.settings__list--level').addEventListener('click', (evt) => {
+      if (evt.target.tagName === 'INPUT') {
+        handler(Number(evt.target.value));
+      }
     });
   }
 }
