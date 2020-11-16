@@ -1,18 +1,38 @@
 import AbstractComponent from './abstract-component';
+import { IMAGE_SIZE } from '../const';
 
-const createPuzzleCellTemplate = ({ row, column, value }, size) => {
+const createPuzzleCellTemplate = ({ row, column, value }, level, image) => {
   const isEmptyCell = value === null;
   const emptyCellClass = isEmptyCell ? 'field__cell--empty' : '';
+
+  const cellSize = Number((100 / level).toFixed(2));
+  const leftPosition = column * cellSize;
+  const topPosition = row * cellSize;
+  const winningColumn = (value - 1) % level;
+  const winningRow = Math.trunc((value - 1) / level);
+  const leftImagePosition = IMAGE_SIZE - winningColumn * (IMAGE_SIZE / level) - IMAGE_SIZE;
+  const topImagePosition = IMAGE_SIZE - winningRow * (IMAGE_SIZE / level) - IMAGE_SIZE;
+
   return (
-    `<div class='field__cell ${emptyCellClass}' style='top: ${row * size}%; left: ${column * size}%; width: ${size}%; height: ${size}%'>${value}</div>`
+    `<div class='field__cell ${emptyCellClass}' style='
+      top: ${topPosition}%;
+      left: ${leftPosition}%;
+      width: ${cellSize}%;
+      height: ${cellSize}%;
+      ${isEmptyCell ? '' : `background-image: url(${image});`}
+      background-repeat: no-repeat;
+      background-size: ${IMAGE_SIZE * 100};
+      background-position: ${leftImagePosition}px ${topImagePosition}px;'
+    ></div>`
   );
 };
 
 export default class PuzzleCell extends AbstractComponent {
-  constructor(item, size) {
+  constructor(item, level, image) {
     super();
     this.item = item;
-    this.size = size;
+    this.level = level;
+    this.image = image;
     this.clickHandler = null;
     this.mousedownHandler = null;
     this.dragStartHandler = this.dragStartHandler.bind(this);
@@ -20,7 +40,7 @@ export default class PuzzleCell extends AbstractComponent {
   }
 
   getTemplate() {
-    return createPuzzleCellTemplate(this.item, this.size);
+    return createPuzzleCellTemplate(this.item, this.level, this.image);
   }
 
   setClickHandler(handler) {

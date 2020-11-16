@@ -1,10 +1,13 @@
-import { DEFAULT_LEVEL, DIRECTION, RANDOMIZER } from './const';
+import {
+  DEFAULT_LEVEL, DIRECTION, IMAGE_COUNT, RANDOMIZER,
+} from './const';
 
 export default class PuzzleModel {
   constructor() {
     this.initialCells = [];
     this.currentCells = [];
     this.level = DEFAULT_LEVEL;
+    this.image = './img/1.jpg';
 
     this.soundModeChangeHandlers = [];
     this.levelChangeHandlers = [];
@@ -18,7 +21,7 @@ export default class PuzzleModel {
     }
 
     this.currentCells = this.initialCells;
-    return this.initialCells;
+    return ({ cells: this.initialCells, image: this.image, level: this.level });
   }
 
   getCurrentState() {
@@ -31,6 +34,7 @@ export default class PuzzleModel {
 
   setNewState() {
     localStorage.removeItem('cells');
+    this.image = `./img/${Math.ceil(Math.random() * IMAGE_COUNT)}.jpg`;
     this.initialCells = this.generateCellsOrder();
     this.currentCells = this.initialCells;
   }

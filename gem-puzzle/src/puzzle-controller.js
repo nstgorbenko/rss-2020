@@ -1,4 +1,4 @@
-import { DEFAULT_LEVEL, puzzleLevelToPercentCellSize, SOUND } from './const';
+import { DEFAULT_LEVEL, SOUND } from './const';
 import { render } from './utils';
 
 import PuzzleCellComponent from './components/puzzle-cell';
@@ -15,6 +15,7 @@ export default class PuzzleController {
     this.container = container;
     this.puzzleModel = puzzleModel;
     this.level = DEFAULT_LEVEL;
+    this.image = null;
     this.startTime = null;
     this.moves = null;
     this.isSound = false;
@@ -59,13 +60,13 @@ export default class PuzzleController {
   }
 
   renderPuzzleField() {
-    const puzzleCells = this.puzzleModel.get();
-    this.level = Math.sqrt(puzzleCells.length);
-    const cellSize = puzzleLevelToPercentCellSize[this.level];
+    const { cells, image, level } = this.puzzleModel.get();
+    this.image = image;
+    this.level = level;
     const puzzleFieldComponent = new PuzzleFieldComponent();
 
-    puzzleCells.forEach((cell) => {
-      const puzzleCellComponent = new PuzzleCellComponent(cell, cellSize);
+    cells.forEach((cell) => {
+      const puzzleCellComponent = new PuzzleCellComponent(cell, this.level, this.image);
       puzzleCellComponent.setClickHandler(this.makeMove);
       puzzleCellComponent.setMouseDownHandler(this.dragAndDrop);
       if (cell.value === null) {

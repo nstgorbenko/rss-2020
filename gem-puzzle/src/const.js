@@ -8,15 +8,10 @@ export const Duration = {
   HOUR: 60 * 60 * 1000,
 };
 
-export const puzzleLevelToPercentCellSize = {
-  3: 33.33,
-  4: 25,
-  5: 20,
-  6: 16.66,
-  7: 14.28,
-  8: 12.5,
-};
+export const IMAGE_COUNT = 50;
 
-export const RANDOMIZER = 200;
+export const IMAGE_SIZE = 900;
+
+export const RANDOMIZER = 2;
 
 export const SOUND = new Audio('./sound.mp3');
