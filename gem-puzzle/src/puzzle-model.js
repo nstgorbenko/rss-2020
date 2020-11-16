@@ -7,7 +7,7 @@ export default class PuzzleModel {
     this.initialCells = [];
     this.currentCells = [];
     this.level = DEFAULT_LEVEL;
-    this.image = './img/1.jpg';
+    this.image = `./img/${Math.ceil(Math.random() * IMAGE_COUNT)}.jpg`;
     this.initialMoves = [];
     this.currentMoves = [];
 
