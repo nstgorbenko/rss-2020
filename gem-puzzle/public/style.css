@@ -1,15 +1,26 @@
+.html {
+  height: 100%;
+}
+
 body {
   position: relative;
   display: flex;
+  height: 100vh;
+  overflow-y: hidden;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: 0;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 2%;
+  background:
+    linear-gradient(
+      rgba(200, 247, 197, 0.4),
+      rgba(129, 207, 224, 0.8)
+    ),
+    linear-gradient(
+      rgba(130, 130, 130, 0.5),
+      rgba(130, 130, 115, 0.6)
+    );
 }
 
 .visually-hidden {
@@ -23,14 +34,29 @@ body {
   border: 0;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0;
+  width: 60vh;
+  max-width: 80vw;
+}
+
 .field {
   position: relative;
-  width: 900px;
-  height: 900px;
+  width: 100%;
   margin: 0 auto;
-  border: 3px solid black;
-  background-color: rgb(179, 240, 240);
-  border-radius: 20px;
+  border: 1px solid rgb(111, 154, 111);
+  color: #416051;
+  background-color: #afd1c0;
+  box-shadow: 15px 15px 0px -4px rgba(0, 0, 0, 0.3), 0px 0px 85px 0px rgba(0, 0, 0, 0.4);
+}
+
+.field::after {
+  content: "";
+  padding-top: 100%;
+  display: block;
 }
 
 .field__cell {
@@ -38,12 +64,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 225px;
-  height: 225px;
-  border: 1px solid black;
   box-sizing: border-box;
-  background-color: lightcyan;
-  border-radius: 15px;
+  border: 1px solid rgb(58, 94, 79);;
   font-size: 50px;
   font-weight: 700;
   cursor: pointer;
@@ -54,29 +76,43 @@ body {
 
 .field__cell--empty {
   background-color: inherit;
-  font-size: 0;
   border: none;
 }
 
 .footer {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 .button {
-  margin: 20px 20px 0;
-  width: 250px;
+  width: 28%;
+  margin-top: 30px;
   padding: 10px;
-  font-size: 30px;
-  font-weight: 700;
-  border-radius: 20px;
-  cursor: pointer;
-  background-color: lightcyan;
+  letter-spacing: 1px;
+  border: none;
+  background: rgb(101, 140, 124);
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s;
   outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+@media(max-width: 490px) {
+  .button {
+    width: 31%;
+    font-size: 14px;
+    padding: 5px;
+  }
 }
 
 .button:hover {
-  background-color: rgb(179, 240, 240);
+  background-color: #444;
+  color: #ddd;
 }
 
 .hide {
@@ -85,15 +121,24 @@ body {
 
 .info {
   display: flex;
-  font-size: 20px;
+  width: 100%;
   margin-bottom: 10px;
+  color: rgb(65, 96, 81);
+  font-size: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 
 .info__time,
 .info__moves {
-  min-width: 200px;
-  width: 50%;
-  margin-left: 50px;
+  margin: auto;
+}
+
+@media(max-width: 490px) {
+  .info {
+    font-size: 14px;
+  }
 }
 
 .settings,
@@ -107,7 +152,7 @@ body {
   left: 0;
   right: 0;
   z-index: 2;
-  background-color: rgba(179, 214, 214, 0.9);
+  background-color: rgba(114, 136, 125, 0.9);;
 }
 
 .message {
@@ -127,21 +172,28 @@ body {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  width: 40%;
-  height: 50%;
+  width: 70%;
+  max-width: 600px;
   margin: 0 auto;
   padding: 50px;
-  background-color: rgb(179, 240, 240);
-  border: 3px solid black;
-  border-radius: 20px;
+  background-color: #afd1c0;
+  color: #416051;
+  border: 1px solid rgb(111, 154, 111);
+}
+
+.settings__part {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .settings__name,
 .message__text {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 30px 0 10px;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .settings__list {
@@ -157,24 +209,31 @@ body {
 .message__button {
   display: block;
   min-width: 40px;
-  text-align: center;
   padding: 10px;
   margin: 5px;
-  background-color: rgb(179, 240, 240);
-  border: 3px solid black;
-  border-radius: 10px;
+  text-align: center;
+  letter-spacing: 1px;
+  border: none;
+  background: rgb(101, 140, 124);
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
   text-transform: uppercase;
-  cursor: pointer;
+  transition: all 0.3s;
   outline: none;
+  box-shadow: none;
+  cursor: pointer;
 }
 
 .settings__item-label:hover,
 .message__button:hover {
-  background-color: rgb(114, 223, 223);
+  background-color: #898C8C;
+  color: #ddd;
 }
 
 .settings__item-input:checked ~ .settings__item-label {
-  background-color: rgb(23, 230, 230);
+  background-color: #444;
+  color: #ddd;
 }
 
 .settings__item-label--wide {
@@ -183,18 +242,51 @@ body {
 
 .settings__item-label--wide {
   font-weight: bold;
-  background-color: rgb(114, 223, 223);
+  background: rgb(64, 141, 108);
   align-self: center;
 }
 
 .settings__item-label--wide:hover {
-  background-color: rgb(23, 230, 230);
+  background-color: #444;
+  color: #ddd;
+}
+
+@media(max-width: 490px) {
+  .settings__item-label,
+  .message__button {
+    font-size: 14px;
+  }
+
+  .settings__name,
+  .message__text {
+    margin: 10px 0 10px;
+  }
+
+  .settings__item-label--wide {
+    padding: 10px 10px;
+  }
+
+  .settings__wrapper,
+  .message__wrapper {
+    padding: 20px;
+  }
 }
 
 .message__title {
   font-size: 70px;
   font-weight: bold;
   margin: 10px 0;
+}
+
+@media(max-width: 490px) {
+  .message__title {
+    font-size: 30px;
+  }
+
+  .message__text {
+    font-size: 14px;
+    font-weight: normal;
+  }
 }
 
 .stats {
@@ -211,8 +303,14 @@ body {
   box-sizing: border-box;
   margin: 0 auto;
   padding: 50px;
-  background-color: rgb(179, 240, 240);
+  background-color: #afd1c0;
   border-radius: 20px;
+}
+
+@media(max-width: 490px) {
+  .stats {
+    padding: 10px;
+  }
 }
 
 .stats--show {

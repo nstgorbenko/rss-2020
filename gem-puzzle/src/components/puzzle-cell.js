@@ -10,8 +10,8 @@ const createPuzzleCellTemplate = ({ row, column, value }, level, image) => {
   const topPosition = row * cellSize;
   const winningColumn = (value - 1) % level;
   const winningRow = Math.trunc((value - 1) / level);
-  const leftImagePosition = IMAGE_SIZE - winningColumn * (IMAGE_SIZE / level) - IMAGE_SIZE;
-  const topImagePosition = IMAGE_SIZE - winningRow * (IMAGE_SIZE / level) - IMAGE_SIZE;
+  const leftImagePosition =  winningColumn / (level - 1) * 100;
+  const topImagePosition =  winningRow / (level - 1) * 100;
 
   return (
     `<div class='field__cell ${emptyCellClass}' style='
@@ -21,8 +21,8 @@ const createPuzzleCellTemplate = ({ row, column, value }, level, image) => {
       height: ${cellSize}%;
       ${isEmptyCell ? '' : `background-image: url(${image});`}
       background-repeat: no-repeat;
-      background-size: ${IMAGE_SIZE * 100};
-      background-position: ${leftImagePosition}px ${topImagePosition}px;'
+      background-size: ${level * 100}%;
+      background-position: ${leftImagePosition}% ${topImagePosition}%;'
     ></div>`
   );
 };

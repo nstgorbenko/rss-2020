@@ -26,6 +26,7 @@ export default class PuzzleController {
     this.isSound = false;
     this.cellComponents = [];
     this.isFailed = false;
+    this.isWon = false;
 
     this.emptyCellComponent = null;
     this.activeCellComponent = null;
@@ -61,6 +62,7 @@ export default class PuzzleController {
     this.startTime = new Date();
     this.movesCount = 0;
     this.isFailed = false;
+    this.isWon = false;
     this.puzzleContainer.innerHTML = '';
     this.renderPuzzleStats();
     this.renderPuzzleField();
@@ -194,12 +196,16 @@ export default class PuzzleController {
   }
 
   checkWinning() {
+    if (this.isWon) {
+      return;
+    }
     const cells = this.puzzleModel.getCurrentState();
     const isFinish = cells
       .filter(({ value }) => value !== null)
       .every(({ row, column, value }) => value === row * this.level + column + 1);
 
     if (isFinish) {
+      this.isWon = true;
       this.time = this.puzzleTimeComponent.getTime();
       this.puzzleMessageComponent.show(this.time, this.movesCount);
       this.saveWinningInfo({ moves: this.movesCount, time: this.time, level: this.level });
