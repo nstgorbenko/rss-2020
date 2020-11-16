@@ -15,7 +15,7 @@ export default class AbstractComponent {
     }
     setTimeout(() => {
       this.getElement().style.opacity = 1;
-    }, 200);
+    }, 100);
     return this.element;
   }
 

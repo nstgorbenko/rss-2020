@@ -41,7 +41,7 @@ export default class SettingsController {
   }
 
   statsClickChangeHandler() {
-    const stats = this.puzzleModel.getStats();
+    const stats = this.puzzleModel.getStats() || [];
     this.puzzleSettingsComponent.renderStats(stats);
   }
 }

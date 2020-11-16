@@ -8,19 +8,24 @@ export default class PuzzleModel {
     this.currentCells = [];
     this.level = DEFAULT_LEVEL;
     this.image = './img/1.jpg';
+    this.initialMoves = [];
+    this.currentMoves = [];
 
     this.soundModeChangeHandlers = [];
     this.levelChangeHandlers = [];
   }
 
   get() {
+    this.currentMoves = [];
     if (localStorage.getItem('cells') !== null) {
       this.initialCells = JSON.parse(localStorage.getItem('cells'));
+      this.initialMoves = JSON.parse(localStorage.getItem('moves'));
     } else if (this.initialCells.length === 0) {
       this.initialCells = this.generateCellsOrder();
     }
 
     this.currentCells = this.initialCells;
+
     return ({ cells: this.initialCells, image: this.image, level: this.level });
   }
 
@@ -35,6 +40,8 @@ export default class PuzzleModel {
   setNewState() {
     localStorage.removeItem('cells');
     this.image = `./img/${Math.ceil(Math.random() * IMAGE_COUNT)}.jpg`;
+    this.initialMoves = [];
+    this.currentMoves = [];
     this.initialCells = this.generateCellsOrder();
     this.currentCells = this.initialCells;
   }
@@ -48,6 +55,7 @@ export default class PuzzleModel {
         ...this.currentCells.slice(cellIndex + 1),
       ];
     });
+    this.currentMoves.push([...cells]);
   }
 
   generateCellsOrder() {
@@ -82,6 +90,7 @@ export default class PuzzleModel {
             ));
             switchCell.row += 1;
             nullCell.row -= 1;
+            this.saveMove([switchCell, nullCell]);
           }
           break;
         case 'right':
@@ -91,6 +100,7 @@ export default class PuzzleModel {
             ));
             switchCell.column -= 1;
             nullCell.column += 1;
+            this.saveMove([switchCell, nullCell]);
           }
           break;
         case 'bottom':
@@ -100,6 +110,7 @@ export default class PuzzleModel {
             ));
             switchCell.row -= 1;
             nullCell.row += 1;
+            this.saveMove([switchCell, nullCell]);
           }
           break;
         case 'left':
@@ -109,6 +120,7 @@ export default class PuzzleModel {
             ));
             switchCell.column += 1;
             nullCell.column -= 1;
+            this.saveMove([switchCell, nullCell]);
           }
           break;
         default:
@@ -117,6 +129,14 @@ export default class PuzzleModel {
     }
 
     return initialList;
+  }
+
+  saveMove(newMove) {
+    this.initialMoves.push(newMove);
+  }
+
+  getMoves() {
+    return [...this.initialMoves, ...this.currentMoves];
   }
 
   setSoundMode(isLoud) {

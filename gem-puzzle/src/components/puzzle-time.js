@@ -27,4 +27,8 @@ export default class PuzzleTime extends AbstractComponent {
     clearTimeout(this.timer);
     return this.duration;
   }
+
+  stopTime() {
+    clearTimeout(this.timer);
+  }
 }
