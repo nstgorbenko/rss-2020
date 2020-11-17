@@ -20,6 +20,8 @@ export default class PuzzleModel {
     if (localStorage.getItem('cells') !== null) {
       this.initialCells = JSON.parse(localStorage.getItem('cells'));
       this.initialMoves = JSON.parse(localStorage.getItem('moves'));
+      this.image = JSON.parse(localStorage.getItem('image'));
+      this.level = JSON.parse(localStorage.getItem('level'));
     } else if (this.initialCells.length === 0) {
       this.initialCells = this.generateCellsOrder();
     }

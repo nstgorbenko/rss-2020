@@ -174,6 +174,9 @@ export default class PuzzleController {
 
     const movesState = this.puzzleModel.getMoves();
     localStorage.setItem('moves', JSON.stringify(movesState));
+
+    localStorage.setItem('level', JSON.stringify(this.level));
+    localStorage.setItem('image', JSON.stringify(this.image));
   }
 
   restartGame() {
