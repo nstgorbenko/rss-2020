@@ -62,6 +62,12 @@ export default class NavigationComponent extends AbstractComponent {
     });
   }
 
+  update(newCategory) {
+    const newLinkElement = this.getElement().querySelector(`.navigation__item--${newCategory}`);
+    this.changeActiveLink(newLinkElement);
+    this.category = newCategory;
+  }
+
   setToggleClickHandler() {
     this.getElement().querySelector('.burger__item').addEventListener('click', () => {
       document.addEventListener('click', this.closeNavigation);

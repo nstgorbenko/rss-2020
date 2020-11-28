@@ -11,6 +11,7 @@ export default class GameController {
     this.cardsModel = cardsModel;
 
     this.catalogController = null;
+    this.navigationComponent = null;
 
     this.pageChangeHandler = this.pageChangeHandler.bind(this);
     this.categoryChangeHandler = this.categoryChangeHandler.bind(this);
@@ -22,12 +23,12 @@ export default class GameController {
     const cards = this.cardsModel.get();
     const links = this.cardsModel.getCategories();
 
-    const navigationComponent = new NavigationComponent(links);
-    navigationComponent.setLinkClickHandler(this.pageChangeHandler);
+    this.navigationComponent = new NavigationComponent(links);
+    this.navigationComponent.setLinkClickHandler(this.pageChangeHandler);
     const toggleComponent = new ToggleComponent();
-    this.catalogController = new CatalogController(this.mainContainer);
+    this.catalogController = new CatalogController(this.mainContainer, this.cardsModel);
 
-    render(this.headerContainer, navigationComponent, RenderPosition.AFTERBEGIN);
+    render(this.headerContainer, this.navigationComponent, RenderPosition.AFTERBEGIN);
     render(this.headerContainer, toggleComponent);
     this.catalogController.render(cards);
   }
@@ -38,6 +39,9 @@ export default class GameController {
 
   categoryChangeHandler() {
     const cards = this.cardsModel.get();
+    const newLink = cards[0].category;
+
     this.catalogController.update(cards);
+    this.navigationComponent.update(newLink);
   }
 }

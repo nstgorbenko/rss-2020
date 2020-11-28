@@ -1,11 +1,13 @@
 import CatalogComponent from '../components/catalog-component';
-import CardComponent from '../components/card-component';
+import CardController from './card-controller';
 import CardListComponent from '../components/card-list-component';
 import { render } from '../utils';
 
 export default class CatalogController {
-  constructor(container) {
+  constructor(container, cardsModel) {
     this.container = container;
+    this.cardsModel = cardsModel;
+
     this.catalogComponent = null;
     this.cardListComponent = null;
   }
@@ -30,8 +32,9 @@ export default class CatalogController {
 
   renderCards(cards) {
     cards.forEach((card) => {
-      const cardComponent = new CardComponent(card);
-      render(this.cardListComponent.getElement(), cardComponent);
+      const cardListElement = this.cardListComponent.getElement();
+      const cardController = new CardController(cardListElement, this.cardsModel);
+      cardController.render(card);
     });
   }
 }

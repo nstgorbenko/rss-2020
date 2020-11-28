@@ -1,18 +1,13 @@
 import AbstractComponent from './abstract-component';
 import { uppercaseFirstLetter } from '../utils';
-import { MAIN_CATEGORY } from '../const';
 
-const createCardTemplate = ({
-  category, english, russian, image,
-}) => {
-  const isRotatingCard = category !== MAIN_CATEGORY;
-  const rotatingCardClass = isRotatingCard ? ' card--rotating' : '';
+const createCategoryCardTemplate = ({ english, russian, image }) => {
   const englishWord = uppercaseFirstLetter(english);
   const russianWord = uppercaseFirstLetter(russian);
 
   return (
     `<li class="catalog__item">
-      <div class="card${rotatingCardClass}">
+      <div class="card card--rotating">
         <div class="card__front">
           <img class="card__image" src=${image} alt=${english} width="250" height="250">
           <p class="card__name"><span>${englishWord}</span></p>
@@ -26,7 +21,7 @@ const createCardTemplate = ({
   );
 };
 
-export default class CardComponent extends AbstractComponent {
+export default class CategoryCardComponent extends AbstractComponent {
   constructor(cardInfo) {
     super();
 
@@ -34,6 +29,6 @@ export default class CardComponent extends AbstractComponent {
   }
 
   getTemplate() {
-    return createCardTemplate(this.item);
+    return createCategoryCardTemplate(this.item);
   }
 }
