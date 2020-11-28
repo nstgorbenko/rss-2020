@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   padding-top: 10px;
 }
 
@@ -264,16 +264,15 @@
   opacity: 0;
 }
 
-.main__title {
-  margin: 0;
-  margin-bottom: 10px;
-  text-align: right;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #009688;
+.main {
+  position: relative;
+  padding-top: 40px;
 }
 
 .rating {
+  position: absolute;
+  top: 0;
+  right: 0;
   display: flex;
   flex-direction: row-reverse;
   overflow: hidden;
@@ -293,7 +292,16 @@
   background-image: url("./img/icons/star-empty.svg");
 }
 
-.catalog {
+.catalog__title {
+  min-height: 27px;
+  margin: 15px 0;
+  text-align: right;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #009688;
+}
+
+.catalog__list {
   margin: 0 -30px;
   padding: 0;
   list-style: none;
@@ -303,7 +311,7 @@
 }
 
 .catalog__item {
-  padding: 10px 45px;
+  padding: 0 45px;
 }
 
 .card {

@@ -63,7 +63,7 @@ export default class NavigationComponent extends AbstractComponent {
   }
 
   setToggleClickHandler() {
-    this.getElement().querySelector('.burger__item').addEventListener('click', (evt) => {
+    this.getElement().querySelector('.burger__item').addEventListener('click', () => {
       document.addEventListener('click', this.closeNavigation);
     });
   }
@@ -76,7 +76,9 @@ export default class NavigationComponent extends AbstractComponent {
 
   closeNavigation(evt) {
     const ignoredClasses = ['navigation__wrapper', 'navigation__list', 'burger__item', 'burger__btn', 'burger__line'];
-    const isIgnoredElement = ignoredClasses.some(ignoredClass => evt.target.classList.contains(ignoredClass));
+    const isIgnoredElement = ignoredClasses
+      .some((ignoredClass) => evt.target.classList.contains(ignoredClass));
+
     if (isIgnoredElement) {
       return;
     }
