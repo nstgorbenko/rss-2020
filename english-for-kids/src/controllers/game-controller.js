@@ -2,6 +2,7 @@ import CatalogController from './catalog-controller';
 import NavigationComponent from '../components/navigation-component';
 import ToggleComponent from '../components/toggle-component';
 import { render } from '../utils';
+import { RenderPosition } from '../const';
 
 export default class GameController {
   constructor(headerContainer, mainContainer, cardsModel) {
@@ -22,11 +23,12 @@ export default class GameController {
     const links = this.cardsModel.getCategories();
 
     const navigationComponent = new NavigationComponent(links);
-    navigationComponent.setClickHandler(this.pageChangeHandler);
+    navigationComponent.setLinkClickHandler(this.pageChangeHandler);
     const toggleComponent = new ToggleComponent();
     this.catalogController = new CatalogController(this.mainContainer);
 
-    render(this.headerContainer, navigationComponent, toggleComponent);
+    render(this.headerContainer, navigationComponent, RenderPosition.AFTERBEGIN);
+    render(this.headerContainer, toggleComponent);
     this.catalogController.render(cards);
   }
 

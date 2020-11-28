@@ -20,11 +20,18 @@ const createNavigationTemplate = (links, activeCategory) => {
     .join('\n');
 
   return (
-    `<nav class="navigation">
-      <ul class="navigation__list">
-        ${navigationLinksMarkup}
-      </ul>
-    </nav>`
+    `<div class="navigation">
+      <input class="burger__item visually-hidden" id="nav-toggle" type="checkbox">
+      <label class="burger__btn" for="nav-toggle">
+        <span class="burger__line"></span>
+      </label>
+
+      <nav class="navigation__wrapper">
+        <ul class="navigation__list">
+          ${navigationLinksMarkup}
+        </ul>
+      </nav>
+    </div>`
   );
 };
 
@@ -34,14 +41,17 @@ export default class NavigationComponent extends AbstractComponent {
 
     this.links = links;
     this.category = MAIN_CATEGORY;
+
+    this.setToggleClickHandler();
+    this.closeNavigation = this.closeNavigation.bind(this);
   }
 
   getTemplate() {
     return createNavigationTemplate(this.links, this.category);
   }
 
-  setClickHandler(handler) {
-    this.getElement().addEventListener('click', (evt) => {
+  setLinkClickHandler(handler) {
+    this.getElement().querySelector('.navigation__list').addEventListener('click', (evt) => {
       if (evt.target.dataset.name === this.category || evt.target.tagName !== 'LI') {
         return;
       }
@@ -52,9 +62,26 @@ export default class NavigationComponent extends AbstractComponent {
     });
   }
 
+  setToggleClickHandler() {
+    this.getElement().querySelector('.burger__item').addEventListener('click', (evt) => {
+      document.addEventListener('click', this.closeNavigation);
+    });
+  }
+
   changeActiveLink(newLink) {
     const lastActiveLink = this.getElement().querySelector(`.${ACTIVE_LINK_CLASS}`);
     lastActiveLink.classList.remove(ACTIVE_LINK_CLASS);
     newLink.classList.add(ACTIVE_LINK_CLASS);
+  }
+
+  closeNavigation(evt) {
+    const ignoredClasses = ['navigation__wrapper', 'navigation__list', 'burger__item', 'burger__btn', 'burger__line'];
+    const isIgnoredElement = ignoredClasses.some(ignoredClass => evt.target.classList.contains(ignoredClass));
+    if (isIgnoredElement) {
+      return;
+    }
+
+    this.getElement().querySelector('.burger__item').checked = false;
+    document.removeEventListener('click', this.closeNavigation);
   }
 }
