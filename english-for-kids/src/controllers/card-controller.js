@@ -14,9 +14,7 @@ export default class CardController {
   render(card) {
     if (card.category === MAIN_CATEGORY) {
       const mainCardComponent = new MainCardComponent(card);
-
       mainCardComponent.setClickHandler(this.setMainCardClickHandler);
-
       render(this.container, mainCardComponent);
     } else {
       const categoryCardComponent = new CategoryCardComponent(card);

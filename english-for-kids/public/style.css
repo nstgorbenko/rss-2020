@@ -311,7 +311,7 @@
 }
 
 .catalog__item {
-  padding: 0 45px;
+  margin: 0 45px;
 }
 
 .card {
@@ -345,7 +345,7 @@
   transform: rotateY(180deg);
 }
 
-.card--rotating  .card__front::after {
+.card__rotate-btn {
   display: block;
   position: absolute;
   content: "";
@@ -362,11 +362,19 @@
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
 }
 
-.card--rotating:hover .card__front {
+/* .card--rotating:hover .card__front {
   transform: rotateY(180deg);
 }
 
 .card--rotating:hover .card__back {
+  transform: rotateY(360deg);
+} */
+
+.card--spin .card__front {
+  transform: rotateY(180deg);
+}
+
+.card--spin .card__back {
   transform: rotateY(360deg);
 }
 
