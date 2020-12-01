@@ -2,7 +2,7 @@ import CatalogController from './catalog-controller';
 import NavigationComponent from '../components/navigation-component';
 import ToggleComponent from '../components/toggle-component';
 import { render } from '../utils';
-import { RenderPosition } from '../const';
+import { GameMode, RenderPosition } from '../const';
 
 export default class GameController {
   constructor(headerContainer, mainContainer, cardsModel) {
@@ -10,11 +10,14 @@ export default class GameController {
     this.mainContainer = mainContainer;
     this.cardsModel = cardsModel;
 
+    this.mode = GameMode.TRAIN;
+
     this.catalogController = null;
     this.navigationComponent = null;
 
     this.pageChangeHandler = this.pageChangeHandler.bind(this);
     this.categoryChangeHandler = this.categoryChangeHandler.bind(this);
+    this.changeGameMode = this.changeGameMode.bind(this);
 
     this.cardsModel.addCategoryChangeHandler(this.categoryChangeHandler);
   }
@@ -25,8 +28,11 @@ export default class GameController {
 
     this.navigationComponent = new NavigationComponent(links);
     this.navigationComponent.setLinkClickHandler(this.pageChangeHandler);
+
     const toggleComponent = new ToggleComponent();
-    this.catalogController = new CatalogController(this.mainContainer, this.cardsModel);
+    toggleComponent.setClickHandler(this.changeGameMode);
+
+    this.catalogController = new CatalogController(this.mainContainer, this.cardsModel, this.mode);
 
     render(this.headerContainer, this.navigationComponent, RenderPosition.AFTERBEGIN);
     render(this.headerContainer, toggleComponent);
@@ -41,7 +47,12 @@ export default class GameController {
     const cards = this.cardsModel.get();
     const newLink = cards[0].category;
 
-    this.catalogController.update(cards);
+    this.catalogController.update(cards, this.mode);
     this.navigationComponent.update(newLink);
+  }
+
+  changeGameMode() {
+    this.mode = this.mode === GameMode.TRAIN ? GameMode.PLAY : GameMode.TRAIN;
+    this.catalogController.changeMode(this.mode);
   }
 }

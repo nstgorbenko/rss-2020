@@ -1,12 +1,14 @@
 import AbstractComponent from './abstract-component';
 import { uppercaseFirstLetter } from '../utils';
+import { GameMode } from '../const';
 
-const createCategoryCardTemplate = ({ english, russian, image }) => {
+const createCategoryCardTemplate = ({ english, russian, image }, mode) => {
   const englishWord = uppercaseFirstLetter(english);
   const russianWord = uppercaseFirstLetter(russian);
+  const gameModeClass = mode === GameMode.PLAY ? ' catalog__item--game' : '';
 
   return (
-    `<li class="catalog__item">
+    `<li class="catalog__item${gameModeClass}">
       <div class="card card--rotating">
         <div class="card__front">
           <span class="card__rotate-btn"></span>
@@ -23,10 +25,11 @@ const createCategoryCardTemplate = ({ english, russian, image }) => {
 };
 
 export default class CategoryCardComponent extends AbstractComponent {
-  constructor(cardInfo) {
+  constructor(cardInfo, mode) {
     super();
 
     this.item = cardInfo;
+    this.mode = mode;
 
     this.sayWord = this.sayWord.bind(this);
     this.turnBack = this.turnBack.bind(this);
@@ -37,7 +40,7 @@ export default class CategoryCardComponent extends AbstractComponent {
   }
 
   getTemplate() {
-    return createCategoryCardTemplate(this.item);
+    return createCategoryCardTemplate(this.item, this.mode);
   }
 
   setCardClickHandler() {
@@ -49,7 +52,7 @@ export default class CategoryCardComponent extends AbstractComponent {
   }
 
   sayWord(evt) {
-    if (evt.target.classList.contains('card__rotate-btn')) {
+    if (evt.target.classList.contains('card__rotate-btn') || this.mode === GameMode.PLAY) {
       return;
     }
     const audio = new Audio(this.item.audio);
@@ -57,6 +60,9 @@ export default class CategoryCardComponent extends AbstractComponent {
   }
 
   turnBack() {
+    if (this.mode === GameMode.PLAY) {
+      return;
+    }
     this.getElement().querySelector('.card').classList.add('card--spin');
     this.getElement().addEventListener('mouseleave', this.turnFront);
   }
@@ -64,5 +70,10 @@ export default class CategoryCardComponent extends AbstractComponent {
   turnFront() {
     this.getElement().querySelector('.card').classList.remove('card--spin');
     this.getElement().removeEventListener('mouseleave', this.turnFront);
+  }
+
+  changeMode(mode) {
+    this.mode = mode;
+    this.getElement().classList.toggle('catalog__item--game');
   }
 }

@@ -14,4 +14,8 @@ export default class ToggleComponent extends AbstractComponent {
   getTemplate() {
     return createToggleTemplate();
   }
+
+  setClickHandler(handler) {
+    this.getElement().querySelector('.toggle__item').addEventListener('change', handler);
+  }
 }

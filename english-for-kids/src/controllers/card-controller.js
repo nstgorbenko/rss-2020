@@ -4,25 +4,33 @@ import { render } from '../utils';
 import { MAIN_CATEGORY } from '../const';
 
 export default class CardController {
-  constructor(container, cardsModel) {
+  constructor(container, cardsModel, mode) {
     this.container = container;
     this.cardsModel = cardsModel;
+    this.mode = mode;
+
+    this.card = null;
 
     this.setMainCardClickHandler = this.setMainCardClickHandler.bind(this);
   }
 
   render(card) {
     if (card.category === MAIN_CATEGORY) {
-      const mainCardComponent = new MainCardComponent(card);
-      mainCardComponent.setClickHandler(this.setMainCardClickHandler);
-      render(this.container, mainCardComponent);
+      this.card = new MainCardComponent(card, this.mode);
+      this.card.setClickHandler(this.setMainCardClickHandler);
+      render(this.container, this.card);
     } else {
-      const categoryCardComponent = new CategoryCardComponent(card);
-      render(this.container, categoryCardComponent);
+      this.card = new CategoryCardComponent(card, this.mode);
+      render(this.container, this.card);
     }
   }
 
   setMainCardClickHandler(newPage) {
     this.cardsModel.setCategory(newPage);
+  }
+
+  changeMode(mode) {
+    this.mode = mode;
+    this.card.changeMode(this.mode);
   }
 }
