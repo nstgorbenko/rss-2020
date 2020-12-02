@@ -1,6 +1,6 @@
 export const GameMode = {
   PLAY: 'play',
-  TRAIN: 'train'
+  TRAIN: 'train',
 };
 
 export const MAIN_CATEGORY = 'main';

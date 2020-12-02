@@ -453,6 +453,15 @@
   display: none;
 }
 
+.card--bright:hover .card__front {
+  box-shadow: none;
+}
+
+.card--bright {
+  filter: grayscale(100%);
+  cursor: default;
+}
+
 .footer {
   display: flex;
   flex-wrap: wrap;

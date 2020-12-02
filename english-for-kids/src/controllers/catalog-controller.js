@@ -5,13 +5,14 @@ import PlayButtonComponent from '../components/play-button-component';
 import { render } from '../utils';
 import { Sound } from '../const';
 
-const shuffleArray = ([...array]) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
+const shuffleArray = (array) => {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
   }
 
-  return array;
+  return result;
 };
 
 export default class CatalogController {
@@ -71,7 +72,7 @@ export default class CatalogController {
   changeMode(mode) {
     this.mode = mode;
     this.playButtonComponent.changeView();
-    this.cards.forEach(card => card.changeMode(this.mode));
+    this.cards.forEach((card) => card.changeMode(this.mode));
   }
 
   playButtonClickHandler() {
@@ -90,6 +91,9 @@ export default class CatalogController {
 
   checkAnswer(cardName) {
     if (cardName === this.currentCard.getName()) {
+      const clickedCard = this.shuffledCards.find((card) => card.getName() === cardName);
+      clickedCard.disable();
+
       new Audio(Sound.RIGHT).play();
     } else {
       new Audio(Sound.WRONG).play();

@@ -46,4 +46,8 @@ export default class CardController {
   getName() {
     return this.card.getName();
   }
+
+  disable() {
+    this.card.disable();
+  }
 }
