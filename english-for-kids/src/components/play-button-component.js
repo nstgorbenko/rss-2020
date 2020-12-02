@@ -31,4 +31,11 @@ export default class PlayButtonComponent extends AbstractComponent {
       this.getElement().classList.toggle('btn--absent');
     }
   }
+
+  setClickHandler(handler) {
+    this.getElement().addEventListener('click', () => {
+      this.getElement().classList.add('play-btn--active');
+      handler();
+    });
+  }
 }

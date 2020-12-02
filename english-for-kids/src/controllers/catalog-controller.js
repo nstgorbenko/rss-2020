@@ -4,6 +4,15 @@ import CardListComponent from '../components/card-list-component';
 import PlayButtonComponent from '../components/play-button-component';
 import { render } from '../utils';
 
+const shuffleArray = ([...array]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+};
+
 export default class CatalogController {
   constructor(container, cardsModel, mode) {
     this.container = container;
@@ -11,10 +20,16 @@ export default class CatalogController {
     this.mode = mode;
 
     this.cards = [];
+    this.shuffledCards = [];
+    this.gameCounter = 0;
+    this.currentCard = null;
+    this.isStartGame = false;
 
     this.catalogComponent = null;
     this.cardListComponent = null;
     this.playButtonComponent = null;
+
+    this.playButtonClickHandler = this.playButtonClickHandler.bind(this);
   }
 
   render(cards) {
@@ -22,6 +37,7 @@ export default class CatalogController {
     this.catalogComponent = new CatalogComponent(title);
     this.cardListComponent = new CardListComponent();
     this.playButtonComponent = new PlayButtonComponent(title);
+    this.playButtonComponent.setClickHandler(this.playButtonClickHandler);
 
     this.renderCards(cards);
     render(this.catalogComponent.getElement(), this.cardListComponent);
@@ -54,5 +70,17 @@ export default class CatalogController {
     this.mode = mode;
     this.playButtonComponent.changeView();
     this.cards.forEach(card => card.changeMode(this.mode));
+  }
+
+  playButtonClickHandler() {
+    if (!this.isStartGame) {
+      this.shuffledCards = shuffleArray(this.cards);
+      this.currentCard = this.shuffledCards[this.gameCounter];
+
+      this.currentCard.playAudio();
+      this.isStartGame = true;
+    } else {
+      this.currentCard.playAudio();
+    }
   }
 }
