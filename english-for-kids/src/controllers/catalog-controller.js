@@ -1,21 +1,11 @@
-import CatalogComponent from '../components/catalog-component';
 import CardController from './card-controller';
 import CardListComponent from '../components/card-list-component';
+import CatalogComponent from '../components/catalog-component';
 import PlayButtonComponent from '../components/play-button-component';
 import RatingComponent from '../components/rating-component';
 import RatingStarComponent from '../components/rating-star-component';
-import { render } from '../utils';
+import { render, shuffleArray } from '../utils';
 import { Sound } from '../const';
-
-const shuffleArray = (array) => {
-  const result = [...array];
-  for (let i = result.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-
-  return result;
-};
 
 export default class CatalogController {
   constructor(container, cardsModel, mode) {
@@ -25,16 +15,17 @@ export default class CatalogController {
 
     this.cards = [];
     this.shuffledCards = [];
+    this.endGameHandler = null;
     this.gameCounter = 0;
-    this.currentCard = null;
-    this.isStartGame = false;
+    this.gameErrors = 0;
+    this.isGameOn = false;
 
     this.ratingComponent = null;
     this.catalogComponent = null;
     this.cardListComponent = null;
     this.playButtonComponent = null;
 
-    this.playButtonClickHandler = this.playButtonClickHandler.bind(this);
+    this.takeGameStep = this.takeGameStep.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
   }
 
@@ -44,7 +35,7 @@ export default class CatalogController {
     this.catalogComponent = new CatalogComponent(title);
     this.cardListComponent = new CardListComponent();
     this.playButtonComponent = new PlayButtonComponent(title);
-    this.playButtonComponent.setClickHandler(this.playButtonClickHandler);
+    this.playButtonComponent.setClickHandler(this.takeGameStep);
 
     this.renderCards(cards);
     render(this.catalogComponent.getElement(), this.cardListComponent);
@@ -80,30 +71,53 @@ export default class CatalogController {
     this.cards.forEach((card) => card.changeMode(this.mode));
   }
 
-  playButtonClickHandler() {
-    if (!this.isStartGame) {
-      this.shuffledCards = shuffleArray(this.cards);
-      this.currentCard = this.shuffledCards[this.gameCounter];
+  takeGameStep() {
+    if (!this.isGameOn) {
+      this.isGameOn = true;
 
+      this.shuffledCards = shuffleArray(this.cards);
       this.shuffledCards.forEach((card) => card.setGameModeClickHandler(this.checkAnswer));
 
-      this.currentCard.playAudio();
-      this.isStartGame = true;
+      const currentCard = this.shuffledCards[this.gameCounter];
+      currentCard.playAudio();
     } else {
-      this.currentCard.playAudio();
+      const currentCard = this.shuffledCards[this.gameCounter];
+      currentCard.playAudio();
     }
   }
 
   checkAnswer(cardName) {
-    if (cardName === this.currentCard.getName()) {
+    const currentCard = this.shuffledCards[this.gameCounter];
+
+    if (cardName === currentCard.getName()) {
       const clickedCard = this.shuffledCards.find((card) => card.getName() === cardName);
       clickedCard.disable();
 
       new Audio(Sound.RIGHT).play();
       render(this.ratingComponent.getElement(), new RatingStarComponent());
+      this.gameCounter += 1;
+
+      this.checkGameEnd();
     } else {
       new Audio(Sound.WRONG).play();
       render(this.ratingComponent.getElement(), new RatingStarComponent(false));
+      this.gameErrors += 1;
     }
+  }
+
+  checkGameEnd() {
+    if (this.gameCounter >= this.shuffledCards.length) {
+      this.setEndGameHandler();
+    } else {
+      setTimeout(this.takeGameStep, 1000);
+    }
+  }
+
+  setEndGameHandler() {
+    this.endGameHandler(this.gameErrors);
+  }
+
+  addEndGameHandler(handler) {
+    this.endGameHandler = handler;
   }
 }

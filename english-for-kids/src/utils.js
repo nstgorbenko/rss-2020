@@ -9,9 +9,6 @@ export const createElement = (template) => {
 
 export const render = (container, component, place = RenderPosition.BEFOREEND) => {
   switch (place) {
-    case RenderPosition.BEFOREBEGIN:
-      container.before(component.getElement());
-      break;
     case RenderPosition.AFTERBEGIN:
       container.prepend(component.getElement());
       break;
@@ -24,6 +21,16 @@ export const render = (container, component, place = RenderPosition.BEFOREEND) =
     default:
       throw new Error(`Unknown render position: ${place}`);
   }
+};
+
+export const shuffleArray = (array) => {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+
+  return result;
 };
 
 export const uppercaseFirstLetter = (string) => {

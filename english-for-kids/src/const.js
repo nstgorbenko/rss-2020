@@ -1,3 +1,8 @@
+export const GameMessage = {
+  LOSE: 'You lose. Errors count: ',
+  WIN: 'You win!',
+};
+
 export const GameMode = {
   PLAY: 'play',
   TRAIN: 'train',
