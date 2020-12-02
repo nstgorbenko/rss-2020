@@ -38,4 +38,12 @@ export default class CardController {
   playAudio() {
     this.card.sayWord();
   }
+
+  setGameModeClickHandler(handler) {
+    this.card.setGameModeClickHandler(handler);
+  }
+
+  getName() {
+    return this.card.getName();
+  }
 }

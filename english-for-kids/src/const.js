@@ -5,6 +5,13 @@ export const GameMode = {
 
 export const MAIN_CATEGORY = 'main';
 
+export const Sound = {
+  LOSE: './audio/lose.mp3',
+  RIGHT: './audio/right.mp3',
+  WIN: './audio/win.mp3',
+  WRONG: './audio/wrong.mp3',
+};
+
 export const RenderPosition = {
   BEFOREBEGIN: 'beforebegin',
   AFTERBEGIN: 'afterbegin',

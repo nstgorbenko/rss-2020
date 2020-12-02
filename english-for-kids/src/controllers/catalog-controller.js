@@ -3,6 +3,7 @@ import CardController from './card-controller';
 import CardListComponent from '../components/card-list-component';
 import PlayButtonComponent from '../components/play-button-component';
 import { render } from '../utils';
+import { Sound } from '../const';
 
 const shuffleArray = ([...array]) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -30,6 +31,7 @@ export default class CatalogController {
     this.playButtonComponent = null;
 
     this.playButtonClickHandler = this.playButtonClickHandler.bind(this);
+    this.checkAnswer = this.checkAnswer.bind(this);
   }
 
   render(cards) {
@@ -77,10 +79,20 @@ export default class CatalogController {
       this.shuffledCards = shuffleArray(this.cards);
       this.currentCard = this.shuffledCards[this.gameCounter];
 
+      this.shuffledCards.forEach((card) => card.setGameModeClickHandler(this.checkAnswer));
+
       this.currentCard.playAudio();
       this.isStartGame = true;
     } else {
       this.currentCard.playAudio();
+    }
+  }
+
+  checkAnswer(cardName) {
+    if (cardName === this.currentCard.getName()) {
+      new Audio(Sound.RIGHT).play();
+    } else {
+      new Audio(Sound.WRONG).play();
     }
   }
 }

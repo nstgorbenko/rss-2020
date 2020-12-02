@@ -52,6 +52,15 @@ export default class CategoryCardComponent extends AbstractComponent {
     });
   }
 
+  setGameModeClickHandler(handler) {
+    this.getElement().querySelector('.card__front').addEventListener('click', () => {
+      if (this.mode === GameMode.TRAIN) {
+        return;
+      }
+      handler(this.item.english);
+    });
+  }
+
   setRotateBtnClickHandler() {
     this.getElement().querySelector('.card__rotate-btn').addEventListener('click', this.turnBack);
   }
