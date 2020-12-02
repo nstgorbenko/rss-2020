@@ -2,6 +2,8 @@ import CatalogComponent from '../components/catalog-component';
 import CardController from './card-controller';
 import CardListComponent from '../components/card-list-component';
 import PlayButtonComponent from '../components/play-button-component';
+import RatingComponent from '../components/rating-component';
+import RatingStarComponent from '../components/rating-star-component';
 import { render } from '../utils';
 import { Sound } from '../const';
 
@@ -27,6 +29,7 @@ export default class CatalogController {
     this.currentCard = null;
     this.isStartGame = false;
 
+    this.ratingComponent = null;
     this.catalogComponent = null;
     this.cardListComponent = null;
     this.playButtonComponent = null;
@@ -37,6 +40,7 @@ export default class CatalogController {
 
   render(cards) {
     const title = cards[0].category;
+    this.ratingComponent = new RatingComponent();
     this.catalogComponent = new CatalogComponent(title);
     this.cardListComponent = new CardListComponent();
     this.playButtonComponent = new PlayButtonComponent(title);
@@ -44,6 +48,7 @@ export default class CatalogController {
 
     this.renderCards(cards);
     render(this.catalogComponent.getElement(), this.cardListComponent);
+    render(this.container, this.ratingComponent);
     render(this.container, this.catalogComponent);
     render(this.container, this.playButtonComponent);
   }
@@ -95,8 +100,10 @@ export default class CatalogController {
       clickedCard.disable();
 
       new Audio(Sound.RIGHT).play();
+      render(this.ratingComponent.getElement(), new RatingStarComponent());
     } else {
       new Audio(Sound.WRONG).play();
+      render(this.ratingComponent.getElement(), new RatingStarComponent(false));
     }
   }
 }
