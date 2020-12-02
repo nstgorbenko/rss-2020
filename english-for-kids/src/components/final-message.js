@@ -23,4 +23,8 @@ export default class FinalMessage extends AbstractComponent {
     this.getElement().classList.add('message--show', `${messageClass}`);
     new Audio(audioMessage).play();
   }
+
+  hide() {
+    this.getElement().className = 'message';
+  }
 }

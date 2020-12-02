@@ -48,10 +48,12 @@ export default class CatalogController {
     this.mode = mode;
     const title = cards[0].category;
 
+    this.ratingComponent.clear();
     this.catalogComponent.update(title);
-    this.playButtonComponent.update(title);
     this.cardListComponent.clear();
+    this.playButtonComponent.update(title);
     this.renderCards(cards);
+    this.resetGameData();
   }
 
   renderCards(cards) {
@@ -108,6 +110,7 @@ export default class CatalogController {
   checkGameEnd() {
     if (this.gameCounter >= this.shuffledCards.length) {
       this.setEndGameHandler();
+      this.resetGameData();
     } else {
       setTimeout(this.takeGameStep, 1000);
     }
@@ -119,5 +122,11 @@ export default class CatalogController {
 
   addEndGameHandler(handler) {
     this.endGameHandler = handler;
+  }
+
+  resetGameData() {
+    this.isGameOn = false;
+    this.gameCounter = 0;
+    this.gameErrors = 0;
   }
 }

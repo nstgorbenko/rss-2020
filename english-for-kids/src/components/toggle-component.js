@@ -18,4 +18,8 @@ export default class ToggleComponent extends AbstractComponent {
   setClickHandler(handler) {
     this.getElement().querySelector('.toggle__item').addEventListener('change', handler);
   }
+
+  triggerClick() {
+    this.getElement().querySelector('.toggle__item').checked = false;
+  }
 }

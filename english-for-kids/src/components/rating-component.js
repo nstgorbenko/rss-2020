@@ -6,4 +6,8 @@ export default class RatingComponent extends AbstractComponent {
   getTemplate() {
     return createRatingTemplate();
   }
+
+  clear() {
+    this.getElement().innerHTML = '';
+  }
 }
