@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English for kids</title>
+  <link rel="stylesheet" href="../public/style.css"></head>
+<body class="page">
+  <div class="page__wrapper">
+    <header class="header">
+
+      <div class="navigation">
+        <input class="burger__item visually-hidden" id="nav-toggle" type="checkbox">
+        <label class="burger__btn" for="nav-toggle">
+          <span class="burger__line"></span>
+        </label>
+
+        <nav class="navigation__wrapper">
+          <ul class="navigation__list">
+            <li class="navigation__item navigation__item--main">Main</li>
+            <li class="navigation__item navigation__item--animals-1 navigation__item--active">Animals-1</li>
+            <li class="navigation__item navigation__item--animals-2">Animals-2</li>
+            <li class="navigation__item navigation__item--fruits-1">Fruits-1</li>
+            <li class="navigation__item navigation__item--fruits-2">Fruits-2</li>
+            <li class="navigation__item navigation__item--vegetables">Vegetables</li>
+            <li class="navigation__item navigation__item--food">Food</li>
+            <li class="navigation__item navigation__item--actions">Actions</li>
+            <li class="navigation__item navigation__item--emotions">Emotions</li>
+            <li class="navigation__item navigation__item--fairytales">Fairytales</li>
+            <li class="navigation__item navigation__item--transport">Transport</li>
+            <li class="navigation__item navigation__item--toys">Toys</li>
+            <li class="navigation__item navigation__item--home">Home</li>
+          </ul>
+        </nav>
+      </div>
+
+      <h1 class="header__title">English for kids</h1>
+
+      <div class="toggle">
+        <input class="toggle__item visually-hidden" id="game-toggle" type="checkbox">
+        <label class="btn toggle__btn" for="game-toggle">
+          <span class="toggle__state toggle__state--on">Play</span>
+          <span class="toggle__state toggle__state--off">Train</span>
+          <span class="toggle__slider"></span>
+        </label>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="stats">
+        <button class="btn btn--stats btn--repeat" type="button">Repeat difficult words</button>
+        <button class="btn btn--stats btn--reset" type="button">Reset statistics</button>
+
+        <table class="stats__table">
+          <tbody>
+            <tr>
+              <th class="stats__title stats__title--down">Category</th>
+              <th class="stats__title">Word</th>
+              <th class="stats__title">Translation</th>
+              <th class="stats__title stats__title--learn">
+                <img class="stats__title-icon" src="../public/img/icons/learn.png" width="20" height="20">
+                <span>Learn</span>
+              </th>
+              <th class="stats__title stats__title--correct">
+                <img class="stats__title-icon" src="../public/img/icons/correct.png" width="20" height="20">
+                <span>Correct</span>
+              </th>
+              <th class="stats__title stats__title--wrong">
+                <img class="stats__title-icon" src="../public/img/icons/wrong.png" width="20" height="20">
+                <span>Wrong</span>
+              </th>
+              <th class="stats__title stats__title--percent">
+                <img class="stats__title-icon" src="../public/img/icons/percent.png" width="20" height="20">
+                <span>Correct %</span>
+              </th>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-1.png" width="20" height="20">
+                <span>Animals-1</span>
+              </td>
+              <td class="stats__info">bear</td>
+              <td class="stats__info">медведь</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-1.png" width="20" height="20">
+                <span>Animals-1</span>
+              </td>
+              <td class="stats__info">bird</td>
+              <td class="stats__info">птица</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-1.png" width="20" height="20">
+                <span>Animals-1</span>
+              </td>
+              <td class="stats__info">cat</td>
+              <td class="stats__info">кот</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-1.png" width="20" height="20">
+                <span>Animals-1</span>
+              </td>
+              <td class="stats__info">giraffe</td>
+              <td class="stats__info">жираф</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-1.png" width="20" height="20">
+                <span>Animals-1</span>
+              </td>
+              <td class="stats__info">hippo</td>
+              <td class="stats__info">бегемот</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-1.png" width="20" height="20">
+                <span>Animals-1</span>
+              </td>
+              <td class="stats__info">koala</td>
+              <td class="stats__info">коала</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-1.png" width="20" height="20">
+                <span>Animals-1</span>
+              </td>
+              <td class="stats__info">leopard</td>
+              <td class="stats__info">леопард</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-1.png" width="20" height="20">
+                <span>Animals-1</span>
+              </td>
+              <td class="stats__info">unicorn</td>
+              <td class="stats__info">единорог</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-2.png" width="20" height="20">
+                <span>Animals-2</span>
+              </td>
+              <td class="stats__info">crocodile</td>
+              <td class="stats__info">крокодил</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-2.png" width="20" height="20">
+                <span>Animals-2</span>
+              </td>              <td class="stats__info">elephant</td>
+              <td class="stats__info">слон</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-2.png" width="20" height="20">
+                <span>Animals-2</span>
+              </td>
+              <td class="stats__info">dog</td>
+              <td class="stats__info">собака</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-2.png" width="20" height="20">
+                <span>Animals-2</span>
+              </td>
+              <td class="stats__info">fox</td>
+              <td class="stats__info">лиса</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-2.png" width="20" height="20">
+                <span>Animals-2</span>
+              </td>
+              <td class="stats__info">lion</td>
+              <td class="stats__info">лев</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-2.png" width="20" height="20">
+                <span>Animals-2</span>
+              </td>
+              <td class="stats__info">monkey</td>
+              <td class="stats__info">обезьяна</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-2.png" width="20" height="20">
+                <span>Animals-2</span>
+              </td>
+              <td class="stats__info">raccoon</td>
+              <td class="stats__info">енот</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+            <tr>
+              <td class="stats__info">
+                <img class="stats__title-icon" src="../public/img/icons/animals-2.png" width="20" height="20">
+                <span>Animals-2</span>
+              </td>
+              <td class="stats__info">sheep</td>
+              <td class="stats__info">овца</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+              <td class="stats__info">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <a class="footer__link footer__link--left" href="https://rs.school/js/">
+        <img class="footer__link-image" src="../public/img/icons/rs-school.svg" alt="The Rolling Scopes School icon" width="80" height="40">
+      </a>
+
+      <span class="footer__link footer__link--center">
+        <img class="footer__link-image" src="../public/img/icons/virus.png" alt="COVID-19 icon" width="30" height="30">2020</span>
+
+      <a class="footer__link footer__link--right" href="https://github.com/nstgorbenko">nstgorbenko
+        <img class="footer__link-image" src="../public/img/icons/github.png" alt="GitHub icon" width="30" height="30">
+      </a>
+    </footer>
+  </div>
+</body>
+</html>

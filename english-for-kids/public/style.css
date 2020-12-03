@@ -27,6 +27,12 @@
   padding: 0 40px;
 }
 
+@media (max-width: 768px) {
+  .page__wrapper {
+    padding: 0 20px;
+  }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -216,6 +222,28 @@
   transition: all 0.5s;
   cursor : pointer;
   outline: none;
+}
+
+.btn:hover {
+  background-color: #00b09f;
+}
+
+.btn--stats {
+  display: block;
+  width: auto;
+  height: 40px;
+  margin: 0 0 10px 20px;
+  border-radius: 40px;
+  color: #000000;
+  background-color: #8bcc90;
+}
+
+.btn--stats:hover {
+  background-color: #66bb6a;
+}
+
+.btn--stats:active {
+  background-color: #4aa851;
 }
 
 .btn--round {
@@ -561,5 +589,107 @@
 @media (max-width: 768px) {
   .message__text {
     font-size: 40px;
+  }
+}
+
+.stats {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.stats__table {
+  width: 100%;
+  margin-bottom: 40px;
+  border-collapse: collapse;
+}
+
+.stats__title {
+  position: relative;
+  padding: 10px;
+  padding-bottom: 15px;
+  text-align: center;
+  color: #000000;
+  background-color:#ffffff;
+  border: 2px solid #8bcc90;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.stats__title:hover {
+  background-color: #8bcc90;
+}
+
+.stats__title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+}
+
+.stats__title--down::after {
+  border-top: 5px solid #000000;
+}
+
+.stats__title--up::after {
+  bottom: 5px;
+  border-bottom: 5px solid #000000;
+}
+
+@media (max-width: 780px) {
+  .stats__title {
+    padding: 15px 0 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 780px) {
+  .stats__title span {
+    display: none;
+  }
+}
+
+.stats__info {
+  padding: 10px;
+  font-size: 16px;
+  text-align: left;
+  border: 2px solid #8bcc90;
+}
+
+@media (max-width: 780px) {
+  .stats__info {
+    padding: 3px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 780px) {
+  .stats__info span {
+    display: none;
+  }
+}
+
+tr:nth-child(2n + 1) {
+  background-color: #f4f9fa;
+}
+
+tr:nth-child(2n) {
+  background-color: #addbb1;
+}
+
+td:nth-child(4),
+td:nth-child(5),
+td:nth-child(6),
+td:nth-child(7) {
+  text-align: center;
+}
+
+@media (max-width: 780px) {
+  td:nth-child(1) {
+    text-align: center;
   }
 }
