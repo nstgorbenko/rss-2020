@@ -12,6 +12,7 @@ export default class CardController {
     this.card = null;
 
     this.setMainCardClickHandler = this.setMainCardClickHandler.bind(this);
+    this.playAudio = this.playAudio.bind(this);
   }
 
   render(card) {
@@ -32,5 +33,21 @@ export default class CardController {
   changeMode(mode) {
     this.mode = mode;
     this.card.changeMode(this.mode);
+  }
+
+  playAudio() {
+    this.card.sayWord();
+  }
+
+  setGameModeClickHandler(handler) {
+    this.card.setGameModeClickHandler(handler);
+  }
+
+  getName() {
+    return this.card.getName();
+  }
+
+  disable() {
+    this.card.disable();
   }
 }

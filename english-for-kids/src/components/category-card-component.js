@@ -31,11 +31,14 @@ export default class CategoryCardComponent extends AbstractComponent {
     this.item = cardInfo;
     this.mode = mode;
 
+    this.handler = null;
+
     this.sayWord = this.sayWord.bind(this);
     this.turnBack = this.turnBack.bind(this);
     this.turnFront = this.turnFront.bind(this);
+    this.gameModeClickHandler = this.gameModeClickHandler.bind(this);
 
-    this.setCardClickHandler();
+    this.setTrainModeClickHandler();
     this.setRotateBtnClickHandler();
   }
 
@@ -43,18 +46,32 @@ export default class CategoryCardComponent extends AbstractComponent {
     return createCategoryCardTemplate(this.item, this.mode);
   }
 
-  setCardClickHandler() {
-    this.getElement().querySelector('.card__front').addEventListener('click', this.sayWord);
+  setTrainModeClickHandler() {
+    this.getElement().querySelector('.card__front').addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('card__rotate-btn') || this.mode === GameMode.PLAY) {
+        return;
+      }
+      this.sayWord();
+    });
+  }
+
+  setGameModeClickHandler(handler) {
+    this.handler = handler;
+    this.getElement().querySelector('.card__front').addEventListener('click', this.gameModeClickHandler);
+  }
+
+  gameModeClickHandler() {
+    if (this.mode === GameMode.TRAIN) {
+      return;
+    }
+    this.handler(this.item.english);
   }
 
   setRotateBtnClickHandler() {
     this.getElement().querySelector('.card__rotate-btn').addEventListener('click', this.turnBack);
   }
 
-  sayWord(evt) {
-    if (evt.target.classList.contains('card__rotate-btn') || this.mode === GameMode.PLAY) {
-      return;
-    }
+  sayWord() {
     const audio = new Audio(this.item.audio);
     audio.play();
   }
@@ -75,5 +92,14 @@ export default class CategoryCardComponent extends AbstractComponent {
   changeMode(mode) {
     this.mode = mode;
     this.getElement().classList.toggle('catalog__item--game');
+  }
+
+  getName() {
+    return this.item.english;
+  }
+
+  disable() {
+    this.getElement().querySelector('.card').classList.add('card--bright');
+    this.getElement().querySelector('.card__front').removeEventListener('click', this.gameModeClickHandler);
   }
 }

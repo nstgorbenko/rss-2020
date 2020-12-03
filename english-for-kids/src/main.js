@@ -2,10 +2,9 @@ import GameController from './controllers/game-controller';
 import CardsModel from './models/cards-model';
 import CARDS from './data';
 
-const header = document.querySelector('.header');
-const main = document.querySelector('.main');
+const page = document.querySelector('.page__wrapper');
 
 const cardsModel = new CardsModel(CARDS);
-const gameController = new GameController(header, main, cardsModel);
+const gameController = new GameController(page, cardsModel);
 
 gameController.render();
