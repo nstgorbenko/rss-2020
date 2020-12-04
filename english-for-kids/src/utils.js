@@ -1,6 +1,6 @@
-import { RenderPosition } from './const';
+import { Direction, RenderPosition, SortType } from './const';
 
-export const calculateStatsPercent = (correct, wrong) => {
+export const calculateStatsPercent = ({ correct, wrong }) => {
   if (correct === 0) {
     return 0;
   }
@@ -15,6 +15,32 @@ export const createElement = (template) => {
   newElement.innerHTML = template;
 
   return newElement.firstChild;
+};
+
+export const getSortedCards = ([...cards], sortType, direction) => {
+  switch (sortType) {
+    case SortType.CATEGORY:
+    case SortType.ENGLISH:
+    case SortType.RUSSIAN:
+      if (direction === Direction.DOWN) {
+        return cards.sort((a, b) => a[sortType].localeCompare(b[sortType]));
+      }
+      return cards.sort((a, b) => b[sortType].localeCompare(a[sortType]));
+    case SortType.LEARN:
+    case SortType.CORRECT:
+    case SortType.WRONG:
+      if (direction === Direction.DOWN) {
+        return cards.sort((a, b) => a[sortType] - b[sortType]);
+      }
+      return cards.sort((a, b) => b[sortType] - a[sortType]);
+    case SortType.PERCENT:
+      if (direction === Direction.DOWN) {
+        return cards.sort((a, b) => calculateStatsPercent(a) - calculateStatsPercent(b));
+      }
+      return cards.sort((a, b) => calculateStatsPercent(b) - calculateStatsPercent(a));
+    default:
+      throw new Error(`Unknown sort type: ${sortType} and direction: ${direction}`);
+  }
 };
 
 export const render = (container, component, place = RenderPosition.BEFOREEND) => {

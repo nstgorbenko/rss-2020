@@ -652,11 +652,11 @@
   border: 5px solid transparent;
 }
 
-.stats__title--down::after {
+.stats__title[data-direction="down"]::after {
   border-top: 5px solid #000000;
 }
 
-.stats__title--up::after {
+.stats__title[data-direction="up"]::after {
   bottom: 5px;
   border-bottom: 5px solid #000000;
 }

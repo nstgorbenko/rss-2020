@@ -1,3 +1,8 @@
+export const Direction = {
+  UP: 'up',
+  DOWN: 'down',
+};
+
 export const GameMessage = {
   LOSE: 'You lose. Errors: ',
   WIN: 'You win!',
@@ -15,6 +20,16 @@ export const Sound = {
   RIGHT: './audio/right.mp3',
   WIN: './audio/win.mp3',
   WRONG: './audio/wrong.mp3',
+};
+
+export const SortType = {
+  CATEGORY: 'category',
+  ENGLISH: 'english',
+  RUSSIAN: 'russian',
+  LEARN: 'learn',
+  CORRECT: 'correct',
+  WRONG: 'wrong',
+  PERCENT: 'percent',
 };
 
 export const StatsField = {

@@ -63,7 +63,7 @@ export default class CardsModel {
       .map(({image, audio, ...rest}) => ({...rest,
         learn: 0,
         correct: 0,
-        wrong: 0
+        wrong: 0,
       }));
     this.store.setStats(this.stats);
   }
