@@ -1,9 +1,11 @@
-import CatalogController from './catalog-controller';
-import FinalMessageComponent from '../components/final-message';
-import NavigationComponent from '../components/navigation-component';
-import ToggleComponent from '../components/toggle-component';
 import ButtonsWrapperComponent from '../components/buttons-wrapper-component';
+import CatalogController from './catalog-controller';
+import FinalMessageComponent from '../components/final-message-component';
+import NavigationComponent from '../components/navigation-component';
 import StatsButtonComponent from '../components/stats-button-component';
+import StatsController from './stats-controller';
+import ToggleComponent from '../components/toggle-component';
+
 import { render } from '../utils';
 import { GameMode, MAIN_CATEGORY, RenderPosition } from '../const';
 
@@ -26,6 +28,7 @@ export default class GameController {
     this.resetGame = this.resetGame.bind(this);
     this.showStats = this.showStats.bind(this);
 
+    this.statsController = new StatsController(this.pageContainer.querySelector('.main'), this.cardsModel);
     this.cardsModel.addCategoryChangeHandler(this.categoryChangeHandler);
   }
 
@@ -87,5 +90,6 @@ export default class GameController {
 
   showStats() {
     this.catalogController.hide();
+    this.statsController.show();
   }
 }

@@ -1,5 +1,5 @@
 export const GameMessage = {
-  LOSE: 'You lose. Errors count: ',
+  LOSE: 'You lose. Errors: ',
   WIN: 'You win!',
 };
 

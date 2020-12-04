@@ -2,7 +2,8 @@ import { MAIN_CATEGORY } from '../const';
 
 export default class CardsModel {
   constructor(cards) {
-    this.allCards = cards;
+    this.allCards = [...cards];
+    this.stats = [];
     this.category = MAIN_CATEGORY;
 
     this.categoryChangeHandlers = [];
@@ -26,6 +27,19 @@ export default class CardsModel {
 
   addCategoryChangeHandler(handler) {
     this.categoryChangeHandlers.push(handler);
+  }
+
+  getStats() {
+    if (this.stats.length === 0) {
+      this.stats = this.allCards
+        .filter((card) => card.category !== MAIN_CATEGORY)
+        .map(({image, audio, ...rest}) => ({...rest,
+          learn: 0,
+          correct: 0,
+          wrong: 0
+        }));
+    }
+    return this.stats;
   }
 
   static callHandlers(handlers) {

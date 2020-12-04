@@ -9,7 +9,7 @@ const createFinalMessageTemplate = () => (
     </div>`
 );
 
-export default class FinalMessage extends AbstractComponent {
+export default class FinalMessageComponent extends AbstractComponent {
   getTemplate() {
     return createFinalMessageTemplate();
   }

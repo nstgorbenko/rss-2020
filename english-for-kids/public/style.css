@@ -694,11 +694,11 @@
   }
 }
 
-tr:nth-child(2n + 1) {
+tr:nth-child(2n) {
   background-color: #f4f9fa;
 }
 
-tr:nth-child(2n) {
+tr:nth-child(2n + 1) {
   background-color: #addbb1;
 }
 
