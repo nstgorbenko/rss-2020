@@ -6,4 +6,8 @@ export default class StatsResetComponent extends AbstractComponent {
   getTemplate() {
     return createStatsResetTemplate();
   }
+
+  setClickHandler(handler) {
+    this.getElement().addEventListener('click', handler);
+  }
 }

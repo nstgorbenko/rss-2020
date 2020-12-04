@@ -11,6 +11,8 @@ export default class StatsController {
 
     this.statsContainerComponent = null;
     this.statsTableComponent = null;
+
+    this.resetStats = this.resetStats.bind(this);
   }
 
   render() {
@@ -21,6 +23,7 @@ export default class StatsController {
     render(this.statsContainerComponent.getElement(), statsRepeatComponent);
 
     const statsResetComponent = new StatsResetComponent();
+    statsResetComponent.setClickHandler(this.resetStats);
     render(this.statsContainerComponent.getElement(), statsResetComponent);
 
     this.statsTableComponent = new StatsTableComponent();
@@ -30,17 +33,28 @@ export default class StatsController {
     render(this.container, this.statsContainerComponent);
   }
 
+  resetStats() {
+    this.cardsModel.resetStats();
+    this.update();
+  }
+
   show() {
     if (this.statsTableComponent === null) {
       this.render();
     } else {
-      const statsCards = this.cardsModel.getStats();
-      this.statsTableComponent.update(statsCards);
+      this.update();
       this.statsContainerComponent.show();
     }
   }
 
+  update() {
+    const statsCards = this.cardsModel.getStats();
+    this.statsTableComponent.update(statsCards);
+  }
+
   hide() {
-    this.statsContainerComponent.hide();
+    if (this.statsContainerComponent !== null) {
+      this.statsContainerComponent.hide();
+    }
   }
 }

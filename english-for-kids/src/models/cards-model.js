@@ -54,6 +54,10 @@ export default class CardsModel {
       return;
     }
 
+    this.resetStats();
+  }
+
+  resetStats() {
     this.stats = this.allCards
       .filter((card) => card.category !== MAIN_CATEGORY)
       .map(({image, audio, ...rest}) => ({...rest,
@@ -61,6 +65,7 @@ export default class CardsModel {
         correct: 0,
         wrong: 0
       }));
+    this.store.setStats(this.stats);
   }
 
   static callHandlers(handlers) {
