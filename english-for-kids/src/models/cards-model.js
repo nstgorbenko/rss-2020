@@ -1,8 +1,10 @@
 import { MAIN_CATEGORY } from '../const';
 
 export default class CardsModel {
-  constructor(cards) {
+  constructor(cards, store) {
     this.allCards = [...cards];
+    this.store = store;
+
     this.stats = [];
     this.category = MAIN_CATEGORY;
 
@@ -42,9 +44,16 @@ export default class CardsModel {
     }
     const updatedCard = this.stats.find(({ english }) => english === cardName);
     updatedCard[statsName] += 1;
+    this.store.setStats(this.stats);
   }
 
   setStats() {
+    const storeStats = this.store.getStats();
+    if (storeStats !== null) {
+      this.stats = storeStats;
+      return;
+    }
+
     this.stats = this.allCards
       .filter((card) => card.category !== MAIN_CATEGORY)
       .map(({image, audio, ...rest}) => ({...rest,
