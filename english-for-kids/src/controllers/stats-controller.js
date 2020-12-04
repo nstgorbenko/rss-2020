@@ -8,26 +8,39 @@ export default class StatsController {
   constructor(container, cardsModel) {
     this.container = container;
     this.cardsModel = cardsModel;
-  }
 
-  show() {
-    this.render();
+    this.statsContainerComponent = null;
+    this.statsTableComponent = null;
   }
 
   render() {
     const statsCards = this.cardsModel.getStats();
 
-    const statsContainerComponent = new StatsContainerComponent();
+    this.statsContainerComponent = new StatsContainerComponent();
     const statsRepeatComponent = new StatsRepeatComponent();
-    render(statsContainerComponent.getElement(), statsRepeatComponent);
+    render(this.statsContainerComponent.getElement(), statsRepeatComponent);
 
     const statsResetComponent = new StatsResetComponent();
-    render(statsContainerComponent.getElement(), statsResetComponent);
+    render(this.statsContainerComponent.getElement(), statsResetComponent);
 
-    const statsTableComponent = new StatsTableComponent();
-    statsTableComponent.update(statsCards);
-    render(statsContainerComponent.getElement(), statsTableComponent);
+    this.statsTableComponent = new StatsTableComponent();
+    this.statsTableComponent.update(statsCards);
+    render(this.statsContainerComponent.getElement(), this.statsTableComponent);
 
-    render(this.container, statsContainerComponent);
+    render(this.container, this.statsContainerComponent);
+  }
+
+  show() {
+    if (this.statsTableComponent === null) {
+      this.render();
+    } else {
+      const statsCards = this.cardsModel.getStats();
+      this.statsTableComponent.update(statsCards);
+      this.statsContainerComponent.show();
+    }
+  }
+
+  hide() {
+    this.statsContainerComponent.hide();
   }
 }

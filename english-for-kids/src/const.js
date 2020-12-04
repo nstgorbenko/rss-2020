@@ -17,6 +17,12 @@ export const Sound = {
   WRONG: './audio/wrong.mp3',
 };
 
+export const StatsField = {
+  LEARN: 'learn',
+  CORRECT: 'correct',
+  WRONG: 'wrong',
+};
+
 export const RenderPosition = {
   BEFOREBEGIN: 'beforebegin',
   AFTERBEGIN: 'afterbegin',

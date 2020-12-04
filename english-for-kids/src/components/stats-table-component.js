@@ -1,11 +1,11 @@
 import AbstractComponent from './abstract-component';
-import { uppercaseFirstLetter } from '../utils';
+import { calculateStatsPercent, uppercaseFirstLetter } from '../utils';
 
 const createStatsRowMarkup = ({
   category, english, russian, learn, correct, wrong,
 }) => {
   const categoryName = uppercaseFirstLetter(category);
-  const correctPercent = Math.trunc(correct / wrong) || 0;
+  const correctPercent = calculateStatsPercent(correct, wrong);
 
   return (
     `<tr>

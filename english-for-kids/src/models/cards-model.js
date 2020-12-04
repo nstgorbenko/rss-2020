@@ -31,15 +31,27 @@ export default class CardsModel {
 
   getStats() {
     if (this.stats.length === 0) {
-      this.stats = this.allCards
-        .filter((card) => card.category !== MAIN_CATEGORY)
-        .map(({image, audio, ...rest}) => ({...rest,
-          learn: 0,
-          correct: 0,
-          wrong: 0
-        }));
+      this.setStats();
     }
     return this.stats;
+  }
+
+  updateStats(cardName, statsName) {
+    if (this.stats.length === 0) {
+      this.setStats();
+    }
+    const updatedCard = this.stats.find(({ english }) => english === cardName);
+    updatedCard[statsName] += 1;
+  }
+
+  setStats() {
+    this.stats = this.allCards
+      .filter((card) => card.category !== MAIN_CATEGORY)
+      .map(({image, audio, ...rest}) => ({...rest,
+        learn: 0,
+        correct: 0,
+        wrong: 0
+      }));
   }
 
   static callHandlers(handlers) {

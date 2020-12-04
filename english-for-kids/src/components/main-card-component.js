@@ -30,6 +30,10 @@ export default class MainCardComponent extends AbstractComponent {
     return createMainCardTemplate(this.item, this.mode);
   }
 
+  getCategory() {
+    return this.item.category;
+  }
+
   setClickHandler(handler) {
     this.getElement().addEventListener('click', () => {
       handler(this.item.english);

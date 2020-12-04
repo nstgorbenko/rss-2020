@@ -5,7 +5,7 @@ import PlayButtonComponent from '../components/play-button-component';
 import RatingComponent from '../components/rating-component';
 import RatingStarComponent from '../components/rating-star-component';
 import { render, shuffleArray } from '../utils';
-import { Sound } from '../const';
+import { Sound, StatsField } from '../const';
 
 export default class CatalogController {
   constructor(container, cardsModel, mode) {
@@ -27,6 +27,7 @@ export default class CatalogController {
 
     this.takeGameStep = this.takeGameStep.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
+    this.trackLearning = this.trackLearning.bind(this);
   }
 
   render(cards) {
@@ -64,6 +65,7 @@ export default class CatalogController {
       const cardController = new CardController(cardListElement, this.cardsModel, this.mode);
       this.cards.push(cardController);
       cardController.render(card);
+      cardController.setTrainModeClickHandler(this.trackLearning);
     });
   }
 
@@ -89,22 +91,28 @@ export default class CatalogController {
   }
 
   checkAnswer(cardName) {
-    const currentCard = this.shuffledCards[this.gameCounter];
+    const currentCardName = this.shuffledCards[this.gameCounter].getName();
 
-    if (cardName === currentCard.getName()) {
+    if (cardName === currentCardName) {
       const clickedCard = this.shuffledCards.find((card) => card.getName() === cardName);
       clickedCard.disable();
 
       new Audio(Sound.RIGHT).play();
       render(this.ratingComponent.getElement(), new RatingStarComponent());
       this.gameCounter += 1;
+      this.cardsModel.updateStats(currentCardName, StatsField.CORRECT);
 
       this.checkGameEnd();
     } else {
       new Audio(Sound.WRONG).play();
       render(this.ratingComponent.getElement(), new RatingStarComponent(false));
       this.gameErrors += 1;
+      this.cardsModel.updateStats(currentCardName, StatsField.WRONG);
     }
+  }
+
+  trackLearning(cardName) {
+    this.cardsModel.updateStats(cardName, StatsField.LEARN);
   }
 
   checkGameEnd() {
@@ -132,5 +140,9 @@ export default class CatalogController {
 
   hide() {
     this.catalogComponent.hide();
+  }
+
+  show() {
+    this.catalogComponent.show();
   }
 }

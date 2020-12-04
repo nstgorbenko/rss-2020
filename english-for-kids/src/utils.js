@@ -1,5 +1,15 @@
 import { RenderPosition } from './const';
 
+export const calculateStatsPercent = (correct, wrong) => {
+  if (correct === 0) {
+    return 0;
+  }
+  if (wrong === 0) {
+    return 100;
+  }
+  return Math.trunc((correct / wrong) * 100);
+};
+
 export const createElement = (template) => {
   const newElement = document.createElement('div');
   newElement.innerHTML = template;

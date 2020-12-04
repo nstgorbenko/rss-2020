@@ -6,4 +6,12 @@ export default class StatsContainerComponent extends AbstractComponent {
   getTemplate() {
     return createStatsContainerTemplate();
   }
+
+  hide() {
+    this.getElement().classList.add('hide');
+  }
+
+  show() {
+    this.getElement().classList.remove('hide');
+  }
 }

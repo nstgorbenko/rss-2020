@@ -38,7 +38,6 @@ export default class CategoryCardComponent extends AbstractComponent {
     this.turnFront = this.turnFront.bind(this);
     this.gameModeClickHandler = this.gameModeClickHandler.bind(this);
 
-    this.setTrainModeClickHandler();
     this.setRotateBtnClickHandler();
   }
 
@@ -46,12 +45,17 @@ export default class CategoryCardComponent extends AbstractComponent {
     return createCategoryCardTemplate(this.item, this.mode);
   }
 
-  setTrainModeClickHandler() {
+  getCategory() {
+    return this.item.category;
+  }
+
+  setTrainModeClickHandler(handler) {
     this.getElement().querySelector('.card__front').addEventListener('click', (evt) => {
       if (evt.target.classList.contains('card__rotate-btn') || this.mode === GameMode.PLAY) {
         return;
       }
       this.sayWord();
+      handler(this.item.english);
     });
   }
 

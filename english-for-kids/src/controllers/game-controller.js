@@ -27,6 +27,7 @@ export default class GameController {
     this.finishGame = this.finishGame.bind(this);
     this.resetGame = this.resetGame.bind(this);
     this.showStats = this.showStats.bind(this);
+    this.showGameField = this.showGameField.bind(this);
 
     this.statsController = new StatsController(this.pageContainer.querySelector('.main'), this.cardsModel);
     this.cardsModel.addCategoryChangeHandler(this.categoryChangeHandler);
@@ -60,6 +61,7 @@ export default class GameController {
   }
 
   pageChangeHandler(newPage) {
+    this.showGameField();
     this.cardsModel.setCategory(newPage);
   }
 
@@ -89,7 +91,13 @@ export default class GameController {
   }
 
   showStats() {
+    this.navigationComponent.update();
     this.catalogController.hide();
     this.statsController.show();
+  }
+
+  showGameField() {
+    this.catalogController.show();
+    this.statsController.hide();
   }
 }

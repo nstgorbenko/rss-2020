@@ -43,6 +43,12 @@ export default class CardController {
     this.card.setGameModeClickHandler(handler);
   }
 
+  setTrainModeClickHandler(handler) {
+    if (this.card.getCategory() !== MAIN_CATEGORY) {
+      this.card.setTrainModeClickHandler(handler);
+    }
+  }
+
   getName() {
     return this.card.getName();
   }
