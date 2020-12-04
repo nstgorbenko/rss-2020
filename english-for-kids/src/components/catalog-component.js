@@ -25,4 +25,12 @@ export default class CatalogComponent extends AbstractComponent {
     const shownTitle = title !== MAIN_CATEGORY ? title : '';
     this.getElement().querySelector('.catalog__title').textContent = shownTitle;
   }
+
+  hide() {
+    this.getElement().classList.add('hide');
+  }
+
+  show() {
+    this.getElement().classList.remove('hide');
+  }
 }

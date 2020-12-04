@@ -129,4 +129,8 @@ export default class CatalogController {
     this.gameCounter = 0;
     this.gameErrors = 0;
   }
+
+  hide() {
+    this.catalogComponent.hide();
+  }
 }

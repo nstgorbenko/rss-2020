@@ -41,6 +41,11 @@
   padding-top: 10px;
 }
 
+.header__buttons {
+  display: flex;
+  align-items: center;
+}
+
 .header__title {
   margin: 0;
   font-size: 60px;
@@ -208,8 +213,8 @@
 .btn {
   display: block;
   box-sizing: border-box;
-  width: 130px;
-  height: 60px;
+  width: 120px;
+  height: 40px;
   margin: 0 auto;
   padding: 10px;
   font-size: 1rem;
@@ -218,7 +223,7 @@
   color: white;
   background-color: #009688;
   border: none;
-  border-radius: 60px;
+  border-radius: 40px;
   transition: all 0.5s;
   cursor : pointer;
   outline: none;
@@ -232,10 +237,14 @@
   display: block;
   width: auto;
   height: 40px;
-  margin: 0 0 10px 20px;
+  margin: 0;
   border-radius: 40px;
-  color: #000000;
-  background-color: #8bcc90;
+  color: #ffffff;
+  background-color: #4ba64f;
+}
+
+.btn--stats ~ .btn--stats {
+  margin: 10px 0 0 10px;
 }
 
 .btn--stats:hover {
@@ -243,7 +252,7 @@
 }
 
 .btn--stats:active {
-  background-color: #4aa851;
+  background-color: #3b823e;
 }
 
 .btn--round {
@@ -257,6 +266,10 @@
 
 .btn--absent {
   display: none;
+}
+
+.toggle {
+  margin-left: 10px;
 }
 
 .toggle__btn {
@@ -273,10 +286,10 @@
   position: absolute;
   left: 5px;
   top: 5px;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   background-color: white;
-  border-radius: 100%;
+  border-radius: 50%;
   transition: all 0.5s;
 }
 
@@ -289,7 +302,7 @@
 }
 
 .toggle__item:checked ~ .toggle__btn .toggle__slider {
-  transform: translateX(70px);
+  transform: translateX(80px);
 }
 
 .toggle__item:checked ~ .toggle__btn .toggle__state--on {
@@ -594,8 +607,16 @@
 
 .stats {
   display: flex;
+  align-items: flex-end;
   justify-content: flex-end;
   flex-wrap: wrap;
+}
+
+.stats__wrapper {
+  width: 100%;
+  margin-top: 10px;
+  flex-shrink: 0;
+  align-self: flex-start;
   overflow: auto;
 }
 
@@ -692,4 +713,8 @@ td:nth-child(7) {
   td:nth-child(1) {
     text-align: center;
   }
+}
+
+.hide {
+  display: none;
 }
