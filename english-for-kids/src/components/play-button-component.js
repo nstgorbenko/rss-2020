@@ -23,7 +23,7 @@ export default class PlayButtonComponent extends AbstractComponent {
     this.getElement().classList.toggle('btn--hide');
   }
 
-  update(title) {
+  update(title = MAIN_CATEGORY) {
     const isHide = title === MAIN_CATEGORY;
     const isAlreadyHide = this.getElement().classList.contains('btn--absent');
 

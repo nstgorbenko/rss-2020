@@ -28,6 +28,7 @@ export default class CatalogController {
     this.takeGameStep = this.takeGameStep.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
     this.trackLearning = this.trackLearning.bind(this);
+    // this.resetStartedGame = this.resetStartedGame.bind(this);
   }
 
   render(cards) {
@@ -136,6 +137,12 @@ export default class CatalogController {
     this.isGameOn = false;
     this.gameCounter = 0;
     this.gameErrors = 0;
+  }
+
+  resetStartedGame() {
+    this.ratingComponent.clear();
+    this.playButtonComponent.update();
+    this.resetGameData();
   }
 
   hide() {

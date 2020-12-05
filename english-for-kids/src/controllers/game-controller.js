@@ -92,6 +92,7 @@ export default class GameController {
 
   showStats() {
     this.navigationComponent.update();
+    this.catalogController.resetStartedGame();
     this.catalogController.hide();
     this.statsController.show();
   }
