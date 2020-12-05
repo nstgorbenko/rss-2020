@@ -1,7 +1,7 @@
 import MainCardComponent from '../components/main-card-component';
 import CategoryCardComponent from '../components/category-card-component';
 import { render } from '../utils';
-import { MAIN_CATEGORY } from '../const';
+import { Category } from '../const';
 
 export default class CardController {
   constructor(container, cardsModel, mode) {
@@ -16,7 +16,7 @@ export default class CardController {
   }
 
   render(card) {
-    if (card.category === MAIN_CATEGORY) {
+    if (card.category === Category.MAIN) {
       this.card = new MainCardComponent(card, this.mode);
       this.card.setClickHandler(this.setMainCardClickHandler);
       render(this.container, this.card);
@@ -44,7 +44,7 @@ export default class CardController {
   }
 
   setTrainModeClickHandler(handler) {
-    if (this.card.getCategory() !== MAIN_CATEGORY) {
+    if (this.card.getCategory() !== Category.MAIN) {
       this.card.setTrainModeClickHandler(handler);
     }
   }

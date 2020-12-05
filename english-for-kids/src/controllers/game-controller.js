@@ -7,7 +7,7 @@ import StatsController from './stats-controller';
 import ToggleComponent from '../components/toggle-component';
 
 import { render } from '../utils';
-import { GameMode, MAIN_CATEGORY, RenderPosition } from '../const';
+import { GameMode, Category, RenderPosition } from '../const';
 
 export default class GameController {
   constructor(pageContainer, cardsModel) {
@@ -89,7 +89,7 @@ export default class GameController {
   resetGame() {
     this.finalMessageComponent.hide();
     this.toggleComponent.triggerClick();
-    this.cardsModel.setCategory(MAIN_CATEGORY);
+    this.cardsModel.setCategory(Category.MAIN);
     this.changeGameMode();
   }
 

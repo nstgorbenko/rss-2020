@@ -1,8 +1,8 @@
 import AbstractComponent from './abstract-component';
-import { MAIN_CATEGORY, STATS_CATEGORY } from '../const';
+import { Category } from '../const';
 
 const createCatalogTemplate = (title) => {
-  const shownTitle = title !== MAIN_CATEGORY ? title : '';
+  const shownTitle = title !== Category.MAIN ? title : '';
   return (
     `<div class="catalog">
       <h2 class="catalog__title">${shownTitle}</h2>
@@ -22,7 +22,7 @@ export default class CatalogComponent extends AbstractComponent {
   }
 
   update(title) {
-    const shownTitle = title === MAIN_CATEGORY || title === STATS_CATEGORY ? '' : title;
+    const shownTitle = title === Category.MAIN || title === Category.STATS ? '' : title;
     this.getElement().querySelector('.catalog__title').textContent = shownTitle;
   }
 

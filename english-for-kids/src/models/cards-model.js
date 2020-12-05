@@ -1,4 +1,4 @@
-import { MAIN_CATEGORY, STATS_CATEGORY } from '../const';
+import { Category } from '../const';
 import { getDifficultWords } from '../utils';
 
 export default class CardsModel {
@@ -7,13 +7,13 @@ export default class CardsModel {
     this.store = store;
 
     this.stats = [];
-    this.category = MAIN_CATEGORY;
+    this.category = Category.MAIN;
 
     this.categoryChangeHandlers = [];
   }
 
   get() {
-    if (this.category === STATS_CATEGORY) {
+    if (this.category === Category.STATS) {
       return getDifficultWords(this.stats);
     }
     return this.allCards.filter(({ category }) => category === this.category);
@@ -63,7 +63,7 @@ export default class CardsModel {
 
   resetStats() {
     this.stats = this.allCards
-      .filter((card) => card.category !== MAIN_CATEGORY)
+      .filter((card) => card.category !== Category.MAIN)
       .map((card) => ({...card,
         learn: 0,
         correct: 0,

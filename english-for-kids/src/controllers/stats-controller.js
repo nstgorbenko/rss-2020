@@ -39,7 +39,7 @@ export default class StatsController {
   }
 
   setRepeatBtnClickHandler(handler) {
-    this.statsRepeatComponent.setClickHandler(handler)
+    this.statsRepeatComponent.setClickHandler(handler);
   }
 
   show() {

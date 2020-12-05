@@ -1,3 +1,8 @@
+export const Category = {
+  MAIN: 'main',
+  STATS: 'stats',
+};
+
 export const Direction = {
   UP: 'up',
   DOWN: 'down',
@@ -12,10 +17,6 @@ export const GameMode = {
   PLAY: 'play',
   TRAIN: 'train',
 };
-
-export const MAIN_CATEGORY = 'main';
-
-export const STATS_CATEGORY = 'stats';
 
 export const Sound = {
   LOSE: './audio/lose.mp3',

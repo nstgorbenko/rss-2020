@@ -1,11 +1,13 @@
 import AbstractComponent from './abstract-component';
-import { MAIN_CATEGORY } from '../const';
+import { Category } from '../const';
 
 const createPlayButtonTemplate = (title) => {
-  const absentClass = title === MAIN_CATEGORY ? 'btn--absent' : '';
+  const absentClass = title === Category.MAIN ? 'btn--absent' : '';
 
   return (
-    `<button class="btn btn--round btn--hide ${absentClass} play-btn" type="button">Play</button>`
+    `<div class="btn-field">
+      <button class="btn btn--round btn--hide ${absentClass} play-btn" type="button">Play</button>
+    </div>`
   );
 };
 
@@ -20,22 +22,22 @@ export default class PlayButtonComponent extends AbstractComponent {
   }
 
   changeView() {
-    this.getElement().classList.toggle('btn--hide');
+    this.getElement().querySelector('button').classList.toggle('btn--hide');
   }
 
-  update(title = MAIN_CATEGORY) {
-    const isHide = title === MAIN_CATEGORY || title === '';
-    const isAlreadyHide = this.getElement().classList.contains('btn--absent');
+  update(title = Category.MAIN) {
+    const isHide = title === Category.MAIN || title === '';
+    const isAlreadyHide = this.getElement().querySelector('button').classList.contains('btn--absent');
 
-    this.getElement().classList.remove('play-btn--active');
+    this.getElement().querySelector('button').classList.remove('play-btn--active');
     if ((isAlreadyHide && !isHide) || (!isAlreadyHide && isHide)) {
-      this.getElement().classList.toggle('btn--absent');
+      this.getElement().querySelector('button').classList.toggle('btn--absent');
     }
   }
 
   setClickHandler(handler) {
-    this.getElement().addEventListener('click', () => {
-      this.getElement().classList.add('play-btn--active');
+    this.getElement().querySelector('button').addEventListener('click', () => {
+      this.getElement().querySelector('button').classList.add('play-btn--active');
       handler();
     });
   }

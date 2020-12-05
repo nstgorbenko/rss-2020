@@ -1,4 +1,4 @@
-import { Direction, STATS_CATEGORY, RenderPosition, SortType } from './const';
+import { Category, Direction, RenderPosition, SortType } from './const';
 
 export const calculateStatsPercent = ({ correct, wrong }) => {
   if (correct === 0) {
@@ -21,7 +21,7 @@ export const getDifficultWords = ([...cards]) => {
   return cards
     .filter(({ wrong }) => wrong !== 0)
     .sort((a, b) => calculateStatsPercent(a) - calculateStatsPercent(b))
-    .map((card) => ({...card, category: STATS_CATEGORY}))
+    .map((card) => ({...card, category: Category.STATS}))
     .slice(0, 8);
 }
 

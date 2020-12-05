@@ -1,6 +1,6 @@
 import AbstractComponent from './abstract-component';
 import { uppercaseFirstLetter } from '../utils';
-import { MAIN_CATEGORY } from '../const';
+import { Category } from '../const';
 
 const ACTIVE_LINK_CLASS = 'navigation__item--active';
 
@@ -40,7 +40,7 @@ export default class NavigationComponent extends AbstractComponent {
     super();
 
     this.links = links;
-    this.category = MAIN_CATEGORY;
+    this.category = Category.MAIN;
 
     this.setToggleClickHandler();
     this.closeNavigation = this.closeNavigation.bind(this);
