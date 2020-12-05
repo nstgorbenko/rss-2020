@@ -1,14 +1,21 @@
-import { MAIN_CATEGORY } from '../const';
+import { Category } from '../const';
+import { getDifficultWords } from '../utils';
 
 export default class CardsModel {
-  constructor(cards) {
-    this.allCards = cards;
-    this.category = MAIN_CATEGORY;
+  constructor(cards, store) {
+    this.allCards = [...cards];
+    this.store = store;
+
+    this.stats = [];
+    this.category = Category.MAIN;
 
     this.categoryChangeHandlers = [];
   }
 
   get() {
+    if (this.category === Category.STATS) {
+      return getDifficultWords(this.stats);
+    }
     return this.allCards.filter(({ category }) => category === this.category);
   }
 
@@ -26,6 +33,43 @@ export default class CardsModel {
 
   addCategoryChangeHandler(handler) {
     this.categoryChangeHandlers.push(handler);
+  }
+
+  getStats() {
+    if (this.stats.length === 0) {
+      this.setStats();
+    }
+    return this.stats;
+  }
+
+  updateStats(cardName, statsName) {
+    if (this.stats.length === 0) {
+      this.setStats();
+    }
+    const updatedCard = this.stats.find(({ english }) => english === cardName);
+    updatedCard[statsName] += 1;
+    this.store.setStats(this.stats);
+  }
+
+  setStats() {
+    const storeStats = this.store.getStats();
+    if (storeStats !== null) {
+      this.stats = storeStats;
+      return;
+    }
+
+    this.resetStats();
+  }
+
+  resetStats() {
+    this.stats = this.allCards
+      .filter((card) => card.category !== Category.MAIN)
+      .map((card) => ({...card,
+        learn: 0,
+        correct: 0,
+        wrong: 0,
+      }));
+    this.store.setStats(this.stats);
   }
 
   static callHandlers(handlers) {

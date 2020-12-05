@@ -1,6 +1,6 @@
 import AbstractComponent from './abstract-component';
 import { uppercaseFirstLetter } from '../utils';
-import { MAIN_CATEGORY } from '../const';
+import { Category } from '../const';
 
 const ACTIVE_LINK_CLASS = 'navigation__item--active';
 
@@ -40,7 +40,7 @@ export default class NavigationComponent extends AbstractComponent {
     super();
 
     this.links = links;
-    this.category = MAIN_CATEGORY;
+    this.category = Category.MAIN;
 
     this.setToggleClickHandler();
     this.closeNavigation = this.closeNavigation.bind(this);
@@ -63,9 +63,14 @@ export default class NavigationComponent extends AbstractComponent {
   }
 
   update(newCategory) {
-    const newLinkElement = this.getElement().querySelector(`.navigation__item--${newCategory}`);
-    this.changeActiveLink(newLinkElement);
-    this.category = newCategory;
+    if (!newCategory) {
+      this.category = '';
+      this.changeActiveLink();
+    } else {
+      const newLinkElement = this.getElement().querySelector(`.navigation__item--${newCategory}`);
+      this.changeActiveLink(newLinkElement);
+      this.category = newCategory;
+    }
   }
 
   setToggleClickHandler() {
@@ -76,8 +81,12 @@ export default class NavigationComponent extends AbstractComponent {
 
   changeActiveLink(newLink) {
     const lastActiveLink = this.getElement().querySelector(`.${ACTIVE_LINK_CLASS}`);
-    lastActiveLink.classList.remove(ACTIVE_LINK_CLASS);
-    newLink.classList.add(ACTIVE_LINK_CLASS);
+    if (lastActiveLink) {
+      lastActiveLink.classList.remove(ACTIVE_LINK_CLASS);
+    }
+    if (newLink) {
+      newLink.classList.add(ACTIVE_LINK_CLASS);
+    }
   }
 
   closeNavigation(evt) {
