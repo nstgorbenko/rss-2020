@@ -1,4 +1,4 @@
-import { Direction, RenderPosition, SortType } from './const';
+import { Direction, STATS_CATEGORY, RenderPosition, SortType } from './const';
 
 export const calculateStatsPercent = ({ correct, wrong }) => {
   if (correct === 0) {
@@ -7,7 +7,7 @@ export const calculateStatsPercent = ({ correct, wrong }) => {
   if (wrong === 0) {
     return 100;
   }
-  return Math.trunc((correct / wrong) * 100);
+  return Math.trunc((correct / (correct + wrong)) * 100);
 };
 
 export const createElement = (template) => {
@@ -16,6 +16,14 @@ export const createElement = (template) => {
 
   return newElement.firstChild;
 };
+
+export const getDifficultWords = ([...cards]) => {
+  return cards
+    .filter(({ wrong }) => wrong !== 0)
+    .sort((a, b) => calculateStatsPercent(a) - calculateStatsPercent(b))
+    .map((card) => ({...card, category: STATS_CATEGORY}))
+    .slice(0, 8);
+}
 
 export const getSortedCards = ([...cards], sortType, direction) => {
   switch (sortType) {

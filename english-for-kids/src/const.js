@@ -15,6 +15,8 @@ export const GameMode = {
 
 export const MAIN_CATEGORY = 'main';
 
+export const STATS_CATEGORY = 'stats';
+
 export const Sound = {
   LOSE: './audio/lose.mp3',
   RIGHT: './audio/right.mp3',

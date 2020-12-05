@@ -28,7 +28,6 @@ export default class CatalogController {
     this.takeGameStep = this.takeGameStep.bind(this);
     this.checkAnswer = this.checkAnswer.bind(this);
     this.trackLearning = this.trackLearning.bind(this);
-    // this.resetStartedGame = this.resetStartedGame.bind(this);
   }
 
   render(cards) {
@@ -48,7 +47,7 @@ export default class CatalogController {
 
   update(cards, mode) {
     this.mode = mode;
-    const title = cards[0].category;
+    const title = cards.length !== 0 ? cards[0].category : '';
 
     this.ratingComponent.clear();
     this.catalogComponent.update(title);

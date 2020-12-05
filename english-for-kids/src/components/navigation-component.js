@@ -64,6 +64,7 @@ export default class NavigationComponent extends AbstractComponent {
 
   update(newCategory) {
     if (!newCategory) {
+      this.category = '';
       this.changeActiveLink();
     } else {
       const newLinkElement = this.getElement().querySelector(`.navigation__item--${newCategory}`);

@@ -35,7 +35,7 @@ export default class MainCardComponent extends AbstractComponent {
   }
 
   setClickHandler(handler) {
-    this.getElement().addEventListener('click', () => {
+    this.getElement().querySelector('.card__front').addEventListener('click', () => {
       handler(this.item.english);
     });
   }

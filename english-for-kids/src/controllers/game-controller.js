@@ -16,6 +16,7 @@ export default class GameController {
 
     this.mode = GameMode.TRAIN;
 
+    this.statsController = null;
     this.catalogController = null;
     this.navigationComponent = null;
     this.finalMessageComponent = null;
@@ -29,7 +30,6 @@ export default class GameController {
     this.showStats = this.showStats.bind(this);
     this.showGameField = this.showGameField.bind(this);
 
-    this.statsController = new StatsController(this.pageContainer.querySelector('.main'), this.cardsModel);
     this.cardsModel.addCategoryChangeHandler(this.categoryChangeHandler);
   }
 
@@ -58,6 +58,9 @@ export default class GameController {
     render(this.pageContainer.querySelector('.header'), buttonsWrapperComponent);
     this.catalogController.render(cards);
     render(this.pageContainer, this.finalMessageComponent);
+
+    this.statsController = new StatsController(this.pageContainer.querySelector('.main'), this.cardsModel);
+    this.statsController.setRepeatBtnClickHandler(this.pageChangeHandler);
   }
 
   pageChangeHandler(newPage) {
@@ -67,7 +70,7 @@ export default class GameController {
 
   categoryChangeHandler() {
     const cards = this.cardsModel.get();
-    const newLink = cards[0].category;
+    const newLink = cards.length !== 0 ? cards[0].category : '';
 
     this.catalogController.update(cards, this.mode);
     this.navigationComponent.update(newLink);

@@ -11,6 +11,7 @@ export default class StatsController {
 
     this.statsContainerComponent = null;
     this.statsTableComponent = null;
+    this.statsRepeatComponent = new StatsRepeatComponent();
 
     this.resetStats = this.resetStats.bind(this);
   }
@@ -19,8 +20,7 @@ export default class StatsController {
     const statsCards = this.cardsModel.getStats();
 
     this.statsContainerComponent = new StatsContainerComponent();
-    const statsRepeatComponent = new StatsRepeatComponent();
-    render(this.statsContainerComponent.getElement(), statsRepeatComponent);
+    render(this.statsContainerComponent.getElement(), this.statsRepeatComponent);
 
     const statsResetComponent = new StatsResetComponent();
     statsResetComponent.setClickHandler(this.resetStats);
@@ -36,6 +36,10 @@ export default class StatsController {
   resetStats() {
     this.cardsModel.resetStats();
     this.update();
+  }
+
+  setRepeatBtnClickHandler(handler) {
+    this.statsRepeatComponent.setClickHandler(handler)
   }
 
   show() {
