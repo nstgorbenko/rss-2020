@@ -23,6 +23,7 @@ export default class PlayButtonComponent extends AbstractComponent {
 
   changeView() {
     this.getElement().querySelector('button').classList.toggle('btn--hide');
+    this.getElement().querySelector('button').classList.remove('play-btn--active');
   }
 
   update(title = Category.MAIN) {

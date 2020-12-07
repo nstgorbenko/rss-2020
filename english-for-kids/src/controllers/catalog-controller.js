@@ -72,7 +72,9 @@ export default class CatalogController {
   changeMode(mode) {
     this.mode = mode;
     this.playButtonComponent.changeView();
+    this.ratingComponent.clear();
     this.cards.forEach((card) => card.changeMode(this.mode));
+    this.resetGameData();
   }
 
   takeGameStep() {

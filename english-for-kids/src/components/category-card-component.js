@@ -96,6 +96,7 @@ export default class CategoryCardComponent extends AbstractComponent {
   changeMode(mode) {
     this.mode = mode;
     this.getElement().classList.toggle('catalog__item--game');
+    this.getElement().querySelector('.card').classList.remove('card--bright');
   }
 
   getName() {
