@@ -1,13 +1,13 @@
 import AbstractComponent from './abstract-component';
 
-const createStatsResetTemplate = () => ('<button class="btn btn--stats btn--reset" type="button">Reset statistics</button>');
+const createStatsResetTemplate = (): string => ('<button class="btn btn--stats btn--reset" type="button">Reset statistics</button>');
 
 export default class StatsResetComponent extends AbstractComponent {
-  getTemplate() {
+  getTemplate(): string {
     return createStatsResetTemplate();
   }
 
-  setClickHandler(handler) {
+  setClickHandler(handler: () => void): void {
     this.getElement().addEventListener('click', handler);
   }
 }

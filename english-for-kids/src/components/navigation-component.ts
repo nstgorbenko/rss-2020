@@ -1,21 +1,21 @@
 import AbstractComponent from './abstract-component';
-import { uppercaseFirstLetter } from '../utils';
 import { Category } from '../const';
+import { uppercaseFirstLetter } from '../utils';
 
 const ACTIVE_LINK_CLASS = 'navigation__item--active';
 
-const createNavigationLinkMarkup = (link, activeCategory) => {
-  const linkName = uppercaseFirstLetter(link);
+const createNavigationLinkMarkup = (link: string, activeCategory: string): string => {
+  const linkName: string = uppercaseFirstLetter(link);
   const linkClass = `navigation__item--${link}`;
-  const activeLinkClass = link === activeCategory ? ACTIVE_LINK_CLASS : '';
+  const activeLinkClass: string = link === activeCategory ? ACTIVE_LINK_CLASS : '';
 
   return (
     `<li class="navigation__item ${linkClass} ${activeLinkClass}" data-name="${link}">${linkName}</li>`
   );
 };
 
-const createNavigationTemplate = (links, activeCategory) => {
-  const navigationLinksMarkup = links
+const createNavigationTemplate = (links: Array<string>, activeCategory: string) => {
+  const navigationLinksMarkup: string = links
     .map((link) => createNavigationLinkMarkup(link, activeCategory))
     .join('\n');
 
@@ -36,9 +36,12 @@ const createNavigationTemplate = (links, activeCategory) => {
 };
 
 export default class NavigationComponent extends AbstractComponent {
-  constructor(links) {
-    super();
+  category: string;
 
+  constructor(
+    public links: Array<string>) {
+
+    super();
     this.links = links;
     this.category = Category.MAIN;
 
@@ -46,41 +49,43 @@ export default class NavigationComponent extends AbstractComponent {
     this.closeNavigation = this.closeNavigation.bind(this);
   }
 
-  getTemplate() {
+  getTemplate(): string {
     return createNavigationTemplate(this.links, this.category);
   }
 
-  setLinkClickHandler(handler) {
-    this.getElement().querySelector('.navigation__list').addEventListener('click', (evt) => {
-      if (evt.target.dataset.name === this.category || evt.target.tagName !== 'LI') {
+  setLinkClickHandler(handler: (category: string) => void): void {
+    this.getElement().querySelector('.navigation__list').addEventListener('click', (evt: Event) => {
+      const target = evt.target as HTMLElement;
+
+      if (target.dataset.name === this.category || target.tagName !== 'LI') {
         return;
       }
 
-      this.changeActiveLink(evt.target);
-      this.category = evt.target.dataset.name;
+      this.changeActiveLink(target);
+      this.category = target.dataset.name;
       handler(this.category);
     });
   }
 
-  update(newCategory) {
+  update(newCategory?: string): void {
     if (!newCategory) {
       this.category = '';
       this.changeActiveLink();
     } else {
-      const newLinkElement = this.getElement().querySelector(`.navigation__item--${newCategory}`);
+      const newLinkElement = this.getElement().querySelector(`.navigation__item--${newCategory}`) as HTMLElement;
       this.changeActiveLink(newLinkElement);
       this.category = newCategory;
     }
   }
 
-  setToggleClickHandler() {
+  setToggleClickHandler(): void {
     this.getElement().querySelector('.burger__item').addEventListener('click', () => {
       document.addEventListener('click', this.closeNavigation);
     });
   }
 
-  changeActiveLink(newLink) {
-    const lastActiveLink = this.getElement().querySelector(`.${ACTIVE_LINK_CLASS}`);
+  changeActiveLink(newLink?: HTMLElement): void {
+    const lastActiveLink: HTMLElement = this.getElement().querySelector(`.${ACTIVE_LINK_CLASS}`);
     if (lastActiveLink) {
       lastActiveLink.classList.remove(ACTIVE_LINK_CLASS);
     }
@@ -89,16 +94,16 @@ export default class NavigationComponent extends AbstractComponent {
     }
   }
 
-  closeNavigation(evt) {
-    const ignoredClasses = ['navigation__wrapper', 'navigation__list', 'burger__item', 'burger__btn', 'burger__line'];
-    const isIgnoredElement = ignoredClasses
-      .some((ignoredClass) => evt.target.classList.contains(ignoredClass));
+  closeNavigation(evt: Event): void {
+    const ignoredClasses: Array<string> = ['navigation__wrapper', 'navigation__list', 'burger__item', 'burger__btn', 'burger__line'];
+    const isIgnoredElement: boolean = ignoredClasses
+      .some((ignoredClass) => (<HTMLElement> evt.target).classList.contains(ignoredClass));
 
     if (isIgnoredElement) {
       return;
     }
 
-    this.getElement().querySelector('.burger__item').checked = false;
+    (<HTMLInputElement> this.getElement().querySelector('.burger__item')).checked = false;
     document.removeEventListener('click', this.closeNavigation);
   }
 }

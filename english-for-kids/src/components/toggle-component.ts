@@ -1,6 +1,6 @@
 import AbstractComponent from './abstract-component';
 
-const createToggleTemplate = () => (
+const createToggleTemplate = (): string => (
   `<div class="toggle">
     <input class="toggle__item visually-hidden" id="game-toggle" type="checkbox">
     <label class="btn toggle__btn" for="game-toggle">
@@ -11,15 +11,15 @@ const createToggleTemplate = () => (
   </div>`);
 
 export default class ToggleComponent extends AbstractComponent {
-  getTemplate() {
+  getTemplate(): string {
     return createToggleTemplate();
   }
 
-  setClickHandler(handler) {
+  setClickHandler(handler: () => void): void {
     this.getElement().querySelector('.toggle__item').addEventListener('change', handler);
   }
 
-  triggerClick() {
-    this.getElement().querySelector('.toggle__item').checked = false;
+  triggerClick(): void {
+    (<HTMLInputElement> this.getElement().querySelector('.toggle__item')).checked = false;
   }
 }

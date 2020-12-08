@@ -1,7 +1,7 @@
 import AbstractComponent from './abstract-component';
 import { GameMessage, Sound } from '../const';
 
-const createFinalMessageTemplate = () => (
+const createFinalMessageTemplate = ():string => (
   `<div class="message">
       <div class="message__wrapper">
         <div class="message__text"></div>
@@ -10,21 +10,21 @@ const createFinalMessageTemplate = () => (
 );
 
 export default class FinalMessageComponent extends AbstractComponent {
-  getTemplate() {
+  getTemplate(): string {
     return createFinalMessageTemplate();
   }
 
-  show(errorsCount) {
-    const message = errorsCount ? `${GameMessage.LOSE}${errorsCount}` : GameMessage.WIN;
-    const messageClass = errorsCount ? 'message--lose' : 'message--win';
-    const audioMessage = errorsCount ? Sound.LOSE : Sound.WIN;
+  show(errorsCount: number): void {
+    const message: string = errorsCount ? `${GameMessage.LOSE}${errorsCount}` : GameMessage.WIN;
+    const messageClass: string = errorsCount ? 'message--lose' : 'message--win';
+    const audioMessage: Sound = errorsCount ? Sound.LOSE : Sound.WIN;
 
     this.getElement().querySelector('.message__text').textContent = message;
     this.getElement().classList.add('message--show', `${messageClass}`);
     new Audio(audioMessage).play();
   }
 
-  hide() {
+  hide(): void {
     this.getElement().className = 'message';
   }
 }

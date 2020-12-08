@@ -1,6 +1,8 @@
+import AbstractComponent from './components/abstract-component';
 import { Category, Direction, RenderPosition, SortType } from './const';
+import { StatsCardType } from './types';
 
-export const calculateStatsPercent = ({ correct, wrong }) => {
+export const calculateStatsPercent = ({ correct, wrong }: StatsCardType): number => {
   if (correct === 0) {
     return 0;
   }
@@ -10,14 +12,14 @@ export const calculateStatsPercent = ({ correct, wrong }) => {
   return Math.trunc((correct / (correct + wrong)) * 100);
 };
 
-export const createElement = (template) => {
+export const createElement = (template: string): HTMLElement => {
   const newElement = document.createElement('div');
   newElement.innerHTML = template;
 
-  return newElement.firstChild;
+  return newElement.firstChild as HTMLElement;
 };
 
-export const getDifficultWords = ([...cards]) => {
+export const getDifficultWords = ([...cards]: Array<StatsCardType>): Array<StatsCardType> => {
   return cards
     .filter(({ wrong }) => wrong !== 0)
     .sort((a, b) => calculateStatsPercent(a) - calculateStatsPercent(b))
@@ -25,7 +27,7 @@ export const getDifficultWords = ([...cards]) => {
     .slice(0, 8);
 }
 
-export const getSortedCards = ([...cards], sortType, direction) => {
+export const getSortedCards = ([...cards]: Array<StatsCardType>, sortType: SortType, direction: Direction): Array<StatsCardType> | never => {
   switch (sortType) {
     case SortType.CATEGORY:
     case SortType.ENGLISH:
@@ -51,7 +53,7 @@ export const getSortedCards = ([...cards], sortType, direction) => {
   }
 };
 
-export const render = (container, component, place = RenderPosition.BEFOREEND) => {
+export const render = (container: HTMLElement, component: AbstractComponent, place: RenderPosition = RenderPosition.BEFOREEND): void | never => {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
       container.prepend(component.getElement());
@@ -67,7 +69,7 @@ export const render = (container, component, place = RenderPosition.BEFOREEND) =
   }
 };
 
-export const shuffleArray = (array) => {
+export const shuffleArray = <T>(array: Array<T>): Array<T> => {
   const result = [...array];
   for (let i = result.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -77,7 +79,7 @@ export const shuffleArray = (array) => {
   return result;
 };
 
-export const uppercaseFirstLetter = (string) => {
+export const uppercaseFirstLetter = (string: string): string => {
   if (!string) {
     return string;
   }

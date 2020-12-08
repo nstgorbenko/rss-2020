@@ -8,7 +8,7 @@ module.exports = (env, options) => {
     mode: options.mode,
     devtool: isProduction ? false : 'source-map',
     entry: {
-      main: './src/main.js',
+      main: './src/main.ts',
     },
     output: {
       path: projectPath,
@@ -24,19 +24,16 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.ts$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env']
-            }
+            loader: 'ts-loader',
           }
         }
       ]
     },
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js', '.ts']
     },
   }
 

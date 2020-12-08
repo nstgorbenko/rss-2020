@@ -1,9 +1,17 @@
+import { CardType, StatsCardType } from '../types';
 import { Category } from '../const';
 import { getDifficultWords } from '../utils';
+import Store from '../store';
 
 export default class CardsModel {
-  constructor(cards, store) {
-    this.allCards = [...cards];
+  stats: Array<StatsCardType>;
+  category: string;
+  categoryChangeHandlers: Array<() => void>;
+
+  constructor(
+    public allCards: Array<CardType>,
+    public store: Store) {
+    this.allCards = [...allCards];
     this.store = store;
 
     this.stats = [];
@@ -12,47 +20,47 @@ export default class CardsModel {
     this.categoryChangeHandlers = [];
   }
 
-  get() {
+  get(): Array<StatsCardType> | Array<CardType> {
     if (this.category === Category.STATS) {
       return getDifficultWords(this.stats);
     }
     return this.allCards.filter(({ category }) => category === this.category);
   }
 
-  getCategories() {
+  getCategories(): Array<string> {
     const categoriesSet = this.allCards
-      .reduce((categories, card) => categories.add(card.category), new Set());
+      .reduce((categories, card) => categories.add(card.category), new Set()) as Set<string>;
 
     return Array.from(categoriesSet);
   }
 
-  setCategory(newCategory) {
+  setCategory(newCategory: string): void {
     this.category = newCategory;
     CardsModel.callHandlers(this.categoryChangeHandlers);
   }
 
-  addCategoryChangeHandler(handler) {
+  addCategoryChangeHandler(handler: () => void): void {
     this.categoryChangeHandlers.push(handler);
   }
 
-  getStats() {
+  getStats(): Array<StatsCardType> {
     if (this.stats.length === 0) {
       this.setStats();
     }
     return this.stats;
   }
 
-  updateStats(cardName, statsName) {
+  updateStats(cardName: string, statsName: string): void {
     if (this.stats.length === 0) {
       this.setStats();
     }
-    const updatedCard = this.stats.find(({ english }) => english === cardName);
+    const updatedCard: StatsCardType = this.stats.find(({ english }) => english === cardName);
     updatedCard[statsName] += 1;
     this.store.setStats(this.stats);
   }
 
-  setStats() {
-    const storeStats = this.store.getStats();
+  setStats(): void {
+    const storeStats: Array<StatsCardType> | null = this.store.getStats();
     if (storeStats !== null) {
       this.stats = storeStats;
       return;
@@ -61,7 +69,7 @@ export default class CardsModel {
     this.resetStats();
   }
 
-  resetStats() {
+  resetStats(): void {
     this.stats = this.allCards
       .filter((card) => card.category !== Category.MAIN)
       .map((card) => ({...card,
@@ -72,7 +80,7 @@ export default class CardsModel {
     this.store.setStats(this.stats);
   }
 
-  static callHandlers(handlers) {
+  static callHandlers(handlers: Array<() => void>): void {
     handlers.forEach((handler) => handler());
   }
 }
