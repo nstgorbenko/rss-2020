@@ -33,7 +33,7 @@ module.exports = (env, options) => {
       ]
     },
     resolve: {
-        extensions: [ '.tsx', '.ts', '.js']
+        extensions: ['.js', '.ts']
     },
   }
 

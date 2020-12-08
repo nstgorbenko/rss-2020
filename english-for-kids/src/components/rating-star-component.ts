@@ -1,6 +1,6 @@
 import AbstractComponent from './abstract-component';
 
-const createRatingStarTemplate = (isFilled: boolean = true): string => {
+const createRatingStarTemplate = (isFilled = true): string => {
   const emptyClass: string = !isFilled ? 'rating__star--error' : '';
 
   return (

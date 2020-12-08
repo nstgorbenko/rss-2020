@@ -69,7 +69,7 @@ export const render = (container: HTMLElement, component: AbstractComponent, pla
   }
 };
 
-export const shuffleArray = (array: Array<any>): Array<any> => {
+export const shuffleArray = <T>(array: Array<T>): Array<T> => {
   const result = [...array];
   for (let i = result.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));

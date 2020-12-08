@@ -54,7 +54,7 @@ export default class CategoryCardComponent extends AbstractComponent {
     return this.item.category;
   }
 
-  setTrainModeClickHandler(handler: (cardName: string) => void) {
+  setTrainModeClickHandler(handler: (cardName: string) => void): void {
     this.getElement().querySelector('.card__front').addEventListener('click', (evt: Event) => {
       if ((<HTMLElement> evt.target).classList.contains('card__rotate-btn') || this.mode === GameMode.PLAY) {
         return;

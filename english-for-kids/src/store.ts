@@ -3,7 +3,7 @@ import { StatsCardType } from './types';
 
 export default class Store {
   constructor(
-    public storage: any) {
+    public storage: Storage) {
     this.storage = storage;
   }
 

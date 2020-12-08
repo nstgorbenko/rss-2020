@@ -2,11 +2,11 @@ import AbstractComponent from './abstract-component';
 import { Category } from '../const';
 import { uppercaseFirstLetter } from '../utils';
 
-const ACTIVE_LINK_CLASS: string = 'navigation__item--active';
+const ACTIVE_LINK_CLASS = 'navigation__item--active';
 
 const createNavigationLinkMarkup = (link: string, activeCategory: string): string => {
   const linkName: string = uppercaseFirstLetter(link);
-  const linkClass: string = `navigation__item--${link}`;
+  const linkClass = `navigation__item--${link}`;
   const activeLinkClass: string = link === activeCategory ? ACTIVE_LINK_CLASS : '';
 
   return (
