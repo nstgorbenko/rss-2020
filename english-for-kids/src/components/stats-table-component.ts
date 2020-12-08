@@ -1,13 +1,14 @@
 import AbstractComponent from './abstract-component';
 import { calculateStatsPercent, getSortedCards, uppercaseFirstLetter } from '../utils';
 import { Direction, SortType } from '../const';
+import { StatsCardType } from '../types';
 
-const createStatsRowMarkup = (card) => {
+const createStatsRowMarkup = (card: StatsCardType): string => {
   const {
     category, english, russian, learn, correct, wrong,
   } = card;
-  const categoryName = uppercaseFirstLetter(category);
-  const correctPercent = calculateStatsPercent(card);
+  const categoryName: string = uppercaseFirstLetter(category);
+  const correctPercent: number = calculateStatsPercent(card);
 
   return (
     `<tr>
@@ -25,7 +26,7 @@ const createStatsRowMarkup = (card) => {
   );
 };
 
-const createStatsTableTemplate = () => (
+const createStatsTableTemplate = (): string => (
   `<div class="stats__wrapper">
     <table class="stats__table">
       <thead>
@@ -58,6 +59,10 @@ const createStatsTableTemplate = () => (
 );
 
 export default class StatsTableComponent extends AbstractComponent {
+  cards: Array<StatsCardType>;
+  sortType: SortType;
+  direction: Direction;
+
   constructor() {
     super();
     this.cards = null;
@@ -67,31 +72,31 @@ export default class StatsTableComponent extends AbstractComponent {
     this.setClickHandler();
   }
 
-  getTemplate() {
+  getTemplate(): string {
     return createStatsTableTemplate();
   }
 
-  update(cards) {
+  update(cards?: Array<StatsCardType>): void {
     if (cards) {
       this.cards = cards;
     }
-    const rowsContainer = this.getElement().querySelector('tbody');
+    const rowsContainer: HTMLElement = this.getElement().querySelector('tbody');
     rowsContainer.innerHTML = '';
 
-    const sortedCards = getSortedCards(this.cards, this.sortType, this.direction);
-    const statsRowMarkup = sortedCards
+    const sortedCards: Array<StatsCardType> = getSortedCards(this.cards, this.sortType, this.direction);
+    const statsRowMarkup: string = sortedCards
       .map((card) => createStatsRowMarkup(card))
       .join('\n');
 
     rowsContainer.innerHTML = statsRowMarkup;
   }
 
-  setClickHandler() {
-    this.getElement().querySelector('thead').addEventListener('click', (evt) => {
-      const target = evt.target.closest('.stats__title');
+  setClickHandler(): void {
+    this.getElement().querySelector('thead').addEventListener('click', (evt: Event) => {
+      const target: HTMLElement = (<HTMLElement> evt.target).closest('.stats__title');
       const { direction, sortType } = target.dataset;
 
-      const previousSortType = this.getElement().querySelector(`[data-sort-type=${this.sortType}]`);
+      const previousSortType: HTMLElement = this.getElement().querySelector(`[data-sort-type=${this.sortType}]`);
       previousSortType.dataset.direction = '';
 
       if (direction === Direction.UP || !direction) {
@@ -100,8 +105,8 @@ export default class StatsTableComponent extends AbstractComponent {
         target.dataset.direction = Direction.UP;
       }
 
-      this.sortType = sortType;
-      this.direction = target.dataset.direction;
+      this.sortType = sortType as SortType;
+      this.direction = target.dataset.direction as Direction;
 
       this.update();
     });

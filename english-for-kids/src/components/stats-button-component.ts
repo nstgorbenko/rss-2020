@@ -1,13 +1,13 @@
 import AbstractComponent from './abstract-component';
 
-const createStatsButtonTemplate = () => ('<button class="btn btn--stats" type="button">Stats</button>');
+const createStatsButtonTemplate = (): string => ('<button class="btn btn--stats" type="button">Stats</button>');
 
 export default class StatsButtonComponent extends AbstractComponent {
-  getTemplate() {
+  getTemplate(): string {
     return createStatsButtonTemplate();
   }
 
-  setClickHandler(handler) {
+  setClickHandler(handler: () => void): void {
     this.getElement().addEventListener('click', handler);
   }
 }

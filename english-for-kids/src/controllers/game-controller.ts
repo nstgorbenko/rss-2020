@@ -1,16 +1,27 @@
 import ButtonsWrapperComponent from '../components/buttons-wrapper-component';
+import CardsModel from '../models/cards-model';
+import { CardType, StatsCardType } from '../types';
 import CatalogController from './catalog-controller';
+import { Category, GameMode, RenderPosition } from '../const';
 import FinalMessageComponent from '../components/final-message-component';
 import NavigationComponent from '../components/navigation-component';
+import { render } from '../utils';
 import StatsButtonComponent from '../components/stats-button-component';
 import StatsController from './stats-controller';
 import ToggleComponent from '../components/toggle-component';
 
-import { render } from '../utils';
-import { GameMode, Category, RenderPosition } from '../const';
-
 export default class GameController {
-  constructor(pageContainer, cardsModel) {
+  mode: GameMode;
+  statsController: StatsController | null;
+  catalogController: CatalogController | null;
+  navigationComponent: NavigationComponent | null;
+  finalMessageComponent: FinalMessageComponent | null;
+  toggleComponent: ToggleComponent | null;
+
+  constructor(
+    public pageContainer: HTMLElement,
+    public cardsModel: CardsModel) {
+
     this.pageContainer = pageContainer;
     this.cardsModel = cardsModel;
 
@@ -33,15 +44,15 @@ export default class GameController {
     this.cardsModel.addCategoryChangeHandler(this.categoryChangeHandler);
   }
 
-  render() {
-    const cards = this.cardsModel.get();
-    const links = this.cardsModel.getCategories();
+  render(): void {
+    const cards: Array<StatsCardType> | Array<CardType> = this.cardsModel.get();
+    const links: Array<string> = this.cardsModel.getCategories();
 
     this.navigationComponent = new NavigationComponent(links);
     this.navigationComponent.setLinkClickHandler(this.pageChangeHandler);
 
-    const buttonsWrapperComponent = new ButtonsWrapperComponent();
-    const statsButtonComponent = new StatsButtonComponent();
+    const buttonsWrapperComponent: ButtonsWrapperComponent = new ButtonsWrapperComponent();
+    const statsButtonComponent: StatsButtonComponent = new StatsButtonComponent();
     statsButtonComponent.setClickHandler(this.showStats);
     render(buttonsWrapperComponent.getElement(), statsButtonComponent);
 
@@ -63,44 +74,44 @@ export default class GameController {
     this.statsController.setRepeatBtnClickHandler(this.pageChangeHandler);
   }
 
-  pageChangeHandler(newPage) {
+  pageChangeHandler(newPage: string): void {
     this.showGameField();
     this.cardsModel.setCategory(newPage);
   }
 
-  categoryChangeHandler() {
-    const cards = this.cardsModel.get();
-    const newLink = cards.length !== 0 ? cards[0].category : '';
+  categoryChangeHandler(): void {
+    const cards: Array<StatsCardType> | Array<CardType> = this.cardsModel.get();
+    const newLink: string = cards.length !== 0 ? cards[0].category : '';
 
     this.catalogController.update(cards, this.mode);
     this.navigationComponent.update(newLink);
   }
 
-  changeGameMode() {
+  changeGameMode(): void {
     this.mode = this.mode === GameMode.TRAIN ? GameMode.PLAY : GameMode.TRAIN;
     this.catalogController.changeMode(this.mode);
   }
 
-  finishGame(errorsCount) {
+  finishGame(errorsCount: number): void {
     this.finalMessageComponent.show(errorsCount);
     setTimeout(this.resetGame, 3000);
   }
 
-  resetGame() {
+  resetGame(): void {
     this.finalMessageComponent.hide();
     this.toggleComponent.triggerClick();
     this.cardsModel.setCategory(Category.MAIN);
     this.changeGameMode();
   }
 
-  showStats() {
+  showStats(): void {
     this.navigationComponent.update();
     this.catalogController.resetStartedGame();
     this.catalogController.hide();
     this.statsController.show();
   }
 
-  showGameField() {
+  showGameField(): void {
     this.catalogController.show();
     this.statsController.hide();
   }

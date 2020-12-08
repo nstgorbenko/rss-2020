@@ -1,17 +1,17 @@
 import AbstractComponent from './abstract-component';
 
-const createStatsContainerTemplate = () => ('<div class="stats"></div>');
+const createStatsContainerTemplate = (): string => ('<div class="stats"></div>');
 
 export default class StatsContainerComponent extends AbstractComponent {
-  getTemplate() {
+  getTemplate(): string {
     return createStatsContainerTemplate();
   }
 
-  hide() {
+  hide(): void {
     this.getElement().classList.add('hide');
   }
 
-  show() {
+  show(): void {
     this.getElement().classList.remove('hide');
   }
 }

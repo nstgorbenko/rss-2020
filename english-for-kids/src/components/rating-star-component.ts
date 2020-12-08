@@ -1,7 +1,7 @@
 import AbstractComponent from './abstract-component';
 
-const createRatingStarTemplate = (isFilled = true) => {
-  const emptyClass = !isFilled ? 'rating__star--error' : '';
+const createRatingStarTemplate = (isFilled: boolean = true): string => {
+  const emptyClass: string = !isFilled ? 'rating__star--error' : '';
 
   return (
     `<span class="rating__star ${emptyClass}"></span>`
@@ -9,12 +9,14 @@ const createRatingStarTemplate = (isFilled = true) => {
 };
 
 export default class RatingStarComponent extends AbstractComponent {
-  constructor(isFilled) {
+  constructor(
+    public isFilled?: boolean) {
+
     super();
     this.isFilled = isFilled;
   }
 
-  getTemplate() {
+  getTemplate(): string {
     return createRatingStarTemplate(this.isFilled);
   }
 }

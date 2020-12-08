@@ -1,11 +1,12 @@
 import AbstractComponent from './abstract-component';
-import { uppercaseFirstLetter } from '../utils';
+import { CardType } from '../types';
 import { GameMode } from '../const';
+import { uppercaseFirstLetter } from '../utils';
 
-const createCategoryCardTemplate = ({ english, russian, image }, mode) => {
-  const englishWord = uppercaseFirstLetter(english);
-  const russianWord = uppercaseFirstLetter(russian);
-  const gameModeClass = mode === GameMode.PLAY ? ' catalog__item--game' : '';
+const createCategoryCardTemplate = ({ english, russian, image }: CardType, mode: GameMode): string => {
+  const englishWord: string = uppercaseFirstLetter(english);
+  const russianWord: string = uppercaseFirstLetter(russian);
+  const gameModeClass: string = mode === GameMode.PLAY ? ' catalog__item--game' : '';
 
   return (
     `<li class="catalog__item${gameModeClass}">
@@ -25,10 +26,14 @@ const createCategoryCardTemplate = ({ english, russian, image }, mode) => {
 };
 
 export default class CategoryCardComponent extends AbstractComponent {
-  constructor(cardInfo, mode) {
-    super();
+  handler: null | ((cardName: string) => void);
 
-    this.item = cardInfo;
+  constructor(
+    public item: CardType,
+    public mode: GameMode) {
+
+    super();
+    this.item = item;
     this.mode = mode;
 
     this.handler = null;
@@ -41,17 +46,17 @@ export default class CategoryCardComponent extends AbstractComponent {
     this.setRotateBtnClickHandler();
   }
 
-  getTemplate() {
+  getTemplate(): string {
     return createCategoryCardTemplate(this.item, this.mode);
   }
 
-  getCategory() {
+  getCategory(): string {
     return this.item.category;
   }
 
-  setTrainModeClickHandler(handler) {
-    this.getElement().querySelector('.card__front').addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('card__rotate-btn') || this.mode === GameMode.PLAY) {
+  setTrainModeClickHandler(handler: (cardName: string) => void) {
+    this.getElement().querySelector('.card__front').addEventListener('click', (evt: Event) => {
+      if ((<HTMLElement> evt.target).classList.contains('card__rotate-btn') || this.mode === GameMode.PLAY) {
         return;
       }
       this.sayWord();
@@ -59,28 +64,28 @@ export default class CategoryCardComponent extends AbstractComponent {
     });
   }
 
-  setGameModeClickHandler(handler) {
+  setGameModeClickHandler(handler: (cardName: string) => void): void {
     this.handler = handler;
     this.getElement().querySelector('.card__front').addEventListener('click', this.gameModeClickHandler);
   }
 
-  gameModeClickHandler() {
+  gameModeClickHandler(): void {
     if (this.mode === GameMode.TRAIN) {
       return;
     }
     this.handler(this.item.english);
   }
 
-  setRotateBtnClickHandler() {
+  setRotateBtnClickHandler(): void {
     this.getElement().querySelector('.card__rotate-btn').addEventListener('click', this.turnBack);
   }
 
-  sayWord() {
+  sayWord(): void {
     const audio = new Audio(this.item.audio);
     audio.play();
   }
 
-  turnBack() {
+  turnBack(): void {
     if (this.mode === GameMode.PLAY) {
       return;
     }
@@ -88,22 +93,22 @@ export default class CategoryCardComponent extends AbstractComponent {
     this.getElement().addEventListener('mouseleave', this.turnFront);
   }
 
-  turnFront() {
+  turnFront(): void {
     this.getElement().querySelector('.card').classList.remove('card--spin');
     this.getElement().removeEventListener('mouseleave', this.turnFront);
   }
 
-  changeMode(mode) {
+  changeMode(mode: GameMode): void {
     this.mode = mode;
     this.getElement().classList.toggle('catalog__item--game');
     this.getElement().querySelector('.card').classList.remove('card--bright');
   }
 
-  getName() {
+  getName(): string {
     return this.item.english;
   }
 
-  disable() {
+  disable(): void {
     this.getElement().querySelector('.card').classList.add('card--bright');
     this.getElement().querySelector('.card__front').removeEventListener('click', this.gameModeClickHandler);
   }

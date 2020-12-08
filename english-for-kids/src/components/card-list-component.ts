@@ -1,13 +1,13 @@
 import AbstractComponent from './abstract-component';
 
-const createCatalogTemplate = () => ('<ul class="catalog__list"></ul>');
+const createCatalogTemplate = (): string => ('<ul class="catalog__list"></ul>');
 
 export default class CatalogComponent extends AbstractComponent {
-  getTemplate() {
+  getTemplate(): string {
     return createCatalogTemplate();
   }
 
-  clear() {
+  clear(): void {
     this.getElement().innerHTML = '';
   }
 }
