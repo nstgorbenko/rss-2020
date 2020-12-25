@@ -1,0 +1,38 @@
+@import '@/assets/stylesheets/utils/variables.scss';
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.title__text {
+  margin: 0;
+  text-align: center;
+}
+
+.title__arrow {
+  width: 0;
+  height: 0;
+  margin: 0;
+  margin: 5px;
+  padding: 0;
+  border: transparent;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-right: 10px solid $main-color;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+
+  &--right {
+    transform: rotate(180deg);
+  }
+
+  &:hover {
+    border-right: 10px solid $main-color--lightest;
+  }
+}

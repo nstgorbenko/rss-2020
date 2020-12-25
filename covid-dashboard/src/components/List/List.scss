@@ -1,0 +1,57 @@
+@import '@/assets/stylesheets/utils/variables.scss';
+
+.list {
+  grid-area: l;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: $tablet-width) {
+    &:not(.grid__element--show) {
+      max-height: 600px;
+    }
+  }
+}
+
+.list__items {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: auto;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar-track {
+    background-color: $main-color--dark;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: $main-color--dark;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $main-color;
+  }
+}
+
+.grid__element {
+  position: relative;
+  background: $main-color--darker;
+  border: 1px solid $main-color;
+  border-radius: 4px;
+
+  &--show {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 80px - 40px - 40px);
+    grid-area: none;
+    z-index: 2;
+  }
+
+  &--hide {
+    display: none;
+  }
+}

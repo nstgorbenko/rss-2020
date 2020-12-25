@@ -1,0 +1,36 @@
+@import '@/assets/stylesheets/utils/variables.scss';
+
+.resize {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  padding: 6px;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: $main-color--darker;
+  border: 1px solid $main-color;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid $main-color--lightest;
+  }
+}
+
+.resize__icon {
+  width: 16px;
+  height: 16px;
+  fill: $main-color;
+
+  .resize:hover & {
+    fill: $main-color--lightest;
+  }
+
+  .resize--collapse &--expand,
+  .resize--expand &--collapse {
+    display: none;
+  }
+}

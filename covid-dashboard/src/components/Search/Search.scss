@@ -1,0 +1,112 @@
+@import '@/assets/stylesheets/utils/variables.scss';
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search__input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.search__bar {
+  width: 277.55px;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  padding-right: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: $main-color--lightest;
+  border: 1px solid $main-color;
+  border-radius: 4px;
+  background-color: $main-color--darker;
+  outline: none;
+  cursor: pointer;
+
+  &::placeholder {
+    color: $main-color;
+  }
+
+  &:hover,
+  &:focus {
+    border: 1px solid $main-color--lightest;
+  }
+}
+
+.search__reset {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 50px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.search__reset-icon {
+  fill: $main-color;
+
+  .search__reset:hover & {
+    fill: $main-color--lightest;
+  }
+}
+
+.search__keyboard {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.search__keyboard-icon {
+  width: 40px;
+  height: 40px;
+  fill: $main-color;
+
+  .search__keyboard:hover & {
+    fill: $main-color--lightest;
+  }
+}
+
+.search__select {
+  position: absolute;
+  top: 40px;
+  width: 278px;
+  background-color: $main-color--darker;
+  color: $main-color--lightest;
+  border: 1px solid $main-color;
+  font-size: 12px;
+  z-index: 3;
+
+  &::-webkit-scrollbar-track {
+    background-color: $main-color--dark;
+  }
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: $main-color--dark;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $main-color;
+  }
+
+  &--hide {
+    display: none;
+  }
+}
+
+.select__options {
+  padding: 2px;
+
+  &:hover {
+    background-color: $main-color--dark;
+  }
+}

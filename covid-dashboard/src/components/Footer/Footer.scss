@@ -1,0 +1,56 @@
+@import '@/assets/stylesheets/utils/variables.scss';
+
+.footer {
+  box-sizing: border-box;
+  max-width: $desktop-width;
+  width: 100%;
+  margin: auto auto 0;
+  background-color: $main-color--darker;
+}
+
+.footer__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 40px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background-color: $main-color--darker;
+}
+
+.footer__school {
+  display: flex;
+  align-items: center;
+  width: 95px;
+  height: 25px;
+  color: $main-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $main-color--lightest;
+  }
+}
+
+.footer__school-icon {
+  width: 65px;
+  height: 25px;
+  margin-right: 10px;
+  border: 1px solid $main-color;
+  border-radius: 2px;
+  background-color: $main-color;
+
+  .footer__school:hover & {
+    background-color: $main-color--lightest;
+  }
+}
+
+.footer__link {
+  margin-left: 20px;
+  color: $main-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $main-color--lightest;
+  }
+}

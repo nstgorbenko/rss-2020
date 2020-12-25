@@ -1,0 +1,47 @@
+@import '@/assets/stylesheets/utils/variables.scss';
+
+.list__item {
+  padding: 5px 10px;
+  border-bottom: 1px solid $main-color;
+
+  &--active {
+    background-color: $main-color--light;
+  }
+
+  &:not(.list__item--active):hover {
+    background-color: $main-color--dark;
+    cursor: pointer;
+  }
+}
+
+.list__item-info {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  color: $main-color--lightest;
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  .list__item:not(.list__item--active) &:hover {
+    cursor: pointer;
+  }
+}
+
+.list__item-count {
+  margin-right: 15px;
+  font-weight: bold;
+  color: $green;
+}
+
+.list__item-country {
+  display: inline-block;
+}
+
+.list__item-flag {
+  display: inline;
+  width: 25px;
+  height: 17px;
+  margin: 0 5px -3px 0;
+}

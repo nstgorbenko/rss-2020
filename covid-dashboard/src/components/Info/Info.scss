@@ -1,0 +1,23 @@
+@import '@/assets/stylesheets/utils/variables.scss';
+
+.grid__element {
+  position: relative;
+  background: $main-color--darker;
+  border: 1px solid $main-color;
+  border-radius: 4px;
+}
+
+.info {
+  grid-area: i;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info__text,
+.info__date {
+  margin: 5px;
+  font-size: 18px;
+  text-align: center;
+}
